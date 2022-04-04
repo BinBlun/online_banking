@@ -36,7 +36,6 @@ public class Register {
     @NotEmpty
     @Column(nullable = false, length = 64)
     private String password;
-    private String matchingPassword;
 
     @Length(min = 5, max = 50)
     private String address;
@@ -48,7 +47,6 @@ public class Register {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.matchingPassword = matchingPassword;
         this.address = address;
     }
 
@@ -98,14 +96,6 @@ public class Register {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getMatchingPassword() {
-        return matchingPassword;
-    }
-
-    public void setMatchingPassword(String matchingPassword) {
-        this.matchingPassword = matchingPassword;
     }
 
     public String getAddress() {
