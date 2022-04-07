@@ -2,6 +2,7 @@ package com.example.online_banking.controller;
 
 import com.example.online_banking.model.Register;
 import com.example.online_banking.repository.RegisterRepository;
+import com.example.online_banking.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
+
     @Autowired
-    RegisterRepository registerRepository;
+    private RegisterService service;
 
     @RequestMapping(value = "")
     public String register(Model model){
@@ -36,8 +37,7 @@ public class RegisterController {
                 /*return "companyUpdate";*/
             }
         }
-        register.setId(id);
-        registerRepository.save(register);
+        service.save(register);
         return "redirect:/register";
     }
 }

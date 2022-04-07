@@ -28,6 +28,19 @@ public class Register {
     @Column(nullable = false, length = 20)
     private String lastName;
 
+    @Column(length = 10)
+    private String phoneNumber;
+
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Email
     @NotEmpty
     @Column(nullable = false,unique = true, length = 45)
@@ -45,9 +58,18 @@ public class Register {
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
         this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Long getId() {
