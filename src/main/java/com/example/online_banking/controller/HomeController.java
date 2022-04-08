@@ -22,6 +22,7 @@ public class HomeController {
 
     @Autowired
     private RegisterService service;
+
 // HOME PAGE
     @RequestMapping("")
     public String viewHomePage(){
@@ -34,15 +35,14 @@ public class HomeController {
         return "login";
     }
 
-
     @PostMapping("/doLogin")
-    public String doLogin(@RequestBody User usersLogin) {
-        List<User> user = repository.findByPhoneNumber(usersLogin.getPhoneNumber());
+    public String doLogin(@RequestParam("phoneNumber") String phoneNumber, @RequestParam("password") String password ){
+        List<User> user = repository.findByPhoneNumber(phoneNumber);
         if (CollectionUtils.isEmpty(user) || user.size() > 1) {
             return "login";
         }
         User u = user.get(0);
-        if (u.getPassword().equals(usersLogin.getPassword())) {
+        if (u.getPassword().equals(password)) {
             if ("ADMIN".equalsIgnoreCase(u.getRole())) {
                 return "adminHome";
             } else if ("CUSTOMER".equalsIgnoreCase(u.getRole())) {
