@@ -5,12 +5,11 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "register")
-public class Register {
+@Table(name = "user")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -53,7 +52,7 @@ public class Register {
     @Length(min = 5, max = 50)
     private String address;
 
-    public Register() {
+    public User() {
         this.id = id;
         this.userName = userName;
         this.firstName = firstName;

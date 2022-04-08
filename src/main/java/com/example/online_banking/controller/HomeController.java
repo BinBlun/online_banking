@@ -19,10 +19,10 @@
 //    @Autowired
 //    private UsersRepository repository;
 //
-//    @PostMapping("/login")
 //    public String login() {
 //        return "login";
 //    }
+//    @PostMapping("/login")
 //
 //    @PostMapping("/doLogin")
 //    public String doLogin(@RequestBody Users usersLogin) {

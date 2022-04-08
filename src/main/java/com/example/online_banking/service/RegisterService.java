@@ -1,7 +1,7 @@
 package com.example.online_banking.service;
 
-import com.example.online_banking.model.Register;
-import com.example.online_banking.repository.RegisterRepository;
+import com.example.online_banking.model.User;
+import com.example.online_banking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 public class RegisterService {
 
     @Autowired
-    RegisterRepository registerRepository;
+    UserRepository registerRepository;
 
-    public Register save(Register model) {
+    public User save(User model) {
         model.setRole("CUSTOMER");
         return registerRepository.save(model);
     }

@@ -1,7 +1,6 @@
 package com.example.online_banking.controller;
 
-import com.example.online_banking.model.Register;
-import com.example.online_banking.repository.RegisterRepository;
+import com.example.online_banking.model.User;
 import com.example.online_banking.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,21 +13,21 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/register")
-public class RegisterController {
+public class UserController {
 
     @Autowired
     private RegisterService service;
 
     @RequestMapping(value = "")
     public String register(Model model){
-        Register register = new Register();
+        User register = new User();
 //        Register existsUser = registerRepository.getByEmail
         model.addAttribute("a", register);
         return "register";
     }
 
     @RequestMapping(value = "/save")
-    public String saveUpdate(@RequestParam(value = "id", required = false) Long id, @Valid Register register, BindingResult result) {
+    public String saveUpdate(@RequestParam(value = "id", required = false) Long id, @Valid User register, BindingResult result) {
 
         if (result.hasErrors()) {
             if (id == null) {
