@@ -12,21 +12,15 @@
                 <h2 class="text-center text-primary">REGISTER</h2>
 
                 <fieldset class="form-group">
-                    <label>User name</label>
-                    <input class="form-control" type="text" th:field="*{userName}">
-                    <p th:if="${#fields.hasErrors('userName')}" th:errorclass="error" th:errors="*{userName}" />
+                    <label>Full name</label>
+                    <input class="form-control" type="text" th:field="*{fullName}">
+                    <p th:if="${#fields.hasErrors('fullName')}" th:errorclass="error" th:errors="*{fullName}" />
                 </fieldset>
 
                 <fieldset class="form-group">
-                    <label>First Name </label>
-                    <input class="form-control" type="text" th:field="*{firstName}">
-                    <p th:if="${#fields.hasErrors('firstName')}" th:errorclass="error" th:errors="*{firstName}" />
-                </fieldset>
-
-                <fieldset class="form-group">
-                    <label>Last Name </label>
-                    <input class="form-control" type="text" th:field="*{lastName}">
-                    <p th:if="${#fields.hasErrors('lastName')}" th:errorclass="error" th:errors="*{lastName}" />
+                    <label>Phone number</label>
+                    <input class="form-control" type="text" th:field="*{phoneNumber}">
+                    <p th:if="${#fields.hasErrors('phoneNumber')}" th:errorclass="error" th:errors="*{phoneNumber}" />
                 </fieldset>
 
                 <fieldset class="form-group">
@@ -47,11 +41,12 @@
 <!--                    <p th:if="${#fields.hasErrors('matchingPassword')}" th:errorclass="error" th:errors="*{matchingPassword}" />-->
 <!--                </fieldset>-->
 
-                <fieldset class="form-group">
-                    <label>Address </label>
-                    <input class="form-control" type="text" th:field="*{address}">
-                    <p th:if="${#fields.hasErrors('address')}" th:errorclass="error" th:errors="*{address}" />
-                </fieldset>
+<!--                <fieldset class="form-group">-->
+<!--                    <label>Address </label>-->
+<!--                    <input class="form-control" type="text" th:field="*{address}">-->
+<!--                    <p th:if="${#fields.hasErrors('address')}" th:errorclass="error" th:errors="*{address}" />-->
+<!--                </fieldset>-->
+
                 <div class="col text-center mt-3">
                     <button type="submit" class="btn btn-success">REGISTER</button>
                 </div>

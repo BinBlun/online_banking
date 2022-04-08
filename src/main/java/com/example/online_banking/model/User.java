@@ -1,7 +1,5 @@
 package com.example.online_banking.model;
 
-import org.hibernate.validator.constraints.Length;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -15,30 +13,14 @@ public class User {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @NotEmpty
-    @Column(nullable = false, length = 20)
-    @Size(min = 3, max = 30)
-    private String userName;
+    private String role;
 
     @Column(nullable = false, length = 20)
     @Size(min = 3, max = 30)
-    private String firstName;
-
-    @Column(nullable = false, length = 20)
-    private String lastName;
+    private String fullName;
 
     @Column(length = 10)
     private String phoneNumber;
-
-    private String role;
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     @Email
     @NotEmpty
@@ -49,81 +31,51 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
-    @Length(min = 5, max = 50)
-    private String address;
+//    @NotEmpty
+//    @Column(nullable = false, length = 20)
+//    @Size(min = 3, max = 30)
+//    private String userName;
+//
+//    @Column(nullable = false, length = 20)
+//    @Size(min = 3, max = 30)
+//    private String firstName;
+//
+//    @Column(nullable = false, length = 20)
+//    private String lastName;
+//
+//    @Length(min = 5, max = 50)
+//    private String address;
 
     public User() {
         this.id = id;
-        this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.role = role;
+        this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
-        this.address = address;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+    public Long getId() {return id;}
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+    public void setId(Long id) {this.id = id;}
 
-    public Long getId() {
-        return id;
-    }
+    public String getRole() {return role;}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setRole(String role) {this.role = role;}
 
-    public String getUserName() {
-        return userName;
-    }
+    public String getFullName() {return fullName;}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+    public void setFullName(String userName) {this.fullName = userName;}
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getPhoneNumber() {return phoneNumber;}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
 
-    public String getLastName() {
-        return lastName;
-    }
+    public String getEmail() {return email;}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public void setEmail(String email) {this.email = email;}
 
-    public String getEmail() {
-        return email;
-    }
+    public String getPassword() {return password;}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
+    public void setPassword(String password) {this.password = password;}
 }

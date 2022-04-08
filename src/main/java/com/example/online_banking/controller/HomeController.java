@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -60,7 +59,7 @@ public class HomeController {
     @RequestMapping(value = "/register")
     public String register(Model model){
         User register = new User();
-        model.addAttribute("user", register);
+        model.addAttribute("register", register);
         return "register";
     }
 
