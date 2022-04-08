@@ -15,11 +15,6 @@ public class User {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @NotEmpty
-    @Column(nullable = false, length = 20)
-    @Size(min = 3, max = 30)
-    private String userName;
-
     @Column(nullable = false, length = 20)
     @Size(min = 3, max = 30)
     private String firstName;
@@ -54,7 +49,6 @@ public class User {
 
     public User() {
         this.id = id;
-        this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -77,14 +71,6 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getFirstName() {
