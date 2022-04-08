@@ -1,5 +1,6 @@
 package com.example.online_banking.service;
 
+import com.example.online_banking.model.Customer;
 import com.example.online_banking.model.User;
 import com.example.online_banking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ public class RegisterService {
     @Autowired
     UserRepository registerRepository;
 
-    public User save(User model) {
+    public Customer save(Customer model) {
         model.setRole("CUSTOMER");
         return registerRepository.save(model);
     }

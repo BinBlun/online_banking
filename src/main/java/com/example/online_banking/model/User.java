@@ -46,8 +46,13 @@ public class User {
 //    @Length(min = 5, max = 50)
 //    private String address;
 
-    public User() {
+    public User() {}
+
+    public User(Long id) {
         this.id = id;
+    }
+
+    public User(String role, String fullName, String phoneNumber, String email, String password) {
         this.role = role;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;

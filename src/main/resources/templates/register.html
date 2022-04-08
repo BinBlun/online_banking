@@ -12,25 +12,49 @@
                 <h2 class="text-center text-primary">REGISTER</h2>
 
                 <fieldset class="form-group">
-                    <label>Full name</label>
+                    <label>Full Name</label>
                     <input class="form-control" type="text" th:field="*{fullName}">
                     <p th:if="${#fields.hasErrors('fullName')}" th:errorclass="error" th:errors="*{fullName}" />
                 </fieldset>
 
                 <fieldset class="form-group">
-                    <label>Phone number</label>
+                    <label>Social Security Number</label>
+                    <input class="form-control" type="text" th:field="*{SSN}">
+                    <p th:if="${#fields.hasErrors('SSN')}" th:errorclass="error" th:errors="*{password}" />
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label>Phone Number</label>
                     <input class="form-control" type="text" th:field="*{phoneNumber}">
                     <p th:if="${#fields.hasErrors('phoneNumber')}" th:errorclass="error" th:errors="*{phoneNumber}" />
                 </fieldset>
 
                 <fieldset class="form-group">
-                    <label>Email </label>
+                    <label>Email</label>
                     <input class="form-control" type="text" th:field="*{email}">
                     <p th:if="${#fields.hasErrors('email')}" th:errorclass="error" th:errors="*{email}" />
                 </fieldset>
 
                 <fieldset class="form-group">
-                    <label>Password </label>
+                    <label>Street Address</label>
+                    <input class="form-control" type="text" th:field="*{streetAddress}">
+                    <p th:if="${#fields.hasErrors('streetAddress')}" th:errorclass="error" th:errors="*{password}" />
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label>City</label>
+                    <input class="form-control" type="text" th:field="*{city}">
+                    <p th:if="${#fields.hasErrors('city')}" th:errorclass="error" th:errors="*{password}" />
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label>District</label>
+                    <input class="form-control" type="text" th:field="*{district}">
+                    <p th:if="${#fields.hasErrors('district')}" th:errorclass="error" th:errors="*{password}" />
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label>Password</label>
                     <input class="form-control" type="text" th:field="*{password}">
                     <p th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}" />
                 </fieldset>

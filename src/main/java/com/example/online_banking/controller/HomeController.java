@@ -1,5 +1,6 @@
 package com.example.online_banking.controller;
 
+import com.example.online_banking.model.Customer;
 import com.example.online_banking.model.User;
 import com.example.online_banking.repository.UserRepository;
 import com.example.online_banking.service.RegisterService;
@@ -58,13 +59,13 @@ public class HomeController {
 
     @RequestMapping(value = "/register")
     public String register(Model model){
-        User register = new User();
+        Customer register = new Customer();
         model.addAttribute("register", register);
         return "register";
     }
 
     @RequestMapping(value = "register/save")
-    public String saveUpdate(@RequestParam(value = "id", required = false) Long id, @Valid User register, BindingResult result) {
+    public String saveUpdate(@RequestParam(value = "id", required = false) Long id, @Valid Customer register, BindingResult result) {
 
         if (result.hasErrors()) {
             if (id == null) {
