@@ -23,7 +23,7 @@ public class RegisterController {
     public String register(Model model){
         Register register = new Register();
 //        Register existsUser = registerRepository.getByEmail
-        model.addAttribute("register", register);
+        model.addAttribute("a", register);
         return "register";
     }
 
