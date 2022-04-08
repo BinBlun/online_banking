@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("")
 public class HomeController {
     @Autowired
     private UserRepository repository;
@@ -60,7 +60,7 @@ public class HomeController {
     @RequestMapping(value = "/register")
     public String register(Model model){
         User register = new User();
-        model.addAttribute("user", register);
+        model.addAttribute("register", register);
         return "register";
     }
 
