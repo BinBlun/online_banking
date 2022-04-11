@@ -5,10 +5,17 @@
     <title>Register</title>
 </head>
 <body>
+<!--<script type="text/javascript">-->
+<script th:inline="javascript">
+    function onSave(a) {
+        console.log(a)
+        alert(1);
+    }
+</script>
 <div layout:fragment="content" class="container col-md-5 mt-4">
     <div class="card">
         <div class="card-body">
-            <form th:action="'/register/save'" th:object="${register}" method="post">
+            <form th:object="${register}">
                 <h2 class="text-center text-primary">REGISTER</h2>
 
                 <fieldset class="form-group">
@@ -72,7 +79,7 @@
 <!--                </fieldset>-->
 
                 <div class="col text-center mt-3">
-                    <button type="submit" class="btn btn-success">REGISTER</button>
+                    <button th:onclick="onSave()" class="btn btn-success">REGISTER</button>
                 </div>
 
             </form>
