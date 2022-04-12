@@ -39,6 +39,7 @@ public class RegisterService {
         Date currentDate = new Date();
         account.setActiveDate(currentDate);
         accountRepository.save(account);
+
         // tao account
 
         return customer;

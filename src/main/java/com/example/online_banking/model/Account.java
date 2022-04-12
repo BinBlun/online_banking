@@ -23,6 +23,9 @@ public class Account {
     @Column(name = "customer_id")
     private Long customerId;
 
+    @Column(name = "current_balance")
+    private Long currentBalance;
+
     @Column(name = "active_date")
     private Date activeDate;
 }
