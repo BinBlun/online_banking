@@ -5,17 +5,10 @@
     <title>Register</title>
 </head>
 <body>
-<!--<script type="text/javascript">-->
-<script th:inline="javascript">
-    function onSave(a) {
-        console.log(a)
-        alert(1);
-    }
-</script>
 <div layout:fragment="content" class="container col-md-5 mt-4">
     <div class="card">
         <div class="card-body">
-            <form th:object="${register}">
+            <form th:action="@{/register/save}" th:object="${register}">
                 <h2 class="text-center text-primary">REGISTER</h2>
 
                 <fieldset class="form-group">
@@ -45,41 +38,29 @@
                 <fieldset class="form-group">
                     <label>Street Address</label>
                     <input class="form-control" type="text" th:field="*{streetAddress}">
-                    <p th:if="${#fields.hasErrors('streetAddress')}" th:errorclass="error" th:errors="*{password}" />
+                    <p th:if="${#fields.hasErrors('streetAddress')}" th:errorclass="error" th:errors="*{streetAddress}" />
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label>City</label>
                     <input class="form-control" type="text" th:field="*{city}">
-                    <p th:if="${#fields.hasErrors('city')}" th:errorclass="error" th:errors="*{password}" />
+                    <p th:if="${#fields.hasErrors('city')}" th:errorclass="error" th:errors="*{city}" />
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label>District</label>
                     <input class="form-control" type="text" th:field="*{district}">
-                    <p th:if="${#fields.hasErrors('district')}" th:errorclass="error" th:errors="*{password}" />
+                    <p th:if="${#fields.hasErrors('district')}" th:errorclass="error" th:errors="*{district}" />
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label>Password</label>
-                    <input class="form-control" type="text" th:field="*{password}">
+                    <input class="form-control" type="password" th:field="*{password}">
                     <p th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}" />
                 </fieldset>
 
-<!--                <fieldset class="form-group">-->
-<!--                    <label>Matching Password </label>-->
-<!--                    <input class="form-control" type="text" th:field="*{matchingPassword}">-->
-<!--                    <p th:if="${#fields.hasErrors('matchingPassword')}" th:errorclass="error" th:errors="*{matchingPassword}" />-->
-<!--                </fieldset>-->
-
-<!--                <fieldset class="form-group">-->
-<!--                    <label>Address </label>-->
-<!--                    <input class="form-control" type="text" th:field="*{address}">-->
-<!--                    <p th:if="${#fields.hasErrors('address')}" th:errorclass="error" th:errors="*{address}" />-->
-<!--                </fieldset>-->
-
                 <div class="col text-center mt-3">
-                    <button th:onclick="onSave()" class="btn btn-success">REGISTER</button>
+                    <button type="submit" class="btn btn-success">REGISTER</button>
                 </div>
 
             </form>

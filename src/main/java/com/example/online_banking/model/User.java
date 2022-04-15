@@ -31,21 +31,6 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
-//    @NotEmpty
-//    @Column(nullable = false, length = 20)
-//    @Size(min = 3, max = 30)
-//    private String userName;
-//
-//    @Column(nullable = false, length = 20)
-//    @Size(min = 3, max = 30)
-//    private String firstName;
-//
-//    @Column(nullable = false, length = 20)
-//    private String lastName;
-//
-//    @Length(min = 5, max = 50)
-//    private String address;
-
     public User() {}
 
     public User(Long id) {

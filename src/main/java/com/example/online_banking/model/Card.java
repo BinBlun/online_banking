@@ -6,17 +6,16 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Account")
+@Table(name = "Card")
 @Data
-public class Account {
-
+public class Card {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "account_number")
-    private String accountNumber;
+    private String cardNumber;
 
     @Column(name = "customer_id")
     private Long customerId;
@@ -25,5 +24,6 @@ public class Account {
     private Long currentBalance;
 
     @Column(name = "active_date")
-    private Date activeDate;
+    private Date cartDate;
 }
+

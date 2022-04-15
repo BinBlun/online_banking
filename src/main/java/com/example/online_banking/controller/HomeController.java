@@ -64,10 +64,11 @@ public class HomeController {
         return "register";
     }
 
-    @RequestMapping(value = "register/save")
+    @RequestMapping(value = "/register/save")
     public String saveUpdate(@RequestParam(value = "id", required = false) Long id, @Valid Customer register, BindingResult result) {
 
         if (result.hasErrors()) {
+            System.out.println(result.getAllErrors());
             if (id == null) {
                 return "register";
             } else {

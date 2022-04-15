@@ -1,9 +1,11 @@
 package com.example.online_banking.service;
 
 import com.example.online_banking.model.Account;
+import com.example.online_banking.model.Card;
 import com.example.online_banking.model.Customer;
 import com.example.online_banking.model.User;
 import com.example.online_banking.repository.AccountRepository;
+import com.example.online_banking.repository.CardRepository;
 import com.example.online_banking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,9 @@ public class RegisterService {
     @Autowired
     AccountRepository accountRepository;
 
+    @Autowired
+    CardRepository cardRepository;
+
     public Customer save(Customer model) {
         model.setRole("CUSTOMER");
         Customer customer = registerRepository.save(model);
@@ -31,19 +36,28 @@ public class RegisterService {
                 break;
             }
         } while (true);
-
+//        // tao account
         Account account = new Account();
         account.setAccountNumber(randomNumber(9));
         account.setCustomerId(customer.getId());
 
-        Date currentDate = new Date();
-        account.setActiveDate(currentDate);
+        Date accountCurrentDate = new Date();
+        account.setActiveDate(accountCurrentDate);
         accountRepository.save(account);
+//
+//        //tạo card
+        Card card = new Card();
+        card.setCardNumber(randomNumber(11));
+        card.setCustomerId(customer.getId());
 
-        // tao account
+        Date cardCurrentDate = new Date();
+        card.setCartDate(cardCurrentDate);
+        cardRepository.save(card);
 
         return customer;
     }
+
+
 
     private String randomNumber(int size) {
         StringBuilder a = new StringBuilder();
