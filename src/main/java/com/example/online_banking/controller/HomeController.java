@@ -38,19 +38,19 @@ public class HomeController {
     public String doLogin(@RequestParam("phoneNumber") String phoneNumber, @RequestParam("password") String password ){
         List<User> user = repository.findByPhoneNumber(phoneNumber);
         if (CollectionUtils.isEmpty(user) || user.size() > 1) {
-            return "login";
+            return "redirect:/login";
         }
         User u = user.get(0);
         if (u.getPassword().equals(password)) {
             if ("ADMIN".equalsIgnoreCase(u.getRole())) {
-                return "adminHome";
+                return "redirect:/admin";
             } else if ("CUSTOMER".equalsIgnoreCase(u.getRole())) {
-                return "customerHome";
+                return "redirect:/customer";
             } else {
-                return "login";
+                return "redirect:/login";
             }
         } else {
-            return "login";
+            return "redirect:/login";
         }
     }
 
@@ -59,6 +59,7 @@ public class HomeController {
     @RequestMapping(value = "/register")
     public String register(Model model){
         User register = new User();
+
         model.addAttribute("register", register);
         return "register";
     }
@@ -67,6 +68,7 @@ public class HomeController {
     public String saveUpdate(@RequestParam(value = "id", required = false) Long id, @Valid User register, BindingResult result) {
 
         if (result.hasErrors()) {
+            System.out.println(result.getAllErrors());
             if (id == null) {
                 return "register";
             } else {

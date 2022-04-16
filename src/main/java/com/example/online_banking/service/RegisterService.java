@@ -38,6 +38,7 @@ public class RegisterService {
 //        // tao account
         Account account = new Account();
         account.setAccountNumber(randomNumber(9));
+        account.setCurrentBalance(0L);
         account.setUserId(customer);
 
         Date accountCurrentDate = new Date();
@@ -47,6 +48,7 @@ public class RegisterService {
 //        //tạo card
         Card card = new Card();
         card.setCardNumber(randomNumber(11));
+        card.setCurrentBalance(0L );
         card.setUserId(customer.getId());
 
         Date cardCurrentDate = new Date();

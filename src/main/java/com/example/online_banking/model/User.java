@@ -20,17 +20,17 @@ public class User {
     @Column(name = "full_name")
     private String fullName;
 
-    @Column(name = "phoneNumber")
+    @Column(name = "phoneNumber", unique = true)
     private String phoneNumber;
 
     @Email
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "ssn")
+    @Column(name = "ssn", unique = true)
     private String ssn;
 
     @Column(name = "street_address")
