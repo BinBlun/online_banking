@@ -17,8 +17,8 @@ public class Card {
     @Column(name = "account_number")
     private String cardNumber;
 
-    @Column(name = "customer_id")
-    private Long customerId;
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(name = "current_balance")
     private Long currentBalance;

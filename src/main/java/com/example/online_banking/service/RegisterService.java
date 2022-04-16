@@ -2,7 +2,6 @@ package com.example.online_banking.service;
 
 import com.example.online_banking.model.Account;
 import com.example.online_banking.model.Card;
-import com.example.online_banking.model.Customer;
 import com.example.online_banking.model.User;
 import com.example.online_banking.repository.AccountRepository;
 import com.example.online_banking.repository.CardRepository;
@@ -24,9 +23,9 @@ public class RegisterService {
     @Autowired
     CardRepository cardRepository;
 
-    public Customer save(Customer model) {
+    public User save(User model) {
         model.setRole("CUSTOMER");
-        Customer customer = registerRepository.save(model);
+        User customer = registerRepository.save(model);
 
         String accNum = randomNumber(9);
         do {
@@ -39,7 +38,7 @@ public class RegisterService {
 //        // tao account
         Account account = new Account();
         account.setAccountNumber(randomNumber(9));
-        account.setCustomerId(customer.getId());
+        account.setUserId(customer);
 
         Date accountCurrentDate = new Date();
         account.setActiveDate(accountCurrentDate);
@@ -48,7 +47,7 @@ public class RegisterService {
 //        //tạo card
         Card card = new Card();
         card.setCardNumber(randomNumber(11));
-        card.setCustomerId(customer.getId());
+        card.setUserId(customer.getId());
 
         Date cardCurrentDate = new Date();
         card.setCartDate(cardCurrentDate);
@@ -58,13 +57,11 @@ public class RegisterService {
     }
 
 
-
     private String randomNumber(int size) {
         StringBuilder a = new StringBuilder();
-        for (int i = 0; i < size ; i++) {
+        for (int i = 0; i < size; i++) {
             a.append(new Random().nextInt(9));
         }
-        System.out.println(a.toString());
         return a.toString();
     }
 }

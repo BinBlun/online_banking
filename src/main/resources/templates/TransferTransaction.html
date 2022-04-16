@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Transfer Transaction</title>
+</head>
+<body>
+<div layout:fragment="content" class="container col-md-5 mt-4">
+    <div class="card">
+        <div class="card-body">
+            <form th:object="${transaction}">
+                <h2 class="text-center text-primary">Transfer Money</h2>
+
+                <fieldset class="form-group">
+                    <label>Số Tài Khoản Thụ Hưởng</label>
+                    <input class="form-control" type="text" th:field="*{accountID}">
+                    <p th:if="${#fields.hasErrors('accountID')}" th:errorclass="error" th:errors="*{accountID}" />
+                </fieldset>
+
+
+
+                <div class="col text-center mt-3">
+                    <button th:onclick="onSave()" class="btn btn-success">REGISTER</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

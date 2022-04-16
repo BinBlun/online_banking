@@ -11,15 +11,16 @@ import java.util.Date;
 public class Account {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "account_id", nullable = false)
+    private Long accountId;
 
     @Column(name = "account_number")
     private String accountNumber;
 
-    @Column(name = "customer_id")
-    private Long customerId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User userId;
 
     @Column(name = "current_balance")
     private Long currentBalance;
