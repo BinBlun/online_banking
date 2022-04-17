@@ -5,3 +5,14 @@
     margin-top: 3px;
     text-align: center;
 }
+
+/*  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage*/
+
+.actionBtn {
+    text-align: center;
+    font-size: 100px;
+}
+
+#registerBtn, #loginBtn {
+font-size: 100px;
+}

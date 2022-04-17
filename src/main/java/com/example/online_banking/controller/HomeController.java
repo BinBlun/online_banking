@@ -29,7 +29,7 @@ public class HomeController {
     }
 
 //    LOGIN
-    @GetMapping("/login")
+    @RequestMapping("/login")
     public String login(Model model) {
         return "login";
     }
@@ -78,5 +78,17 @@ public class HomeController {
         service.save(register);
         return "redirect:/login";
     }
+
+//    VIEW ACCOUNT
+
+//    @RequestMapping(value = "/account")
+//    public String account(Model model) {
+//        Customer account = new Customer();
+//        model.addAttribute("account", account);
+//        return "customerAccount";
+//    }
+//
+//    @RequestMapping(value = "account/payment")
+//    public String
 
 }
