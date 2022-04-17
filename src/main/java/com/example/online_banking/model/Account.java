@@ -3,6 +3,7 @@ package com.example.online_banking.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -23,7 +24,7 @@ public class Account {
     private User userId;
 
     @Column(name = "current_balance")
-    private Long currentBalance;
+    private BigDecimal currentBalance;
 
     @Column(name = "active_date")
     private Date activeDate;

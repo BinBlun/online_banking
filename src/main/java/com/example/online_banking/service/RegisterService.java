@@ -9,6 +9,7 @@ import com.example.online_banking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Random;
 
@@ -38,7 +39,7 @@ public class RegisterService {
 //        // tao account
         Account account = new Account();
         account.setAccountNumber(randomNumber(9));
-        account.setCurrentBalance(0L);
+        account.setCurrentBalance(BigDecimal.valueOf(0));
         account.setUserId(customer);
 
         Date accountCurrentDate = new Date();
@@ -48,7 +49,7 @@ public class RegisterService {
 //        //tạo card
         Card card = new Card();
         card.setCardNumber(randomNumber(11));
-        card.setCurrentBalance(0L );
+        card.setCurrentBalance(BigDecimal.valueOf(0));
         card.setUserId(customer.getId());
 
         Date cardCurrentDate = new Date();

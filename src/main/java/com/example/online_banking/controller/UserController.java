@@ -47,14 +47,13 @@ public class UserController {
 
     @RequestMapping("/transferMoney/{id}")
     public String transferMoney(@PathVariable(value = "id") Long id ,Model model) {
-        Account account = accountRepository.getById(id);
+        Account account1 = accountRepository.getById(id);
+        model.addAttribute("account", account1);
 
-        model.addAttribute("account", account);
+        Transaction transaction = new Transaction();
+        model.addAttribute("transaction", transaction);
 
 
-
-//        Transaction transaction = new Transaction();
-//        model.addAttribute("transaction", transaction);
         return "TransferTransaction";
     }
 

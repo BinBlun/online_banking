@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -25,7 +26,7 @@ public class Transaction {
 
     @Column(name = "transaction_amount", nullable = false)
     @Min(value = 0)
-    private Long transactionAmount;
+    private BigDecimal transactionAmount;
 
     @Column(name = "transaction_date", updatable = false)
     @CreationTimestamp
