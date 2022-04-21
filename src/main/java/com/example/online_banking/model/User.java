@@ -27,8 +27,14 @@ public class User {
     @Column(name = "email", unique = true)
     private String email;
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "password")
     private String password;
+
+    @Column(name = "encrypted_password")
+    private String encryptedPassword;
 
     @Column(name = "ssn", unique = true)
     private String ssn;

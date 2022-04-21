@@ -4,6 +4,7 @@ import com.example.online_banking.model.User;
 import com.example.online_banking.repository.UserRepository;
 import com.example.online_banking.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
@@ -23,20 +24,30 @@ public class HomeController {
     @Autowired
     private RegisterService service;
 
-// HOME PAGE
-    @RequestMapping("")
-    public String viewHomePage(){
+    // HOME PAGE
+    @RequestMapping("/home")
+    public String viewHomePage(Authentication authentication, Model model) {
+        String userName = authentication.getName();
+        User user = repository.findByUsername(userName);
+        model.addAttribute("currentUser", user);
         return "HomePage";
     }
 
-//    LOGIN
+    //    LOGIN
     @RequestMapping("/login")
     public String login(Model model) {
         return "login";
     }
 
+    // logout
+    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
+    public String logoutSuccessfulPage(Model model) {
+        model.addAttribute("title", "Logout");
+        return "login";
+    }
+
     @PostMapping("/doLogin")
-    public String doLogin(@RequestParam("phoneNumber") String phoneNumber, @RequestParam("password") String password, HttpSession session){
+    public String doLogin(@RequestParam("phoneNumber") String phoneNumber, @RequestParam("password") String password, HttpSession session) {
 
         List<User> user = repository.findByPhoneNumber(phoneNumber);
         if (CollectionUtils.isEmpty(user) || user.size() > 1) {
@@ -64,7 +75,7 @@ public class HomeController {
 //    SIGN-UP
 
     @RequestMapping(value = "/register")
-    public String register(Model model){
+    public String register(Model model) {
         User register = new User();
 
         model.addAttribute("register", register);

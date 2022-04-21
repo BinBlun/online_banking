@@ -79,10 +79,10 @@
         <p id="welcomeToFit">Welcome to FIT</p>
     </div>
 
-    <form class="form" name='login' th:action="@{/doLogin}" method='POST'>
+    <form class="form" name='login' th:action="@{/j_spring_security_check}" method='POST'>
         <table>
             <tr>
-                <p><input id="phoneNumBox" type='text' placeholder="Phone Number" name='phoneNumber' value=''></p>
+                <p><input id="phoneNumBox" type='text' placeholder="User name" name='username' value=''></p>
             </tr>
 
             <tr>
