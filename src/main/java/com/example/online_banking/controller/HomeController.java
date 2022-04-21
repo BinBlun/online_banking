@@ -24,20 +24,30 @@ public class HomeController {
     @Autowired
     private RegisterService service;
 
-// HOME PAGE
+    // HOME PAGE
     @RequestMapping("/home")
-    public String viewHomePage(Authentication authentication){
+    public String viewHomePage(Authentication authentication, Model model) {
+        String userName = authentication.getName();
+        User user = repository.findByUsername(userName);
+        model.addAttribute("currentUser", user);
         return "HomePage";
     }
 
-//    LOGIN
+    //    LOGIN
     @RequestMapping("/login")
     public String login(Model model) {
         return "login";
     }
 
+    // logout
+    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
+    public String logoutSuccessfulPage(Model model) {
+        model.addAttribute("title", "Logout");
+        return "login";
+    }
+
     @PostMapping("/doLogin")
-    public String doLogin(@RequestParam("phoneNumber") String phoneNumber, @RequestParam("password") String password, HttpSession session){
+    public String doLogin(@RequestParam("phoneNumber") String phoneNumber, @RequestParam("password") String password, HttpSession session) {
 
         List<User> user = repository.findByPhoneNumber(phoneNumber);
         if (CollectionUtils.isEmpty(user) || user.size() > 1) {
@@ -65,7 +75,7 @@ public class HomeController {
 //    SIGN-UP
 
     @RequestMapping(value = "/register")
-    public String register(Model model){
+    public String register(Model model) {
         User register = new User();
 
         model.addAttribute("register", register);

@@ -52,7 +52,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //Cuối cùng mình tạo đối tượng UserDetails của Spring và mình cung cấp cá thông số như tên , password và quyền
         // Đối tượng userDetails sẽ chứa đựng các thông tin cần thiết về user từ đó giúp Spring Security quản lý được phân quyền như ta đã
         // cấu hình trong bước 4 method configure
-        UserDetails userDetails = (UserDetails) new User(appUser.getPhoneNumber(),
+        UserDetails userDetails = (UserDetails) new User(appUser.getUsername(),
                 appUser.getEncryptedPassword(), grantList);
 
         return userDetails;

@@ -110,9 +110,19 @@
                 <input id="loginBtn" type="submit" value="Login"/>
             </p>
         </form>
+        <form style="float: right;
+                         margin: 15px 5px 15px 15px;"
+              th:action="@{/logout}" method="POST">
+            <p>
+                <input id="" type="submit" value="Logout"/>
+            </p>
+        </form>
 
     </div>
 
+    <div>
+        <a style="color: aliceblue;" th:text="'Hello ' + ${currentUser.username}"></a>
+    </div>
     <div class="fitICO">
         <a id="fitSmart">FIT SMART BANKING</a>
         <a id="ico">ICO</a>
