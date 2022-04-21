@@ -6,7 +6,7 @@ import com.example.online_banking.model.Transaction;
 import com.example.online_banking.model.User;
 import com.example.online_banking.repository.AccountRepository;
 import com.example.online_banking.repository.CardRepository;
-import com.example.online_banking.repository.TransactionRepository;
+//import com.example.online_banking.repository.TransactionRepository;
 import com.example.online_banking.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,8 +27,8 @@ public class UserController {
     @Autowired
     private CardRepository cardRepository;
 
-    @Autowired
-    private TransactionRepository transactionRepository;
+//    @Autowired
+//    private TransactionRepository transactionRepository;
 
     @Autowired
     private AccountRepository accountRepository;
@@ -50,8 +50,8 @@ public class UserController {
         Account account1 = accountRepository.getById(id);
         model.addAttribute("account", account1);
 
-        Transaction transaction = new Transaction();
-        model.addAttribute("transaction", transaction);
+//        Transaction transaction = new Transaction();
+//        model.addAttribute("transaction", transaction);
 
 
         return "TransferTransaction";
