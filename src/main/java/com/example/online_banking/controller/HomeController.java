@@ -4,6 +4,7 @@ import com.example.online_banking.model.User;
 import com.example.online_banking.repository.UserRepository;
 import com.example.online_banking.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
@@ -23,8 +24,8 @@ public class HomeController {
     private RegisterService service;
 
 // HOME PAGE
-    @RequestMapping("")
-    public String viewHomePage(){
+    @RequestMapping("/home")
+    public String viewHomePage(Authentication authentication){
         return "HomePage";
     }
 
