@@ -45,6 +45,7 @@ public class HomeController {
             if ("ADMIN".equalsIgnoreCase(u.getRole())) {
                 return "redirect:/admin";
             } else if ("CUSTOMER".equalsIgnoreCase(u.getRole())) {
+                Long accountID = u.getId();
                 return "redirect:/customer";
             } else {
                 return "redirect:/login";
@@ -53,6 +54,7 @@ public class HomeController {
             return "redirect:/login";
         }
     }
+
 
 //    SIGN-UP
 
@@ -79,16 +81,6 @@ public class HomeController {
         return "redirect:/login";
     }
 
-//    VIEW ACCOUNT
 
-//    @RequestMapping(value = "/account")
-//    public String account(Model model) {
-//        Customer account = new Customer();
-//        model.addAttribute("account", account);
-//        return "customerAccount";
-//    }
-//
-//    @RequestMapping(value = "account/payment")
-//    public String
 
 }
