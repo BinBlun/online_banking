@@ -1,13 +1,7 @@
 package com.example.online_banking.controller;
 
-import com.example.online_banking.model.Account;
-import com.example.online_banking.model.Card;
-import com.example.online_banking.model.Loans;
-import com.example.online_banking.model.User;
-import com.example.online_banking.repository.AccountRepository;
-import com.example.online_banking.repository.CardRepository;
-import com.example.online_banking.repository.LoansRepository;
-import com.example.online_banking.repository.UserRepository;
+import com.example.online_banking.model.*;
+import com.example.online_banking.repository.*;
 import com.example.online_banking.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -35,8 +30,13 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private LoansPackageRepository loansPackageRepository;
+
     @RequestMapping("")
     public String viewCustomerHome(Model model){
+        User user = userRepository.getById(1L);
+        model.addAttribute("currentUser", user);
         return "customerHome";
     }
 
@@ -57,9 +57,14 @@ public class UserController {
 
     @RequestMapping("/moneyLoans/{id}")
     public String moneyLoans(@PathVariable(value = "id") Long id, Model model){
+//        Tìm loans mà người dùng đã đăng ký
         User user = userRepository.getById(id);
         List<Loans> loans = loansRepository.findBySSN(user.getSsn());
         model.addAttribute("loans", loans);
+
+//        Hiện lên LoansPackage
+        List<LoansPackage> loansPackages = loansPackageRepository.findAll();
+        model.addAttribute("loansPackages", loansPackages);
         return "moneyLoans";
     }
 }

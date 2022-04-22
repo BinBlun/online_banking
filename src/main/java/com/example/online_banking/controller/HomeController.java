@@ -10,6 +10,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class HomeController {
     }
 
     @PostMapping("/doLogin")
-    public String doLogin(@RequestParam("phoneNumber") String phoneNumber, @RequestParam("password") String password ){
+    public String doLogin(@RequestParam("phoneNumber") String phoneNumber, @RequestParam("password") String password, HttpSession session){
         List<User> user = repository.findByPhoneNumber(phoneNumber);
         if (CollectionUtils.isEmpty(user) || user.size() > 1) {
             return "redirect:/login";
@@ -45,7 +46,7 @@ public class HomeController {
             if ("ADMIN".equalsIgnoreCase(u.getRole())) {
                 return "redirect:/admin";
             } else if ("CUSTOMER".equalsIgnoreCase(u.getRole())) {
-                Long accountID = u.getId();
+                session.setAttribute("userID", u.getId());
                 return "redirect:/customer";
             } else {
                 return "redirect:/login";

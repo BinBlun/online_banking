@@ -16,7 +16,7 @@ public class Loans {
     private Long id;
 
     @Column(name = "SSN")
-    private Long SSN;
+    private String SSN;
 
     @Column(name = "loansAmountTaken")
     private String loansAmountTaken;
