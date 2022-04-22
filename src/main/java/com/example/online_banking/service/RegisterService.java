@@ -3,6 +3,7 @@ package com.example.online_banking.service;
 import com.example.online_banking.model.Account;
 import com.example.online_banking.model.Card;
 import com.example.online_banking.model.User;
+import com.example.online_banking.model.UserRole;
 import com.example.online_banking.repository.AccountRepository;
 import com.example.online_banking.repository.CardRepository;
 import com.example.online_banking.repository.UserRepository;
@@ -56,6 +57,10 @@ public class RegisterService {
         card.setCartDate(cardCurrentDate);
         cardRepository.save(card);
 
+//        tạo role
+        UserRole userRole = new UserRole();
+        userRole.setRoleName("ROLE_USER");
+        userRole.setUserId(customer.getId());
         return customer;
     }
 

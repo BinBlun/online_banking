@@ -65,8 +65,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/doTransferMoney")
-    public String doTransferMoney(TransferTransactionInput input,
-                                  Model model){
+    public String doTransferMoney(TransferTransactionInput input,     Model model){
         Account account1 = accountRepository.getById(1L);
         model.addAttribute("account", account1);
 
@@ -92,4 +91,5 @@ public class UserController {
     public String transferSuccess(Model model) {
         return "TransferSuccess";
     }
+
 }
