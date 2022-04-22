@@ -51,8 +51,7 @@ public class HomeController {
     }
 
     @PostMapping("/doLogin")
-    public String doLogin(@RequestParam("phoneNumber") String phoneNumber, @RequestParam("password") String password, HttpSession session) {
-
+    public String doLogin(@RequestParam("phoneNumber") String phoneNumber, @RequestParam("password") String password ){
         List<User> user = repository.findByPhoneNumber(phoneNumber);
         if (CollectionUtils.isEmpty(user) || user.size() > 1) {
             return "redirect:/login";
@@ -63,10 +62,7 @@ public class HomeController {
             if ("ADMIN".equalsIgnoreCase(u.getRole())) {
                 return "redirect:/admin";
             } else if ("CUSTOMER".equalsIgnoreCase(u.getRole())) {
-                System.out.println(user);
-                session.setAttribute("user", user);
-                System.out.println("-------");
-                session.getAttributeNames().asIterator().forEachRemaining(System.out::println);
+                Long accountID = u.getId();
                 return "redirect:/customer";
             } else {
                 return "redirect:/login";
@@ -75,6 +71,7 @@ public class HomeController {
             return "redirect:/login";
         }
     }
+
 
 //    SIGN-UP
 
@@ -100,5 +97,7 @@ public class HomeController {
         service.save(register);
         return "redirect:/login";
     }
+
+
 
 }

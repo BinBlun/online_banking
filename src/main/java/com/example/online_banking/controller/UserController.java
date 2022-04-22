@@ -1,5 +1,7 @@
 package com.example.online_banking.controller;
 
+import com.example.online_banking.model.*;
+import com.example.online_banking.repository.*;
 import com.example.online_banking.model.Account;
 import com.example.online_banking.model.Card;
 import com.example.online_banking.model.Transaction;
@@ -18,6 +20,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.List;
@@ -32,16 +35,27 @@ public class UserController {
     private CardRepository cardRepository;
 
     @Autowired
+    private LoansRepository loansRepository;
+
+    @Autowired
     private TransactionRepository transactionRepository;
 
     @Autowired
     private AccountRepository accountRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private TransactionService transactionService;
+
+    @Autowired
+    private LoansPackageRepository loansPackageRepository;
 
     @RequestMapping("")
     public String viewCustomerHome(Model model){
+        User user = userRepository.getById(1L);
+        model.addAttribute("currentUser", user);
         return "customerHome";
     }
 
@@ -85,6 +99,19 @@ public class UserController {
                 return "TransferSuccess";
             }
         }
+    }
+
+    @RequestMapping("/moneyLoans/{id}")
+    public String moneyLoans(@PathVariable(value = "id") Long id, Model model) {
+//        Tìm loans mà người dùng đã đăng ký
+        User user = userRepository.getById(id);
+        List<Loans> loans = loansRepository.findBySSN(user.getSsn());
+        model.addAttribute("loans", loans);
+
+//        Hiện lên LoansPackage
+        List<LoansPackage> loansPackages = loansPackageRepository.findAll();
+        model.addAttribute("loansPackages", loansPackages);
+        return "moneyLoans";
     }
 
     @RequestMapping("/transferSuccess")
