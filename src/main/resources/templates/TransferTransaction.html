@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="_layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Transfer Transaction</title>
+</head>
+<body>
+<div class="container text-center">
+    <h1>Đây là người chuyển tiền</h1>
+    <div class="col">
+        <h3 th:t
+
+            ext="'Số tài khoản: ' + ${account.accountNumber}"/>
+        <h3 th:text="'Số dư: ' + ${account.currentBalance} + ' Đồng'"/>
+    </div>
+
+    <form name='transferMoney' th:action="@{/customer/doTransferMoney}" method='POST'>
+        <table>
+            <tr>
+                <td>Người nhận tiền </td>
+                <td>:</td>
+                <td><input type='text' name='accountNumber' value=''></td>
+            </tr>
+
+            <tr>
+                <td>Số tiền chuyển </td>
+                <td>:</td>
+                <td><input class="form-control" name="amount" type="text"></td>
+            </tr>
+
+            <tr>
+                <td>Description </td>
+                <td>:</td>
+                <td><input class="form-control" type="text"></td>
+            </tr>
+
+            <tr>
+                <td><button type="submit" class="btn btn-success">Chuyển Tiền</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
