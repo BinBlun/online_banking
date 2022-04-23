@@ -60,11 +60,11 @@
             dataType: 'json',
             success: function (res) {
                 console.log(res);
-                document.location.href = '/customer/customerHome'
+                document.location.href = '/customer/transactionSuccess'
             },
             error: function (e) {
                 console.log(e);
-                document.location.href = '/customer/customerHome'
+                document.location.href = '/home'
                 alert(e.responseText)
             }
         });

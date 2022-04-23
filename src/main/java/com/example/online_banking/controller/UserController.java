@@ -131,6 +131,11 @@ public class UserController {
         }
     }
 
+    @RequestMapping("transactionSuccess")
+    public String transactionSuccess(Model model){
+        return "transactionSuccess";
+    }
+
     @RequestMapping("/moneyLoans/{id}")
     public String moneyLoans(@PathVariable(value = "id") Long id, Model model) {
 //        Tìm loans mà người dùng đã đăng ký
