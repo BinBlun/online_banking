@@ -38,8 +38,11 @@ public class Transaction {
     @Column(name = "status")
     private String status;
 
-    @Column(name = "recipient_account_id", nullable = false)
+    @Column(name = "recipient_account_id")
     private Long recipientAccountID;
+
+    @Column(name = "transaction_type")
+    private String transactionType;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

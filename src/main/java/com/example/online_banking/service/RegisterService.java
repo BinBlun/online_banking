@@ -3,11 +3,13 @@ package com.example.online_banking.service;
 import com.example.online_banking.model.Account;
 import com.example.online_banking.model.Card;
 import com.example.online_banking.model.User;
+import com.example.online_banking.model.UserRole;
 import com.example.online_banking.repository.AccountRepository;
 import com.example.online_banking.repository.CardRepository;
 import com.example.online_banking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -30,7 +32,7 @@ public class RegisterService {
 
         String accNum = randomNumber(9);
         do {
-            if (accountRepository.findByAccountNumber(accNum) != null) {
+            if (!CollectionUtils.isEmpty(accountRepository.findByAccountNumber(accNum))) {
                 accNum = randomNumber(9);
             } else {
                 break;
@@ -38,7 +40,7 @@ public class RegisterService {
         } while (true);
 //        // tao account
         Account account = new Account();
-        account.setAccountNumber(randomNumber(9));
+        account.setAccountNumber(accNum);
         account.setCurrentBalance(BigDecimal.valueOf(0));
         account.setUserId(customer);
 
@@ -56,6 +58,10 @@ public class RegisterService {
         card.setCartDate(cardCurrentDate);
         cardRepository.save(card);
 
+//        tạo role
+        UserRole userRole = new UserRole();
+        userRole.setRoleName("ROLE_USER");
+        userRole.setUserId(customer.getId());
         return customer;
     }
 

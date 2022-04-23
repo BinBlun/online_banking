@@ -15,7 +15,7 @@ public class LoansPackage {
     private Long id;
 
     @Column(name = "interest_rate")
-    private String interestRate;
+    private double interestRate;
 
     @Column(name = "duration")
     private String duration;

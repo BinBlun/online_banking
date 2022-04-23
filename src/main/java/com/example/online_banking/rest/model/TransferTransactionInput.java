@@ -7,4 +7,5 @@ public class TransferTransactionInput {
 
     private String accountNumber;
     private String amount;
+    private String description;
 }
