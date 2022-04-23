@@ -176,7 +176,7 @@
             </div>
 
             <div class="depoMoneyDiv">
-                <form th:action="@{/customer/depositMoney}">
+                <form th:action="'/customer/depositMoney' + ${1}">
                     <input id="depoMoneyBtn" type="submit" value="Deposit Money"/>
                 </form>
             </div>

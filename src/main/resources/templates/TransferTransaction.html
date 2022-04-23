@@ -13,31 +13,62 @@
         <h3 th:text="'Số dư: ' + ${account.currentBalance} + ' Đồng'"/>
     </div>
 
-    <form name='transferMoney' th:action="@{/customer/doTransferMoney}" method='POST'>
+    <form name='transferMoney'>
         <table>
             <tr>
-                <td>Người nhận tiền </td>
+                <td>Người nhận tiền</td>
                 <td>:</td>
-                <td><input type='text' name='accountNumber' value=''></td>
+                <td><input id='accountNumber' type='text' name='accountNumber' value=''></td>
             </tr>
 
             <tr>
-                <td>Số tiền chuyển </td>
+                <td>Số tiền chuyển</td>
                 <td>:</td>
-                <td><input class="form-control" name="amount" type="text"></td>
+                <td><input class="form-control" id='amount' name="amount" type="text"></td>
             </tr>
 
             <tr>
-                <td>Description </td>
+                <td>Description</td>
                 <td>:</td>
-                <td><input class="form-control" type="text"></td>
+                <td><input class="form-control" id='description' name="description" type="text"></td>
             </tr>
 
             <tr>
-                <td><button type="submit" class="btn btn-success">Chuyển Tiền</button></td>
+                <td>
+                    <button id="submit" type="button" class="btn btn-success">Chuyển Tiền</button>
+                </td>
             </tr>
         </table>
     </form>
 </div>
+<script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $("#submit").click(() => {
+        const data = {
+            accountNumber: document.getElementById('accountNumber').value,
+            amount: document.getElementById('amount').value,
+            description: document.getElementById('description').value
+        }
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/customer/doTransferMoney",
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (res) {
+                console.log(res);
+                document.location.href = '/customer/customerHome'
+            },
+            error: function (e) {
+                console.log(e);
+                document.location.href = '/customer/customerHome'
+                alert(e.responseText)
+            }
+        });
+    })
+</script>
 </body>
 </html>

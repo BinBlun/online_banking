@@ -2,9 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Deposit Money</title>
 </head>
 <body>
+<h1>Đây là người chuyển tiền</h1>
+<div class="col">
+    <h3 th:text="'Số tài khoản: ' + ${account1.accountNumber}"/>
+    <h3 th:text="'Số dư: ' + ${account1.currentBalance} + ' Đồng'"/>
+</div>
 
+<form name='withdrawMoney' th:action="@{/customer/doDepositMoney}" method='POST'>
+    <table>
+        <tr>
+            <td>Số tiền muốn cho vào</td>
+            <td>:</td>
+            <td><input class="form-control" name="amount" type="text"></td>
+        </tr>
+
+        <tr>
+            <td><button type="submit" class="btn btn-success">Nạp tiền</button></td>
+        </tr>
+    </table>
+</form>
+</div>
 </body>
 </html>
