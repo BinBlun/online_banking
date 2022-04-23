@@ -1,7 +1,9 @@
 package com.example.online_banking.controller;
 
 import com.example.online_banking.model.User;
+import com.example.online_banking.model.UserRole;
 import com.example.online_banking.repository.UserRepository;
+import com.example.online_banking.repository.UserRoleRepository;
 import com.example.online_banking.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -24,6 +26,8 @@ public class HomeController {
     @Autowired
     private RegisterService service;
 
+    @Autowired
+    private UserRoleRepository userRoleRepository;
     // HOME PAGE
     @RequestMapping("/home")
     public String viewHomePage(Authentication authentication, Model model) {
@@ -47,8 +51,7 @@ public class HomeController {
     }
 
     @PostMapping("/doLogin")
-    public String doLogin(@RequestParam("phoneNumber") String phoneNumber, @RequestParam("password") String password, HttpSession session) {
-
+    public String doLogin(@RequestParam("phoneNumber") String phoneNumber, @RequestParam("password") String password ){
         List<User> user = repository.findByPhoneNumber(phoneNumber);
         if (CollectionUtils.isEmpty(user) || user.size() > 1) {
             return "redirect:/login";
@@ -59,10 +62,7 @@ public class HomeController {
             if ("ADMIN".equalsIgnoreCase(u.getRole())) {
                 return "redirect:/admin";
             } else if ("CUSTOMER".equalsIgnoreCase(u.getRole())) {
-                System.out.println(user);
-                session.setAttribute("user", user);
-                System.out.println("-------");
-                session.getAttributeNames().asIterator().forEachRemaining(System.out::println);
+                Long accountID = u.getId();
                 return "redirect:/customer";
             } else {
                 return "redirect:/login";
@@ -71,6 +71,7 @@ public class HomeController {
             return "redirect:/login";
         }
     }
+
 
 //    SIGN-UP
 
@@ -97,16 +98,6 @@ public class HomeController {
         return "redirect:/login";
     }
 
-//    VIEW ACCOUNT
 
-//    @RequestMapping(value = "/account")
-//    public String account(Model model) {
-//        Customer account = new Customer();
-//        model.addAttribute("account", account);
-//        return "customerAccount";
-//    }
-//
-//    @RequestMapping(value = "account/payment")
-//    public String
 
 }
