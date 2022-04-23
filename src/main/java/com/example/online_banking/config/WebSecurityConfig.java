@@ -26,6 +26,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     AppConfig appConfig = new AppConfig();
 
+    private static final String[] PUBLIC_MATCHERS = {
+            "/css/**",
+            "/js/**",
+            "/data/**",
+            "/sound/**",
+            "/img/**",
+            "/",
+            "/login",
+            "/logout",
+            "/error",
+            "/index2",
+    };
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(appConfig.passwordEncoder());
@@ -36,32 +49,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
 
-        // Các trang không yêu cầu login
-        http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
-
-        // Trang /userInfo yêu cầu phải login với vai trò ROLE_USER hoặc ROLE_ADMIN.
-        // Nếu chưa login, nó sẽ redirect tới trang /login.
-        http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
-
-        // Trang chỉ dành cho ADMIN
-        http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
-
-        // Khi người dùng đã login, với vai trò XX.
-        // Nhưng truy cập vào trang yêu cầu vai trò YY,
-        // Ngoại lệ AccessDeniedException sẽ ném ra.
-        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
-
-        // Cấu hình cho Login Form.
-        http.authorizeRequests().and().formLogin()//
-                // Submit URL của trang login
-                .loginProcessingUrl("/j_spring_security_check") // Submit URL
-                .loginPage("/login")//
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers(PUBLIC_MATCHERS).permitAll()
+                .antMatchers("/admin/**").hasAnyRole("ROLE_ADMIN")
+                .antMatchers("/user/**").hasAnyRole("ROLE_USER")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login").loginProcessingUrl("/j_spring_security_check") // Submit URL
                 .defaultSuccessUrl("/home")//
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")
                 // Cấu hình cho Logout Page.
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful")
+                .permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/403");
 
         // Cấu hình Remember Me.
         http.authorizeRequests().and() //

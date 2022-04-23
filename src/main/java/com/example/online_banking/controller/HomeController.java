@@ -33,6 +33,11 @@ public class HomeController {
         return "HomePage";
     }
 
+    @RequestMapping("/403")
+    public String errorPage() {
+        return "errorPage";
+    }
+
     //    LOGIN
     @RequestMapping("/login")
     public String login(Model model) {
