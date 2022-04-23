@@ -154,10 +154,14 @@ public class UserController {
         return "moneyLoans";
     }
 
-    @RequestMapping("/chooseLoansPackage")
-    public String chooseLoansPackage() {
-        return "moneyLoans";
-    }
+
+
+
+
+
+
+
+
 
 
     @RequestMapping("/transferSuccess")
