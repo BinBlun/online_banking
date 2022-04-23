@@ -20,6 +20,8 @@
             border: 2px solid #08020E;
         }
     </style>
+
+
 </head>
 <body>
     <div class="main-container container text-center">
@@ -44,13 +46,11 @@
                 </tr>
 
                 <tr class="loanParent" th:each="loanPackage : ${loansPackages}">
-                    <form th:action="@{/chooseLoansPackage}">
-                        <button type="submit">
-                            <div th:text="'Loams Package ID: ' + ${loanPackage.id}"></div>
-                            <div th:text="'Interest Rate: ' + ${loanPackage.interestRate} + '%'"></div>
-                            <div th:text="'Duration: ' + ${loanPackage.duration} + ' months'"></div>
-                        </button>
-                    </form>
+                    <div class="loanElement">
+                        <div th:text="'Loams Package ID: ' + ${loanPackage.id}"></div>
+                        <div th:text="'Interest Rate: ' + ${loanPackage.interestRate} + '%'"></div>
+                        <div th:text="'Duration: ' + ${loanPackage.duration} + ' months'"></div>
+                    </div>
                 </tr>
 
                 <tr>
@@ -58,12 +58,25 @@
                 </tr>
 
                 <tr>
-                    <p><input id="loginBtn" type='submit' name='submit' value='OK Ok'/></p>
+                    <p><input id="loginBtn" type="" name='submit' value='OK Ok'/></p>
                 </tr>
             </table>
         </form>
 
 
     </div>
+
+
+
+    <script>
+        const submit = document.getElementsByClassName("loanElement")
+        console.log(submit)
+        submit[0].addEventListener("click", function (){
+            alert("ksdfjklsd")
+        })
+
+    // tí push lên hộ t
+    </script>
 </body>
+
 </html>
