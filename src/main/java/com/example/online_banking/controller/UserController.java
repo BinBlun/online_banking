@@ -114,9 +114,40 @@ public class UserController {
         return "moneyLoans";
     }
 
+    @RequestMapping("/doLoans")
+    public String doLoans(){
+        return "moneyLoans";
+    }
+
+    @RequestMapping("/chooseLoansPackage")
+    public String chooseLoansPackage(){
+        return "moneyLoans";
+    }
+
+
+
+
+
+
+
+
+
+
     @RequestMapping("/transferSuccess")
     public String transferSuccess(Model model) {
         return "TransferSuccess";
+    }
+
+    @RequestMapping("/withdrawMoney/{id}")
+    public String withdrawMoney(@PathVariable(value = "id") Long id ,
+                               Model model) {
+        Account account1 = accountRepository.getById(id);
+        model.addAttribute("account", account1);
+
+        Transaction transaction = new Transaction();
+        model.addAttribute("transaction", transaction);
+//        return "redirect:/transferSuccess";
+        return "TransferTransaction";
     }
 
 }
