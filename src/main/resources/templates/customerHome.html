@@ -182,7 +182,7 @@
             </div>
 
             <div class="withMoneyDiv">
-                <form th:action="@{/customer/withdrawMoney}">
+                <form th:action="'/customer/withdrawMoney/' + ${1}">
                     <input id="withMoneyBtn" type="submit" value="Withdraw Money"/>
                 </form>
             </div>
