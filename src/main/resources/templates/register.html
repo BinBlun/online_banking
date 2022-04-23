@@ -18,14 +18,42 @@
         justify-content: center;
     }
 
+    .fitICO {
+        float: left;
+        font-weight: bold;
+        font-size: 17px;
+        margin: 0 0 0 0;
+    }
+
+    #fitSmart {
+        /*color: aliceblue;*/
+    }
+
+    #ico {
+        color: #05F63A;
+    }
+
+    h2 {
+        margin: 60px 0 0 0;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .greetingText {
+        display: inline-block;
+    }
+
     .card {
-        display: flex;
-        justify-content: center;
+        display: block;
         background-color: white;
-        width: 40em;
-        padding: 25px;
-        margin-top: 2em;
+        width: 36em;
+        padding: 50px;
+        margin: 2em;
         border-radius: 10px;
+        border: none;
+        box-shadow: 0 5px 15px rgba(145, 92, 182, .2);
     }
 
     .card-body {
@@ -33,11 +61,30 @@
     }
 
     .form-control {
+        background-color: whitesmoke;
+        font-size: 15px;
+        margin: 5px 0 25px 0;
+        padding: 7px;
+        width: 98%;
+        border-radius: 3px;
+        border: 1px solid gray;
+    }
+
+    .btn {
+
+        color: #fff;
+        background-color: #13aff0;
+        border: 1px solid #0e9fdc;
         margin: 0 0 0 0;
-        padding: 5px;
+        font-size: 14px;
+        padding: 10px;
         border-radius: 5px;
-        /*outline: 2px gray;*/
-        /*border: none;*/
+    }
+
+    .btn:hover {
+        color: #e0e0e0;
+        background-color: #149ed9;
+        transition: 0.2s;
     }
 
 </style>
@@ -47,13 +94,32 @@
     <div class="card">
         <div class="card-body">
             <form th:action="@{/register/save}" th:object="${register}">
-                <h2 class="text-center text-primary">REGISTER</h2>
+                <div class="fitICO">
+                    <a id="fitSmart">FIT SMART BANKING</a>
+                    <a id="ico">ICO</a>
+                </div><br>
+                <h2 class="text-center text-primary">SIGN UP</h2>
+                <p class="greetingText">join the most advanced online banking system of the nation!</p>
 
                 <div class="form-group">
                     <p>
                     <label>Full Name</label><br>
                     <input class="form-control" type="text" placeholder="E.g Nguyen Huy Hoang" th:field="*{fullName}">
                     <p th:if="${#fields.hasErrors('fullName')}" th:errorclass="error" th:errors="*{fullName}"></p>
+                </div>
+
+                <div class="form-group">
+                    <p>
+                        <label>Email</label><br>
+                        <input class="form-control" type="text" placeholder="E.g hoang@gmail.com" th:field="*{email}">
+                    <p th:if="${#fields.hasErrors('email')}" th:errorclass="error" th:errors="*{email}"></p>
+                </div>
+
+                <div class="form-group">
+                    <p>
+                        <label>Password</label><br>
+                        <input class="form-control" type="password" th:field="*{password}">
+                    <p th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}"></p>
                 </div>
 
                 <div class="form-group">
@@ -70,12 +136,6 @@
                     <p th:if="${#fields.hasErrors('phoneNumber')}" th:errorclass="error" th:errors="*{phoneNumber}"></p>
                 </div>
 
-                <div class="form-group">
-                    <p>
-                    <label>Email</label><br>
-                    <input class="form-control" type="text" th:field="*{email}">
-                    <p th:if="${#fields.hasErrors('email')}" th:errorclass="error" th:errors="*{email}"></p>
-                </div>
 
                 <div class="form-group">
                     <p>
@@ -98,15 +158,8 @@
                     <p th:if="${#fields.hasErrors('district')}" th:errorclass="error" th:errors="*{district}"></p>
                 </div>
 
-                <div class="form-group">
-                    <p>
-                    <label>Password</label><br>
-                    <input class="form-control" type="password" th:field="*{password}">
-                    <p th:if="${#fields.hasErrors('password')}" th:errorclass="error" th:errors="*{password}"></p>
-                </div>
-
                 <div class="col">
-                    <button type="submit" class="btn btn-success">REGISTER</button>
+                    <button type="submit" class="btn btn-success">CREATE ACCOUNT</button>
                 </div>
 
             </form>
