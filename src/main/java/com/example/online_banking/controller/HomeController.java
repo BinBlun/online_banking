@@ -5,8 +5,11 @@ import com.example.online_banking.model.UserRole;
 import com.example.online_banking.repository.UserRepository;
 import com.example.online_banking.repository.UserRoleRepository;
 import com.example.online_banking.service.RegisterService;
+import com.example.online_banking.utils.CommonUtils;
+import com.example.online_banking.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
@@ -103,6 +106,14 @@ public class HomeController {
         return "redirect:/login";
     }
 
-
-
+    @RequestMapping("/")
+    public String home(Authentication authentication) {
+        String role = CommonUtils.getAuthority(authentication);
+        if (Constants.ROLE_USER.equals(role)) {
+            return "redirect:/customer";
+        } else if (Constants.ROLE_ADMIN.equals(role)) {
+            return "errorPage";
+        }
+        return "errorPage";
+    }
 }

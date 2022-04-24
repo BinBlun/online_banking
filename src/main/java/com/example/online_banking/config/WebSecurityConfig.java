@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/data/**",
             "/sound/**",
             "/img/**",
-            "/",
+            "/register",
             "/login",
             "/logout",
             "/error",
