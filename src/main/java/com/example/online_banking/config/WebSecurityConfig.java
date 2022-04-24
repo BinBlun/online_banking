@@ -31,12 +31,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/js/**",
             "/data/**",
             "/sound/**",
-            "/img/**",
+            "/images/**",
             "/register",
             "/login",
             "/logout",
             "/error",
-            "/index2",
     };
 
     @Autowired

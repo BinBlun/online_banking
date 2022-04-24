@@ -9,12 +9,16 @@ import com.example.online_banking.model.User;
 import com.example.online_banking.repository.AccountRepository;
 import com.example.online_banking.repository.CardRepository;
 import com.example.online_banking.repository.TransactionRepository;
+import com.example.online_banking.rest.model.CommonResponse;
 import com.example.online_banking.rest.model.TransferTransactionInput;
 import com.example.online_banking.service.RegisterService;
 import com.example.online_banking.service.TransactionService;
+import com.example.online_banking.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
@@ -51,6 +55,9 @@ public class UserController {
     @Autowired
     private LoansPackageRepository loansPackageRepository;
 
+    @Autowired
+    private BankRepository bankRepository;
+
     @RequestMapping("")
     public String viewCustomerHome(Model model) {
         User user = userRepository.getById(1L);
@@ -65,20 +72,22 @@ public class UserController {
         return "viewBalancePage";
     }
 
-    @RequestMapping("/transferMoney/{id}")
-    public String transferMoney(@PathVariable(value = "id") Long id,
+    @RequestMapping("/transferMoney")
+    public String transferMoney(Authentication authentication,
                                 Model model) {
-        Account account1 = accountRepository.getById(id);
-        model.addAttribute("account", account1);
+        String userName = authentication.getName();
+        User user = userRepository.findByUsername(userName);
+        Account account = accountRepository.findFirstByUserId(user.getId());
+        model.addAttribute("account", account);
 
-//        Transaction transaction = new Transaction();
-//        model.addAttribute("transaction", transaction);
-//        return "redirect:/transferSuccess";
+        List<Bank> bankList = bankRepository.findAll();
+        model.addAttribute("bankList", bankList);
         return "TransferTransaction";
     }
 
     @PostMapping(value = "/doTransferMoney")
-    public ResponseEntity<String> doTransferMoney(@RequestBody TransferTransactionInput input, Model model) {
+    public ResponseEntity<CommonResponse> doTransferMoney(@RequestBody TransferTransactionInput input, Model model) {
+        CommonResponse response = new CommonResponse();
         //tìm tài khoản mà muốn rút tiền
         Account account1 = accountRepository.getById(1L);
         model.addAttribute("account", account1);
@@ -87,7 +96,10 @@ public class UserController {
         List<Account> account = accountRepository.findByAccountNumber(input.getAccountNumber());
 
         if (CollectionUtils.isEmpty(account) || account.size() > 1) {
-            return ResponseEntity.badRequest().body("Account not exist");
+            response.setStatus(Constants.STATUS_ERROR);
+            response.setErrorCode("001");
+            response.setErrorDesc("Account not exist");
+            return ResponseEntity.badRequest().body(response);
         } else {
             //tạo transaction mới
             Transaction transaction = new Transaction();
@@ -104,7 +116,11 @@ public class UserController {
                 Date transactionDate = new Date();
                 transaction.setTransactionDate(transactionDate);
                 transactionRepository.save(transaction);
-                return ResponseEntity.badRequest().body("Amount is insufficient");
+
+                response.setStatus(Constants.STATUS_ERROR);
+                response.setErrorCode("002");
+                response.setErrorDesc("Account is insufficient");
+                return ResponseEntity.badRequest().body(response);
             } else {
                 Account recipient = account.get(0);
                 //trừ tiền của tài khoản gửi
@@ -126,7 +142,8 @@ public class UserController {
                 transaction.setTransactionDate(transactionDate);
                 transactionRepository.save(transaction);
 
-                return ResponseEntity.ok("Success");
+                response.setStatus(Constants.STATUS_SUCCESS);
+                return ResponseEntity.ok(response);
             }
         }
     }
@@ -136,10 +153,12 @@ public class UserController {
         return "transactionSuccess";
     }
 
-    @RequestMapping("/moneyLoans/{id}")
-    public String moneyLoans(@PathVariable(value = "id") Long id, Model model) {
+    @RequestMapping("/moneyLoans")
+    public String moneyLoans(Authentication authentication, Model model) {
+        String userName = authentication.getName();
+        User user = userRepository.findByUsername(userName);
+
 //        Tìm loans mà người dùng đã đăng ký
-        User user = userRepository.getById(id);
         List<Loans> loans = loansRepository.findBySSN(user.getSsn());
         model.addAttribute("loans", loans);
 

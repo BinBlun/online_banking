@@ -58,31 +58,6 @@ public class HomeController {
         return "login";
     }
 
-    @PostMapping("/doLogin")
-    public String doLogin(@RequestParam("phoneNumber") String phoneNumber, @RequestParam("password") String password ){
-        List<User> user = repository.findByPhoneNumber(phoneNumber);
-        if (CollectionUtils.isEmpty(user) || user.size() > 1) {
-            return "redirect:/login";
-        }
-        User u = user.get(0);
-
-        if (u.getPassword().equals(password)) {
-            if ("ADMIN".equalsIgnoreCase(u.getRole())) {
-                return "redirect:/admin";
-            } else if ("CUSTOMER".equalsIgnoreCase(u.getRole())) {
-                Long accountID = u.getId();
-                return "redirect:/customer";
-            } else {
-                return "redirect:/login";
-            }
-        } else {
-            return "redirect:/login";
-        }
-    }
-
-
-//    SIGN-UP
-
     @RequestMapping(value = "/register")
     public String register(Model model) {
         User register = new User();
@@ -112,7 +87,7 @@ public class HomeController {
         if (Constants.ROLE_USER.equals(role)) {
             return "redirect:/customer";
         } else if (Constants.ROLE_ADMIN.equals(role)) {
-            return "errorPage";
+            return "redirect:/admin";
         }
         return "errorPage";
     }

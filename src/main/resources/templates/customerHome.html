@@ -23,45 +23,45 @@
     <div class="btnLayout">
         <div id="1stRow">
             <div class="userDiv">
-                <form th:action="@{/customer/profile}">
-                    <input id="userBtn" type="submit" value="User"/>
+                <form onclick="gotoUrl('/customer/profile')">
+                    <input id="userBtn" value="User"/>
                 </form>
             </div>
 
             <div class="viewBalanceDiv">
-                <form th:action="'/customer/viewBalance/' + ${1}">
-                    <input id="viewBalanceBtn" type="submit" value="View Balance"/>
+                <form onclick="gotoUrl('/customer/viewBalance')">
+                    <input id="viewBalanceBtn" value="View Balance"/>
                 </form>
             </div>
 
             <div class="depoMoneyDiv">
-                <form th:action="'/customer/depositMoney' + ${1}">
-                    <input id="depoMoneyBtn" type="submit" value="Deposit Money"/>
+                <form onclick="gotoUrl('/customer/depositMoney')">
+                    <input id="depoMoneyBtn" value="Deposit Money"/>
                 </form>
             </div>
 
             <div class="withMoneyDiv">
-                <form th:action="'/customer/withdrawMoney/' + ${1}">
-                    <input id="withMoneyBtn" type="submit" value="Withdraw Money"/>
+                <form onclick="gotoUrl('/customer/withdrawMoney')">
+                    <input id="withMoneyBtn" value="Withdraw Money"/>
                 </form>
             </div>
         </div>
         <div is="2ndRow">
             <div class="transMoneyDiv">
-                <form th:action="'/customer/transferMoney/' + ${1}">
-                    <input id="transMoneyBtn" type="submit" value="Transfer Money"/>
+                <form onclick="gotoUrl('/customer/transferMoney')">
+                    <input id="transMoneyBtn" value="Transfer Money"/>
                 </form>
             </div>
 
             <div class="saveMoneyDiv">
-                <form th:href="@{/customer/moneySaving}">
-                    <input id="saveMoneyBtn" type="submit" value="Money Saving"/>
+                <form onclick="gotoUrl('/customer/moneySaving')">
+                    <input id="saveMoneyBtn" value="Money Saving"/>
                 </form>
             </div>
 
             <div class="loansMoneyDiv">
-                <form th:action="'/customer/moneyLoans/' + ${1}">
-                    <input id="loansMoneyBtn" type="submit" value="Money Loans"/>
+                <form onclick="gotoUrl('/customer/moneyLoans')">
+                    <input id="loansMoneyBtn" value="Money Loans"/>
                 </form>
             </div>
         </div>

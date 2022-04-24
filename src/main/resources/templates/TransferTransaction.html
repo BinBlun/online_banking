@@ -1,24 +1,44 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="_layout">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #transfer-static-resources},
+                                                ~{:: #transfer-header},
+                                                ~{:: #transfer-nav},
+                                                ~{:: #transfer-main-content},
+                                                ~{:: #transfer-footer}
+                                               )}">
 <head>
-    <meta charset="UTF-8">
     <title>Transfer Transaction</title>
+    <th:block id="transfer-static-resources">
+        <script type="text/javascript" src="/js/transfer-transaction.js" th:src="@{/js/transfer-transaction.js}"></script>
+    </th:block>
 </head>
 <body>
-<div class="container text-center">
+<div id="transfer-main-content" class="container text-center">
     <h1>Đây là người chuyển tiền</h1>
     <div class="col">
         <h3 th:text="'Số tài khoản: ' + ${account.accountNumber}"/>
         <h3 th:text="'Số dư: ' + ${account.currentBalance} + ' Đồng'"/>
     </div>
 
-    <form name='transferMoney'>
+    <form onsubmit="submitForm(event)">
         <table>
             <tr>
-                <td>Người nhận tiền</td>
+                <td>Chọn ngân hàng</td>
                 <td>:</td>
-                <td><input id='accountNumber' type='text' name='accountNumber' value=''></td>
+                <td>
+                    <select name="bankReceiveId" class="form-control">
+                        <option value=""></option>
+                        <option th:each="bank : ${bankList}" th:value="${bank.id}" th:text="${bank.bankName}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Nhập số tài khoản nhận tiền</td>
+                <td>:</td>
+                <td><input class="form-control" id='accountNumber' type='text' name='accountNumber' value=''></td>
             </tr>
 
             <tr>
@@ -35,40 +55,11 @@
 
             <tr>
                 <td>
-                    <button id="submit" type="button" class="btn btn-success">Chuyển Tiền</button>
+                    <button id="submit" type="submit" class="btn btn-success">Chuyển Tiền</button>
                 </td>
             </tr>
         </table>
     </form>
 </div>
-<script
-        src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous"></script>
-<script type="text/javascript">
-    $("#submit").click(() => {
-        const data = {
-            accountNumber: document.getElementById('accountNumber').value,
-            amount: document.getElementById('amount').value,
-            description: document.getElementById('description').value
-        }
-        $.ajax({
-            type: "POST",
-            contentType: "application/json",
-            url: "/customer/doTransferMoney",
-            data: JSON.stringify(data),
-            dataType: 'json',
-            success: function (res) {
-                console.log(res);
-                document.location.href = '/customer/transactionSuccess'
-            },
-            error: function (e) {
-                console.log(e);
-                document.location.href = '/home'
-                alert(e.responseText)
-            }
-        });
-    })
-</script>
 </body>
 </html>

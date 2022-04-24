@@ -42,7 +42,7 @@
                 </tr>
 
                 <tr>
-                    <p><input id="passwordBox" type='password' placeholder="Amount" name='amonut' value=''/></p>
+                    <p><input id="passwordBox" type='text' placeholder="Amount" name='amonut' value=''/></p>
                 </tr>
 
                 <tr class="loanParent" th:each="loanPackage : ${loansPackages}">
@@ -54,7 +54,10 @@
                 </tr>
 
                 <tr>
-                    <p><div id="loansPackageId" th:text="'Loans Package ID: '"></div></p>
+                    <p>
+                        <div id="loansPackageId" th:text="'Loans Package ID: '"></div>
+                        <input id="id" type="text" name="loansID" value='' readonly>
+                    </p>
                 </tr>
 
                 <tr>
@@ -71,7 +74,9 @@
     <script>
 
         doSomething = (id) => {
-            document.getElementById('loansPackageId').innerText = 'Loans Package ID: ' + id
+            document.getElementById('loansPackageId').innerText = 'Loans Package ID: ';
+            console.log(document.getElementById('id'))
+            document.getElementById('id').value = id;
         }
     </script>
 </body>

@@ -19,9 +19,11 @@ public class Account {
     @Column(name = "account_number")
     private String accountNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User userId;
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(name = "bank_id")
+    private Long bankId;
 
     @Column(name = "current_balance")
     private BigDecimal currentBalance;

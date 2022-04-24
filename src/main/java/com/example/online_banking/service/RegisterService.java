@@ -1,13 +1,13 @@
 package com.example.online_banking.service;
 
-import com.example.online_banking.model.Account;
-import com.example.online_banking.model.Card;
-import com.example.online_banking.model.User;
-import com.example.online_banking.model.UserRole;
+import com.example.online_banking.model.*;
 import com.example.online_banking.repository.AccountRepository;
+import com.example.online_banking.repository.BankRepository;
 import com.example.online_banking.repository.CardRepository;
 import com.example.online_banking.repository.UserRepository;
+import com.example.online_banking.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -26,8 +26,12 @@ public class RegisterService {
     @Autowired
     CardRepository cardRepository;
 
+    @Autowired
+    BankRepository bankRepository;
+
     public User save(User model) {
         model.setRole("CUSTOMER");
+        model.setEncryptedPassword(new BCryptPasswordEncoder().encode(model.getPassword()));
         User customer = registerRepository.save(model);
 
         String accNum = randomNumber(9);
@@ -42,7 +46,9 @@ public class RegisterService {
         Account account = new Account();
         account.setAccountNumber(accNum);
         account.setCurrentBalance(BigDecimal.valueOf(0));
-        account.setUserId(customer);
+        account.setUserId(customer.getId());
+        Bank myBank = bankRepository.findByBankCode(Constants.MY_BANK_CODE);
+        account.setBankId(myBank.getId());
 
         Date accountCurrentDate = new Date();
         account.setActiveDate(accountCurrentDate);
