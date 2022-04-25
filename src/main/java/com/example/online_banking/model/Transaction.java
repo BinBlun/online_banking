@@ -20,9 +20,8 @@ public class Transaction {
     @Column(name = "transaction_id")
     private Long transactionID;
 
-    @ManyToOne
-    @JoinColumn(name = "account_id")
-    private Account accountId;
+    @Column(name = "account_id")
+    private Long accountId;
 
     @Column(name = "transaction_amount", nullable = false)
     @Min(value = 0)

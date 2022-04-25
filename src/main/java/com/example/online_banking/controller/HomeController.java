@@ -1,24 +1,20 @@
 package com.example.online_banking.controller;
 
 import com.example.online_banking.model.User;
-import com.example.online_banking.model.UserRole;
 import com.example.online_banking.repository.UserRepository;
-import com.example.online_banking.repository.UserRoleRepository;
 import com.example.online_banking.service.RegisterService;
 import com.example.online_banking.utils.CommonUtils;
 import com.example.online_banking.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("")
@@ -29,8 +25,6 @@ public class HomeController {
     @Autowired
     private RegisterService service;
 
-    @Autowired
-    private UserRoleRepository userRoleRepository;
     // HOME PAGE
     @RequestMapping("/home")
     public String viewHomePage(Authentication authentication, Model model) {
@@ -40,14 +34,18 @@ public class HomeController {
         return "HomePage";
     }
 
+    // ERROR PAGE
     @RequestMapping("/403")
     public String errorPage() {
         return "errorPage";
     }
 
-    //    LOGIN
+    // LOGIN
     @RequestMapping("/login")
-    public String login(Model model) {
+    public String login(Authentication authentication, Model model) {
+        if (authentication != null) {
+            return "redirect:/";
+        }
         return "login";
     }
 

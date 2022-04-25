@@ -2,27 +2,20 @@ package com.example.online_banking.controller;
 
 import com.example.online_banking.model.*;
 import com.example.online_banking.repository.*;
-import com.example.online_banking.model.Account;
-import com.example.online_banking.model.Card;
-import com.example.online_banking.model.Transaction;
-import com.example.online_banking.model.User;
-import com.example.online_banking.repository.AccountRepository;
-import com.example.online_banking.repository.CardRepository;
-import com.example.online_banking.repository.TransactionRepository;
 import com.example.online_banking.rest.model.CommonResponse;
 import com.example.online_banking.rest.model.TransferTransactionInput;
 import com.example.online_banking.service.RegisterService;
 import com.example.online_banking.service.TransactionService;
 import com.example.online_banking.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -59,8 +52,9 @@ public class UserController {
     private BankRepository bankRepository;
 
     @RequestMapping("")
-    public String viewCustomerHome(Model model) {
-        User user = userRepository.getById(1L);
+    public String viewCustomerHome(Authentication authentication, Model model) {
+        String userName = authentication.getName();
+        User user = userRepository.findByUsername(userName);
         model.addAttribute("currentUser", user);
         return "customerHome";
     }
@@ -86,70 +80,62 @@ public class UserController {
     }
 
     @PostMapping(value = "/doTransferMoney")
-    public ResponseEntity<CommonResponse> doTransferMoney(@RequestBody TransferTransactionInput input, Model model) {
+    public ResponseEntity<CommonResponse> doTransferMoney(@RequestBody TransferTransactionInput input, Authentication authentication, Model model) {
+        String userName = authentication.getName();
+        User user = userRepository.findByUsername(userName);
         CommonResponse response = new CommonResponse();
         //tìm tài khoản mà muốn rút tiền
-        Account account1 = accountRepository.getById(1L);
-        model.addAttribute("account", account1);
-
+        Account debitAccount = accountRepository.findFirstByUserId(user.getId());
         //tìm tài khoản muốn chuyển tiền cho
-        List<Account> account = accountRepository.findByAccountNumber(input.getAccountNumber());
+        Account creditAccount = accountRepository.findByAccountNumberAndBankId(input.getAccountNumber(), input.getBankReceiveId());
+        BigDecimal amount = new BigDecimal(input.getAmount());
 
-        if (CollectionUtils.isEmpty(account) || account.size() > 1) {
+        Transaction transaction = new Transaction();
+        transaction.setTransactionAmount(amount);
+        transaction.setAccountId(debitAccount.getAccountId());
+        transaction.setDescription(input.getDescription());
+        Date transactionDate = new Date();
+        transaction.setTransactionDate(transactionDate);
+        transaction.setTransactionType("TRANSFER");
+        if (creditAccount == null) {
+            // neu tai khoan nhan tien khong ton tai
+            transaction.setStatus("FAIL");
+            transaction.setDescription("Account not exist");
+            transactionRepository.save(transaction);
             response.setStatus(Constants.STATUS_ERROR);
             response.setErrorCode("001");
             response.setErrorDesc("Account not exist");
             return ResponseEntity.badRequest().body(response);
-        } else {
-            //tạo transaction mới
-            Transaction transaction = new Transaction();
-
+        } else if (Double.valueOf(input.getAmount()) > debitAccount.getCurrentBalance().doubleValue()) {
             //nếu tài khoản chuyển tiền lớn hơn só tiền muốn chuyển thì không chuyển được tiền
-            if (Double.valueOf(input.getAmount()) > account1.getCurrentBalance().doubleValue()) {
-                System.out.println("Cant send");
-                transaction.setTransactionAmount(new BigDecimal(input.getAmount()));
-                transaction.setRecipientAccountID(Long.parseLong(input.getAccountNumber()));
-                transaction.setTransactionType("TRANSFER");
-                transaction.setStatus("FAIL");
-                transaction.setDescription(input.getDescription());
-                transaction.setAccountId(account1);
-                Date transactionDate = new Date();
-                transaction.setTransactionDate(transactionDate);
-                transactionRepository.save(transaction);
+            transaction.setRecipientAccountID(creditAccount.getAccountId());
+            transaction.setStatus("FAIL");
+            transaction.setDescription("Account balance is insufficient");
+            transactionRepository.save(transaction);
+            response.setStatus(Constants.STATUS_ERROR);
+            response.setErrorCode("002");
+            response.setErrorDesc("Account balance is insufficient");
+            return ResponseEntity.badRequest().body(response);
+        } else {
+            //trừ tiền của tài khoản gửi
+            debitAccount.setCurrentBalance(debitAccount.getCurrentBalance().subtract(amount));
+            accountRepository.save(debitAccount);
+            //cộng tiền vào tài khoản nhận
+            creditAccount.setCurrentBalance(creditAccount.getCurrentBalance().add(amount));
+            accountRepository.save(creditAccount);
+            //Lưu log giao dịch lên database
+            transaction.setRecipientAccountID(creditAccount.getAccountId());
+            transaction.setTransactionAmount(amount);
+            transaction.setStatus("SUCCESS");
+            transactionRepository.save(transaction);
 
-                response.setStatus(Constants.STATUS_ERROR);
-                response.setErrorCode("002");
-                response.setErrorDesc("Account is insufficient");
-                return ResponseEntity.badRequest().body(response);
-            } else {
-                Account recipient = account.get(0);
-                //trừ tiền của tài khoản gửi
-                account1.setCurrentBalance(account1.getCurrentBalance().subtract(new BigDecimal(input.getAmount())));
-                accountRepository.save(account1);
-                //cộng tiền vào tài khoản nhận
-                recipient.setCurrentBalance(recipient.getCurrentBalance().add(new BigDecimal(input.getAmount())));
-                accountRepository.save(recipient);
-
-
-                //Ấy lên database
-                transaction.setTransactionAmount(new BigDecimal(input.getAmount()));
-                transaction.setRecipientAccountID(Long.parseLong(input.getAccountNumber()));
-                transaction.setTransactionType("TRANSFER");
-                transaction.setStatus("SUCCESS");
-                transaction.setDescription(input.getDescription());
-                transaction.setAccountId(account1);
-                Date transactionDate = new Date();
-                transaction.setTransactionDate(transactionDate);
-                transactionRepository.save(transaction);
-
-                response.setStatus(Constants.STATUS_SUCCESS);
-                return ResponseEntity.ok(response);
-            }
+            response.setStatus(Constants.STATUS_SUCCESS);
+            return ResponseEntity.ok(response);
         }
     }
 
     @RequestMapping("transactionSuccess")
-    public String transactionSuccess(Model model){
+    public String transactionSuccess(Model model) {
         return "transactionSuccess";
     }
 
@@ -172,15 +158,6 @@ public class UserController {
     public String doLoans() {
         return "moneyLoans";
     }
-
-
-
-
-
-
-
-
-
 
 
     @RequestMapping("/transferSuccess")
@@ -224,7 +201,7 @@ public class UserController {
 
     @RequestMapping("/depositMoney/{id}")
     public String depositMoney(@PathVariable(value = "id") Long id,
-                                Model model) {
+                               Model model) {
         //tìm tài khoản mà muốn cho tiền vào
         Account account1 = accountRepository.getById(id);
         model.addAttribute("account1", account1);
