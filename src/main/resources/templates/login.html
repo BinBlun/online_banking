@@ -17,7 +17,7 @@
         justify-content: center;
     }
     .loginImg {
-        background-image: url("../static/images/loginCrop.jpg");
+        background-image: url("/images/loginCrop.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         padding: 18em;
@@ -79,7 +79,7 @@
         <p id="welcomeToFit">Welcome to FIT</p>
     </div>
 
-    <form class="form" name='login' th:action="@{/j_spring_security_check}" method='POST'>
+    <form class="form" name='login' th:action="@{/login}" method='POST'>
         <table>
             <tr>
                 <p><input id="phoneNumBox" type='text' placeholder="User name" name='username' value=''></p>

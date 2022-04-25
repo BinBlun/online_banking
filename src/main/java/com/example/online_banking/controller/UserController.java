@@ -59,8 +59,9 @@ public class UserController {
     private BankRepository bankRepository;
 
     @RequestMapping("")
-    public String viewCustomerHome(Model model) {
-        User user = userRepository.getById(1L);
+    public String viewCustomerHome(Authentication authentication, Model model) {
+        String userName = authentication.getName();
+        User user = userRepository.findByUsername(userName);
         model.addAttribute("currentUser", user);
         return "customerHome";
     }
