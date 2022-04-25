@@ -12,10 +12,12 @@
         background-color: white;
         background-repeat: no-repeat;;
     }
-    body{
+
+    body {
         display: flex;
         justify-content: center;
     }
+
     .loginImg {
         background-image: url("/images/loginCrop.jpg");
         background-size: cover;
@@ -40,24 +42,23 @@
         background-color: transparent;
     }
 
-    #loginBtn {
-        margin: 0 0 0 230px;
-        font-family: sans-serif;
-        font-weight: bold;
-        font-size: 19px;
-        color: white;
-        padding: 9px 21px 9px 21px;
-        border-radius: 10px;
-        border: none;
-        background-color: darkturquoise;
-    }
+    /*#loginBtn {*/
+    /*    font-family: sans-serif;*/
+    /*    font-weight: bold;*/
+    /*    font-size: 19px;*/
+    /*    color: white;*/
+    /*    padding: 9px 21px 9px 21px;*/
+    /*    border-radius: 10px;*/
+    /*    border: none;*/
+    /*    background-color: darkturquoise;*/
+    /*}*/
 
-    #loginBtn:hover{
-        transition-duration: 0.4s;
-        background-color: #4CAF50;
-        color: floralwhite;
-        box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
-    }
+    /*#loginBtn:hover {*/
+    /*    transition-duration: 0.4s;*/
+    /*    background-color: #4CAF50;*/
+    /*    color: floralwhite;*/
+    /*    box-shadow: 0 5px 15px rgba(145, 92, 182, .4);*/
+    /*}*/
 
     #welcomeToFit {
         font-family: sans-serif;
@@ -65,34 +66,70 @@
         font-size: 50px;
         margin: 3em 0 0 0;
     }
+    .btn-area {
+        width: 290px;
+        text-align: center;
+    }
+    button {
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 19px;
+        color: white;
+        padding: 9px 21px 9px 21px;
+        border-radius: 10px;
+        border: none;
+    }
+    button:hover {
+        transition-duration: 0.4s;
+        background-color: #4CAF50;
+        color: floralwhite;
+        box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+    }
+    #loginBtn {
+        background-color: darkturquoise;
+    }
+    #registerBtn {
+        background-color: blueviolet;
+    }
 
 </style>
 
 <body>
 
-    <div class="container" style="float: left">
-        <div class="loginImg">
-        </div>
+<div class="container" style="float: left">
+    <div class="loginImg">
     </div>
+</div>
 
-    <div style="float: left">
-        <p id="welcomeToFit">Welcome to FIT</p>
-    </div>
+<div style="float: left">
+    <p id="welcomeToFit">Welcome to FIT</p>
+</div>
 
-    <form class="form" name='login' th:action="@{/login}" method='POST'>
-        <table>
-            <tr>
-                <p><input id="phoneNumBox" type='text' placeholder="User name" name='username' value=''></p>
-            </tr>
+<form class="form" name='login' th:action="@{/login}" method='POST'>
+    <table>
+        <tr>
+            <td><input id="phoneNumBox" type='text' placeholder="User name" name='username' value=''></td>
+        </tr>
 
-            <tr>
-                <p><input id="passwordBox" type='password' placeholder="Password" name='password' value=''/></p>
-            </tr>
+        <tr>
+            <td><input id="passwordBox" type='password' placeholder="Password" name='password' value=''/></td>
+        </tr>
 
-            <tr>
-                <p><input id="loginBtn" type='submit' name='submit' value='Login'/></p>
-            </tr>
-        </table>
-    </form>
+        <tr>
+            <td>
+                <div class="btn-area">
+                    <button id="loginBtn" type='submit' name='submit'>Login</button>
+                    <button id="registerBtn" type='button' onclick="register(event)">Register</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    function register(e) {
+        e.preventDefault();
+        document.location.href = '/register';
+    }
+</script>
 </body>
 </html>
