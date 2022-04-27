@@ -1,19 +1,140 @@
-/*.error {*/
-/*    color: red;*/
-/*    font-weight: bold;*/
-/*    font-style: italic;*/
-/*    margin-top: 3px;*/
+/*lap trinh, nguoi ko choi la nguoi thang*/
+
+/*customerHome customerHome customerHome customerHome customerHome customerHome customerHome customerHome customerHome*/
+/*.container {*/
 /*    text-align: center;*/
+/*    align-items: center;*/
 /*}*/
 
-/*  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage  HomePage*/
-/*#registerBtn{*/
+/*h1 {*/
+/*    margin-top: 80px;*/
+/*    font-family: open sans,helvetica neue,Helvetica,Arial,sans-serif;*/
+/*    font-weight: bold;*/
+/*    text-decoration: underline rebeccapurple;*/
+/*    text-underline-offset: 6px;*/
+/*}*/
+
+/*.btnLayout {*/
+/*    align-items: center;*/
+/*    text-align: center;*/
+/*    margin: 40px 0 0 0;*/
+/*}*/
+
+/*.btnDiv {*/
+/*    margin: 20px;*/
+/*    display: inline-block;*/
+/*}*/
+
+/*.servicesBtn {*/
+/*    font-family: open sans,helvetica neue,Helvetica,Arial,sans-serif;*/
+/*    font-size: 13px;*/
+/*    font-weight: bold;*/
+/*    align-items: center;*/
+/*    height: 155px;*/
+/*    width: 155px;*/
+/*    margin: 10px;*/
+/*    padding: 110px 0 5px 0;*/
+/*    background-color: #f9f5fa;*/
+/*    vertical-align: text-bottom;*/
+/*    border-radius: 15px;*/
+/*    border: none;*/
+/*    outline: 1px solid darkgrey;*/
+/*}*/
+
+/*.servicesBtn:hover {*/
+/*    font-size: 18px;*/
+/*    padding: 57.5px 0 57.5px 0;*/
+/*    transition: 0.3s;*/
+/*    background-color: #f9f5fa;*/
+/*}*/
+
+/*#userBtn {*/
+/*    background-image: url("../images/user.png");*/
+/*    align-items: center;*/
+/*    background-size: cover;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position-y: 0;*/
+/*}*/
+
+/*#viewBalanceBtn {*/
+/*    background-image: url("../images/viewBalance.png");*/
+/*    align-items: center;*/
+/*    background-size: cover;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position-y: 0;*/
+/*}*/
+
+/*#depoMoneyBtn {*/
+/*    background-image: url("../images/depoMoney.png");*/
+/*    align-items: center;*/
+/*    background-size: cover;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position-y: 0;*/
+/*}*/
+
+/*#withMoneyBtn {*/
+/*    background-image: url("../images/withMoney.png");*/
+/*    align-items: center;*/
+/*    background-size: cover;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position-y: 0;*/
+/*}*/
+
+/*#transMoneyBtn {*/
+/*    background-image: url("../images/transMoney.png");*/
+/*    align-items: center;*/
+/*    background-size: cover;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position-y: 0;*/
+/*}*/
+
+/*#saveMoneyBtn {*/
+/*    background-image: url("../images/saveMoney.png");*/
+/*    align-items: center;*/
+/*    background-size: cover;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position-y: 0;*/
+/*}*/
+
+/*#loansMoneyBtn {*/
+/*    background-image: url("../images/loansMoney.png");*/
+/*    align-items: center;*/
+/*    background-size: cover;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position-y: 0;*/
+/*}*/
+
+/*#userBtn:hover,*/
+/*#viewBalanceBtn:hover,*/
+/*#depoMoneyBtn:hover,*/
+/*#withMoneyBtn:hover,*/
+/*#transMoneyBtn:hover,*/
+/*#saveMoneyBtn:hover,*/
+/*#loansMoneyBtn:hover {*/
+/*    background-image: none;*/
+/*}*/
+
+/*HomePage HomePage HomePage HomePage HomePage HomePage HomePage HomePage HomePage HomePage HomePage HomePage HomePage */
+/*html {*/
+/*    background-image: linear-gradient(to bottom right, #350EA2, #08020E);*/
+/*    background-image: url("../images/HomeNoText.png");*/
+/*    background-size: cover;*/
+/*    background-repeat: no-repeat;*/
+/*    height: 100%;*/
+/*}*/
+
+/*#registerBtn {*/
 /*    font-family: sans-serif;*/
 /*    font-weight: bold;*/
 /*    font-size: 17px;*/
 /*    padding: 10px 20px 10px 20px;*/
 /*    border-radius: 25px;*/
 /*    border: none;*/
+/*    background-color: #00cb1e;*/
+/*}*/
+
+/*#registerBtn:hover {*/
+/*    transition-duration: 0.4s;*/
 /*    background-color: #05F63A;*/
 /*}*/
 
@@ -21,10 +142,59 @@
 /*    font-family: sans-serif;*/
 /*    font-weight: bold;*/
 /*    font-size: 17px;*/
+/*    color: azure;*/
+/*    padding: 10px 15px 10px 15px;*/
+/*    border-radius: 25px;*/
+/*    border: none;*/
+/*    background-color: transparent;*/
+/*}*/
+
+/*#loginBtn:hover{*/
+/*    transition-duration: 0.4s;*/
+/*    color: #ffffff;*/
+/*}*/
+
+/*.fitICO {*/
+/*    float: left;*/
+/*    font-family: sans-serif;*/
+/*    font-weight: bold;*/
+/*    font-size: 17px;*/
+/*    margin: 32px 15px 15px 60px;*/
+/*}*/
+
+/*#fitSmart {*/
 /*    color: aliceblue;*/
+/*}*/
+
+/*#ico {*/
+/*    color: #05F63A;*/
+/*}*/
+
+/*#greeting {*/
+/*    float: left;*/
+/*    font-family: sans-serif;*/
+/*    text-align: center;*/
+/*    font-size: 70px;*/
+/*    font-weight: bold;*/
+/*    color: aliceblue;*/
+/*    line-height: 1.5;*/
+/*    width: 55%;*/
+/*    margin: 220px 0 0 -240px;*/
+/*}*/
+
+/*#signUpBtn {*/
+/*    font-family: sans-serif;*/
+/*    font-weight: bold;*/
+/*    font-size: 20px;*/
+/*    color: #00cb1e;*/
+/*    margin: 22em 0 0 -40em;*/
 /*    padding: 10px 20px 10px 20px;*/
 /*    border-radius: 25px;*/
 /*    border: none;*/
 /*    background-color: transparent;*/
 /*}*/
 
+/*#signUpBtn:hover{*/
+/*    transition-duration: 0.4s;*/
+/*    color: #05F63A;*/
+/*}*/
