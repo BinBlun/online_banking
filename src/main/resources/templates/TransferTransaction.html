@@ -10,18 +10,20 @@
 <head>
     <title>Transfer Transaction</title>
     <th:block id="transfer-static-resources">
-        <script type="text/javascript" src="/js/transfer-transaction.js" th:src="@{/js/transfer-transaction.js}"></script>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/transfer-transaction.css}" href="/css/transfer-transaction.css"/>
+        <script type="text/javascript" src="/js/transfer-transaction.js"
+                th:src="@{/js/transfer-transaction.js}"></script>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/transfer-transaction.css}"
+              href="/css/transfer-transaction.css"/>
     </th:block>
 </head>
 
-<style>
-
-</style>
-
 <body>
 <div id="transfer-main-content" class="container text-center">
+    <div class="headingImg">
+    </div>
+
     <h1>Transfer</h1>
+
     <div class="col">
         <h3 th:text="'Số tài khoản: ' + ${account.accountNumber}"/>
         <h3 th:text="'Số dư: ' + ${account.currentBalance} + ' Đồng'"/>
@@ -30,7 +32,7 @@
     <form onsubmit="submitForm(event)">
         <table>
             <tr>
-                <td>Bank Name</td>
+                <td class="type-name">Bank Name</td>
                 <td>:</td>
                 <td>
                     <select name="bankReceiveId" class="form-control">
@@ -41,19 +43,19 @@
                 </td>
             </tr>
             <tr>
-                <td>Account Number</td>
+                <td class="type-name">Account Number</td>
                 <td>:</td>
                 <td><input class="form-control" id='accountNumber' type='text' name='accountNumber' value=''></td>
             </tr>
 
             <tr>
-                <td>Amount</td>
+                <td class="type-name">Amount</td>
                 <td>:</td>
                 <td><input class="form-control" id='amount' name="amount" type="text"></td>
             </tr>
 
             <tr>
-                <td>Description</td>
+                <td class="type-name">Description</td>
                 <td>:</td>
                 <td><input class="form-control" id='description' name="description" type="text"></td>
             </tr>

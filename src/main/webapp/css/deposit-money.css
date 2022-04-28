@@ -7,17 +7,13 @@ body {
     font-weight: bold;
 }
 
-.heading {
-    margin: 40px 0 0 0;
-}
-
 .headingImg {
     display: block;
     background-image: url(../images/depoMoney.png);
     background-repeat: no-repeat;
     background-size: cover;
     padding: 8em 5em 2em 5em;
-    margin: 0 auto 0 auto;
+    margin: 40px auto 0 auto;
     width: 5em;
     border-radius: 5px;
 }
