@@ -1,9 +1,5 @@
 function success(res) {
-    if (res.status === 'ERROR') {
-        alert(res.errorDesc);
-    } else {
-        gotoUrl('/customer/transactionSuccess');
-    }
+    alert(res.data.status);
 }
 function error(e) {
     const error = e.responseJSON ? e.responseJSON.errorDesc : e;
@@ -12,5 +8,5 @@ function error(e) {
 function submitForm(e) {
     e.preventDefault();
     const form = new FormData(e.target);
-    postFormData("POST", "/customer/doTransferMoney", form, success, error)
+    postFormData("POST", "/customer/rest/doTransferMoney", form, success, error)
 }
