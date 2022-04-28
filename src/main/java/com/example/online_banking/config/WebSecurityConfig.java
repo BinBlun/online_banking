@@ -51,13 +51,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers(PUBLIC_MATCHERS).permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ROLE_ADMIN")
+                .antMatchers("/admin", "/admin/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/user/**").hasAnyRole("ROLE_USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").loginProcessingUrl("/login") // Submit URL
-                .defaultSuccessUrl("/customer")//
+                .defaultSuccessUrl("/")//
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")
