@@ -1,18 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #withdraw-money-resources},
+                                                ~{:: #withdraw-money-nav},
+                                                ~{:: #withdraw-money-main-content},
+                                                ~{:: #withdraw-money-footer}
+                                               )}">
 <head>
-    <meta charset="UTF-8">
     <title>Withdraw Money</title>
+    <th:block id="withdraw-money-resources">
+        <script type="text/javascript" src="/js/withdraw-money.js" th:src="@{/js/withdraw-money.js}"></script>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/withdraw-money.css}" href="/css/withdraw-money.css"/>
+    </th:block>
 </head>
 <body>
-<div class="container text-center">
+<div id="withdraw-money-main-content" class="container text-center">
     <h1>Đây là người chuyển tiền</h1>
     <div class="col">
-        <h3 th:text="'Số tài khoản: ' + ${account1.accountNumber}"/>
-        <h3 th:text="'Số dư: ' + ${account1.currentBalance} + ' Đồng'"/>
+        <h3 th:text="'Số tài khoản: ' + ${account.accountNumber}"/>
+        <h3 th:text="'Số dư: ' + ${account.currentBalance} + ' Đồng'"/>
     </div>
 
-    <form name='withdrawMoney' th:action="@{/customer/doWithdrawMoney}" method='POST'>
+    <form onsubmit="submitForm(event)">
         <table>
             <tr>
                 <td>Số tiền muốn rút</td>
@@ -21,11 +31,12 @@
             </tr>
 
             <tr>
-                <td><button type="submit" class="btn btn-success">Rút tiền</button></td>
+                <td>
+                    <button type="submit" class="btn btn-success">Rút tiền</button>
+                </td>
             </tr>
         </table>
     </form>
 </div>
-
 </body>
 </html>

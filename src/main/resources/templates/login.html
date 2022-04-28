@@ -66,10 +66,12 @@
         font-size: 50px;
         margin: 3em 0 0 0;
     }
+
     .btn-area {
         width: 290px;
         text-align: center;
     }
+
     button {
         font-family: sans-serif;
         font-weight: bold;
@@ -79,15 +81,18 @@
         border-radius: 10px;
         border: none;
     }
+
     button:hover {
         transition-duration: 0.4s;
         background-color: #4CAF50;
         color: floralwhite;
         box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
     }
+
     #loginBtn {
         background-color: darkturquoise;
     }
+
     #registerBtn {
         background-color: blueviolet;
     }
@@ -103,8 +108,17 @@
 
 <div style="float: left">
     <p id="welcomeToFit">Welcome to FIT</p>
-</div>
+    <div th:if="${#request.getParameter('error') == 'true'}"
+         style="color:red;margin:10px 0px;">
+        Login Failed!!!<br/>
+        Reason :
+        <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+              th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
+                Static summary
+         </span>
 
+    </div>
+</div>
 <form class="form" name='login' th:action="@{/login}" method='POST'>
     <table>
         <tr>

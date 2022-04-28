@@ -6,4 +6,6 @@ public class Constants {
     public static final String MY_BANK_CODE = "MYBANK";
     public static final String STATUS_ERROR = "ERROR";
     public static final String STATUS_SUCCESS = "SUCCESS";
+    public static final String STATUS_FAIL = "FAIL";
+    public static final String STATUS_WAITING = "WAITING";
 }

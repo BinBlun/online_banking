@@ -3,7 +3,6 @@
       th:replace="~{layouts/main-layout :: main-fragment(
                                                 ~{::title},
                                                 ~{:: #transfer-static-resources},
-                                                ~{:: #transfer-header},
                                                 ~{:: #transfer-nav},
                                                 ~{:: #transfer-main-content},
                                                 ~{:: #transfer-footer}
@@ -12,6 +11,7 @@
     <title>Transfer Transaction</title>
     <th:block id="transfer-static-resources">
         <script type="text/javascript" src="/js/transfer-transaction.js" th:src="@{/js/transfer-transaction.js}"></script>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/transfer-transaction.css}" href="/css/transfer-transaction.css"/>
     </th:block>
 </head>
 <body>
@@ -55,7 +55,7 @@
 
             <tr>
                 <td>
-                    <button id="submit" type="submit" class="btn btn-success">Chuyển Tiền</button>
+                    <button type="submit" class="btn btn-success">Chuyển Tiền</button>
                 </td>
             </tr>
         </table>

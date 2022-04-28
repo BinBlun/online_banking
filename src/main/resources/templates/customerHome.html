@@ -3,7 +3,6 @@
       th:replace="~{layouts/main-layout :: main-fragment(
                                                 ~{::title},
                                                 ~{:: #customer-static-resources},
-                                                ~{:: #customer-header},
                                                 ~{:: #customer-nav},
                                                 ~{:: #customer-main-content},
                                                 ~{:: #customer-footer}
@@ -17,52 +16,38 @@
     </th:block>
 </head>
 <body>
-<div id="customer-main-content" class="container">
+<div class="container" id="customer-main-content">
     <h1>Services</h1>
 
     <div class="btnLayout">
-        <div id="1stRow">
-            <div class="userDiv">
-                <form onclick="gotoUrl('/customer/profile')">
-                    <input id="userBtn" value="User"/>
-                </form>
+        <div class="1stRow">
+            <div class="btnDiv" id="userDiv">
+                <button onclick="gotoUrl('/customer/profile')" class="servicesBtn" id="userBtn">User</button>
             </div>
 
-            <div class="viewBalanceDiv">
-                <form onclick="gotoUrl('/customer/viewBalance')">
-                    <input id="viewBalanceBtn" value="View Balance"/>
-                </form>
+            <div class="btnDiv" id="viewBalanceDiv">
+                <button onclick="gotoUrl('/customer/viewBalance')" class="servicesBtn" id="viewBalanceBtn">View Balance</button>
             </div>
 
-            <div class="depoMoneyDiv">
-                <form onclick="gotoUrl('/customer/depositMoney')">
-                    <input id="depoMoneyBtn" value="Deposit Money"/>
-                </form>
+            <div class="btnDiv" id="depoMoneyDiv">
+                <button onclick="gotoUrl('/customer/depositMoney')" class="servicesBtn" id="depoMoneyBtn">Deposit</button>
             </div>
 
-            <div class="withMoneyDiv">
-                <form onclick="gotoUrl('/customer/withdrawMoney')">
-                    <input id="withMoneyBtn" value="Withdraw Money"/>
-                </form>
+            <div class="btnDiv" id="withMoneyDiv">
+                <button onclick="gotoUrl('/customer/withdrawMoney')" class="servicesBtn" id="withMoneyBtn">Withdraw</button>
             </div>
         </div>
-        <div is="2ndRow">
-            <div class="transMoneyDiv">
-                <form onclick="gotoUrl('/customer/transferMoney')">
-                    <input id="transMoneyBtn" value="Transfer Money"/>
-                </form>
+        <div class="2ndRow">
+            <div class="btnDiv" id="transMoneyDiv">
+                <button onclick="gotoUrl('/customer/transferMoney')" class="servicesBtn" id="transMoneyBtn">Transfer</button>
             </div>
 
-            <div class="saveMoneyDiv">
-                <form onclick="gotoUrl('/customer/moneySaving')">
-                    <input id="saveMoneyBtn" value="Money Saving"/>
-                </form>
+            <div class="btnDiv" id="saveMoneyDiv">
+                <button onclick="gotoUrl('/customer/moneySaving')" class="servicesBtn" id="saveMoneyBtn">Saving</button>
             </div>
 
-            <div class="loansMoneyDiv">
-                <form onclick="gotoUrl('/customer/moneyLoans')">
-                    <input id="loansMoneyBtn" value="Money Loans"/>
-                </form>
+            <div class="btnDiv" id="loansMoneyDiv">
+                <button onclick="gotoUrl('/customer/moneyLoans')" class="servicesBtn" id="loansMoneyBtn">Loans</button>
             </div>
         </div>
     </div>

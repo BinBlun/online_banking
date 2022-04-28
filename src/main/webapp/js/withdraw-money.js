@@ -8,5 +8,5 @@ function error(e) {
 function submitForm(e) {
     e.preventDefault();
     const form = new FormData(e.target);
-    postFormData("POST", "/customer/rest/doTransferMoney", form, success, error)
+    postFormData("POST", "/customer/rest/doWithdrawMoney", form, success, error)
 }

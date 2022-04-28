@@ -3,53 +3,103 @@
     align-items: center;
 }
 
+h1 {
+    margin-top: 80px;
+    font-family: open sans,helvetica neue,Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    text-decoration: underline rebeccapurple;
+    text-underline-offset: 6px;
+}
+
 .btnLayout {
     align-items: center;
     text-align: center;
     margin: 40px 0 0 0;
 }
 
-h1 {
-    margin-top: 80px;
-    font-family: sans-serif;
-    font-weight: bold;
-    text-decoration: underline rebeccapurple;
-    text-underline-offset: 6px;
-}
-
-.userDiv,
-.viewBalanceDiv,
-.depoMoneyDiv,
-.withMoneyDiv,
-.transMoneyDiv,
-.saveMoneyDiv,
-.loansMoneyDiv {
+.btnDiv {
     margin: 20px;
     display: inline-block;
 }
 
-#userBtn,
-#viewBalanceBtn,
-#depoMoneyBtn,
-#withMoneyBtn,
-#transMoneyBtn,
-#saveMoneyBtn,
-#loansMoneyBtn {
-    font-family: sans-serif;
-    font-size: 14px;
+.servicesBtn {
+    font-family: open sans,helvetica neue,Helvetica,Arial,sans-serif;
+    font-size: 13px;
     font-weight: bold;
     align-items: center;
-    height: 160px;
-    width: 170px;
+    height: 155px;
+    width: 155px;
     margin: 10px;
-    padding: 110px 1em 1em 1em;
+    padding: 110px 0 5px 0;
     background-color: #f9f5fa;
     vertical-align: text-bottom;
     border-radius: 15px;
     border: none;
     outline: 1px solid darkgrey;
     text-align: center;
-    cursor: pointer;
+}
+
+.servicesBtn:hover {
+    font-size: 18px;
+    padding: 57.5px 0 57.5px 0;
+    transition: 0.3s;
+    background-color: #f9f5fa;
+}
+
+#userBtn {
+    background-image: url("../images/user.png");
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -5px;
+}
+
+#viewBalanceBtn {
+    background-image: url("../images/viewBalance.png");
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -5px;
+}
+
+#depoMoneyBtn {
+    background-image: url("../images/depoMoney.png");
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -5px;
+}
+
+#withMoneyBtn {
+    background-image: url("../images/withMoney.png");
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -5px;
+}
+
+#transMoneyBtn {
+    background-image: url("../images/transMoney.png");
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -5px;
+}
+
+#saveMoneyBtn {
+    background-image: url("../images/saveMoney.png");
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -5px;
+}
+
+#loansMoneyBtn {
+    background-image: url("../images/loansMoney.png");
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -5px;
 }
 
 #userBtn:hover,
@@ -60,85 +110,4 @@ h1 {
 #saveMoneyBtn:hover,
 #loansMoneyBtn:hover {
     background-image: none;
-    padding: 1em 0 1em 0;
-    font-size: 18px;
-    transition-duration: 0.5s;
-    word-break: break-all;
-}
-
-.userDiv {
-}
-
-#userBtn {
-    background-image: url(../images/user.png);
-    align-items: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position-y: -10px;
-}
-
-.viewBalanceDiv {
-}
-
-#viewBalanceBtn {
-    background-image: url(../images/viewBalance.png);
-    align-items: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position-y: -6px;
-}
-
-.depoMoneyDiv {
-}
-
-#depoMoneyBtn {
-    background-image: url(../images/depoMoney.png);
-    align-items: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position-y: -6px;
-}
-
-.withMoneyDiv {
-}
-
-#withMoneyBtn {
-    background-image: url(../images/withMoney.png);
-    align-items: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position-y: -6px;
-}
-
-.transMoneyDiv {
-}
-
-#transMoneyBtn {
-    background-image: url(../images/transMoney.png);
-    align-items: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position-y: -6px;
-}
-
-.saveMoneyDiv {
-}
-
-#saveMoneyBtn {
-    background-image: url(../images/saveMoney.png);
-    align-items: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position-y: -6px;
-}
-
-.loansMoneyDiv {
-}
-
-#loansMoneyBtn {
-    background-image: url(../images/loansMoney.png);
-    align-items: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position-y: -6px;
 }
