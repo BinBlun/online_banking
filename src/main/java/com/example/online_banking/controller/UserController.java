@@ -2,10 +2,7 @@ package com.example.online_banking.controller;
 
 import com.example.online_banking.model.*;
 import com.example.online_banking.repository.*;
-import com.example.online_banking.rest.model.ResponseData;
 import com.example.online_banking.rest.model.TransferTransactionInput;
-import com.example.online_banking.rest.model.TransferTransactionOutput;
-import com.example.online_banking.service.RegisterService;
 import com.example.online_banking.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -13,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigDecimal;
@@ -102,38 +98,14 @@ public class UserController {
         return "transactionSuccess";
     }
 
-    @RequestMapping("/withdrawMoney/{id}")
-    public String withdrawMoney(@PathVariable(value = "id") Long id,
+    @RequestMapping("/withdrawMoney")
+    public String withdrawMoney(Authentication authentication,
                                 Model model) {
-        //tìm tài khoản mà muốn rút tiền
-        Account account1 = accountRepository.getById(id);
-        model.addAttribute("account1", account1);
-
-//        Transaction transaction = new Transaction();
-//        model.addAttribute("transaction", transaction);
-//        return "redirect:/transferSuccess";
+        String userName = authentication.getName();
+        User user = userRepository.findByUsername(userName);
+        Account account = accountRepository.findFirstByUserId(user.getId());
+        model.addAttribute("account", account);
         return "withdrawMoney";
-    }
-
-    @PostMapping(value = "/doWithdrawMoney")
-    public String doWithdrawMoney(TransferTransactionInput input, Model model) {
-        //lấy người muốn rút tiền
-        Account account1 = accountRepository.getById(1L);
-        model.addAttribute("account", account1);
-
-        //Tạo transaction mới
-        Transaction transaction = new Transaction();
-
-        if (Double.valueOf(input.getAmount()) > account1.getCurrentBalance().doubleValue()) {
-            System.out.println("Cant withdraw");
-            return "withdrawMoney";
-        } else {
-            account1.setCurrentBalance(account1.getCurrentBalance().subtract(new BigDecimal(input.getAmount())));
-            //lưu vào database
-            accountRepository.save(account1);
-            return "transactionSuccess";
-        }
-
     }
 
     @RequestMapping("/depositMoney/{id}")

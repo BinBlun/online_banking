@@ -47,6 +47,7 @@ public class TransactionService {
         Date transactionDate = new Date();
         transaction.setTransactionDate(transactionDate);
         transaction.setTransactionType("TRANSFER");
+        transaction.setTransactionAmount(amount);
         if (creditAccount == null) {
             // neu tai khoan nhan tien khong ton tai
             transaction.setStatus(Constants.STATUS_FAIL);
@@ -69,8 +70,36 @@ public class TransactionService {
             accountRepository.save(creditAccount);
             //Lưu log giao dịch lên database
             transaction.setRecipientAccountID(creditAccount.getAccountId());
-            transaction.setTransactionAmount(amount);
             transaction.setStatus(Constants.STATUS_SUCCESS);
+            transactionRepository.save(transaction);
+            return TransferTransactionOutput.builder().status(Constants.STATUS_SUCCESS).build();
+        }
+    }
+
+    public TransferTransactionOutput doWithdrawMoney(Authentication authentication, TransferTransactionInput input) throws DataInvalidException {
+        String userName = authentication.getName();
+        User user = userRepository.findByUsername(userName);
+        //tìm tài khoản mà muốn rút tiền
+        Account debitAccount = accountRepository.findFirstByUserId(user.getId());
+        BigDecimal amount = new BigDecimal(input.getAmount());
+        //Tạo transaction mới
+        Transaction transaction = new Transaction();
+        transaction.setTransactionAmount(amount);
+        transaction.setAccountId(debitAccount.getAccountId());
+        transaction.setDescription(input.getDescription());
+        Date transactionDate = new Date();
+        transaction.setTransactionDate(transactionDate);
+        transaction.setTransactionType("TRANSFER");
+        transaction.setTransactionAmount(amount);
+
+        if (Double.valueOf(input.getAmount()) > debitAccount.getCurrentBalance().doubleValue()) {
+            transaction.setStatus(Constants.STATUS_FAIL);
+            transaction.setDescription(ErrorCode.getErrorMessage(ErrorCode.ACCOUNT_BALANCE_INVALID));
+            transactionRepositoryCustom.insertLog(transaction);
+            throw new DataInvalidException(ErrorCode.ACCOUNT_BALANCE_INVALID);
+        } else {
+            //lưu vào database
+            transaction.setStatus(Constants.STATUS_WAITING);
             transactionRepository.save(transaction);
             return TransferTransactionOutput.builder().status(Constants.STATUS_SUCCESS).build();
         }
