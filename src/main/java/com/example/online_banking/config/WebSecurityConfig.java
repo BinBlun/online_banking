@@ -62,7 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")//
                 .passwordParameter("password")
                 // Cấu hình cho Logout Page.
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful")
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logout")
                 .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/403");

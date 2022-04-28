@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
-      th:fragment="main-fragment (title, otherStaticResources, header, nav, mainContent, footer)">
+      th:fragment="main-fragment (title, otherStaticResources, nav, mainContent, footer)">
 <head>
     <meta charset="UTF-8"/>
     <title th:replace="${title}">Page 1 Title</title>
@@ -9,14 +9,15 @@
           crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" href="/css/style.css"/>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/common.js" th:src="@{/js/common.js}"></script>
+    <!--    jquery ui-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.theme.min.css" rel="stylesheet">
     <!-- Other javascript, css source files -->
     <th:block th:replace="${otherStaticResources} ? ${otherStaticResources} : ~{}"></th:block>
+    <script type="text/javascript" src="/js/common.js" th:src="@{/js/common.js}"></script>
 </head>
 <body>
-<header th:if="${header}" th:insert="${header} ? ${header} : ~{}">
-    <h2>Page 1</h2>
-</header>
 <section>
     <nav th:if="${nav}" th:insert="${nav} ? ${nav}: ~{}">
         <ul>
@@ -28,6 +29,10 @@
         <h1>Page 1</h1>
         <p>Main content of Page 1</p>
     </article>
+    <div id="alert" class="alert" style="display:none;">
+        <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <p class="text-alert" id="text-alert"></p>
+    </div>
 </section>
 <footer th:if="${footer}" th:insert="${footer} ? ${footer} : ~{}">
     <p>Footer</p>

@@ -3,7 +3,6 @@
       th:replace="~{layouts/main-layout :: main-fragment(
                                                 ~{::title},
                                                 ~{:: #customer-static-resources},
-                                                ~{:: #customer-header},
                                                 ~{:: #customer-nav},
                                                 ~{:: #customer-main-content},
                                                 ~{:: #customer-footer}
@@ -23,46 +22,32 @@
     <div class="btnLayout">
         <div class="1stRow">
             <div class="btnDiv" id="userDiv">
-                <form onclick="gotoUrl('/customer/profile')">
-                    <input class="servicesBtn" id="userBtn" value="User"/>
-                </form>
+                <button onclick="gotoUrl('/customer/profile')" class="servicesBtn" id="userBtn">User</button>
             </div>
 
             <div class="btnDiv" id="viewBalanceDiv">
-                <form onclick="gotoUrl('/customer/viewBalance')">
-                    <input class="servicesBtn" id="viewBalanceBtn" value="View Balance"/>
-                </form>
+                <button onclick="gotoUrl('/customer/viewBalance')" class="servicesBtn" id="viewBalanceBtn">View Balance</button>
             </div>
 
             <div class="btnDiv" id="depoMoneyDiv">
-                <form onclick="gotoUrl('/customer/depositMoney')">
-                    <input class="servicesBtn" id="depoMoneyBtn" value="Deposit"/>
-                </form>
+                <button onclick="gotoUrl('/customer/depositMoney')" class="servicesBtn" id="depoMoneyBtn">Deposit</button>
             </div>
 
             <div class="btnDiv" id="withMoneyDiv">
-                <form onclick="gotoUrl('/customer/withdrawMoney')">
-                    <input class="servicesBtn" id="withMoneyBtn" value="Withdraw"/>
-                </form>
+                <button onclick="gotoUrl('/customer/withdrawMoney')" class="servicesBtn" id="withMoneyBtn">Withdraw</button>
             </div>
         </div>
         <div class="2ndRow">
             <div class="btnDiv" id="transMoneyDiv">
-                <form onclick="gotoUrl('/customer/transferMoney')">
-                    <input class="servicesBtn" id="transMoneyBtn" value="Transfer"/>
-                </form>
+                <button onclick="gotoUrl('/customer/transferMoney')" class="servicesBtn" id="transMoneyBtn">Transfer</button>
             </div>
 
             <div class="btnDiv" id="saveMoneyDiv">
-                <form onclick="gotoUrl('/customer/moneySaving')">
-                    <input class="servicesBtn" id="saveMoneyBtn" value="Saving"/>
-                </form>
+                <button onclick="gotoUrl('/customer/moneySaving')" class="servicesBtn" id="saveMoneyBtn">Saving</button>
             </div>
 
             <div class="btnDiv" id="loansMoneyDiv">
-                <form onclick="gotoUrl('/customer/moneyLoans')">
-                    <input class="servicesBtn" id="loansMoneyBtn" value="Loans"/>
-                </form>
+                <button onclick="gotoUrl('/customer/moneyLoans')" class="servicesBtn" id="loansMoneyBtn">Loans</button>
             </div>
         </div>
     </div>

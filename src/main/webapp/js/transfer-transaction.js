@@ -1,9 +1,9 @@
 function success(res) {
-    alert(res.data.status);
+    gotoUrl('/customer/transferSuccess');
 }
 function error(e) {
     const error = e.responseJSON ? e.responseJSON.errorDesc : e;
-    alert(error);
+    displayMessageError(error);
 }
 function submitForm(e) {
     e.preventDefault();

@@ -18,3 +18,20 @@ function postFormData(method, url, formData, successFunc, errorFunc) {
 function gotoUrl(url) {
     document.location.href = url;
 }
+
+function displayMessageSuccess(message) {
+    $('#alert').css('background-color', '#28a745');
+    displayMessage(message);
+}
+function displayMessageError(message) {
+    $('#alert').css('background-color', '#f44336');
+    displayMessage(message);
+}
+function displayMessage(message) {
+    $('#alert').show();
+    $('#text-alert').text(message);
+    setTimeout(function () {
+        $('#alert').hide();
+        $('#text-alert').text('');
+    }, 5000);
+}
