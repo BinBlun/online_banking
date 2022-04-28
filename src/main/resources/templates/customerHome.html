@@ -18,118 +18,7 @@
 </head>
 
 <style>
-    .container {
-        text-align: center;
-        align-items: center;
-    }
 
-    h1 {
-        margin-top: 80px;
-        font-family: open sans,helvetica neue,Helvetica,Arial,sans-serif;
-        font-weight: bold;
-        text-decoration: underline rebeccapurple;
-        text-underline-offset: 6px;
-    }
-
-    .btnLayout {
-        align-items: center;
-        text-align: center;
-        margin: 40px 0 0 0;
-    }
-
-    .btnDiv {
-        margin: 20px;
-        display: inline-block;
-    }
-
-    .servicesBtn {
-        font-family: open sans,helvetica neue,Helvetica,Arial,sans-serif;
-        font-size: 13px;
-        font-weight: bold;
-        align-items: center;
-        height: 155px;
-        width: 155px;
-        margin: 10px;
-        padding: 110px 0 5px 0;
-        background-color: #f9f5fa;
-        vertical-align: text-bottom;
-        border-radius: 15px;
-        border: none;
-        outline: 1px solid darkgrey;
-    }
-
-    .servicesBtn:hover {
-        font-size: 18px;
-        padding: 57.5px 0 57.5px 0;
-        transition: 0.3s;
-        background-color: #f9f5fa;
-    }
-
-    #userBtn {
-        background-image: url("../static/images/user.png");
-        align-items: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position-y: -5px;
-    }
-
-    #viewBalanceBtn {
-        background-image: url("../static/images/viewBalance.png");
-        align-items: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position-y: -5px;
-    }
-
-    #depoMoneyBtn {
-        background-image: url("../static/images/depoMoney.png");
-        align-items: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position-y: -5px;
-    }
-
-    #withMoneyBtn {
-        background-image: url("../static/images/withMoney.png");
-        align-items: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position-y: -5px;
-    }
-
-    #transMoneyBtn {
-        background-image: url("../static/images/transMoney.png");
-        align-items: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position-y: -5px;
-    }
-
-    #saveMoneyBtn {
-        background-image: url("../static/images/saveMoney.png");
-        align-items: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position-y: -5px;
-    }
-
-    #loansMoneyBtn {
-        background-image: url("../static/images/loansMoney.png");
-        align-items: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position-y: -5px;
-    }
-
-    #userBtn:hover,
-    #viewBalanceBtn:hover,
-    #depoMoneyBtn:hover,
-    #withMoneyBtn:hover,
-    #transMoneyBtn:hover,
-    #saveMoneyBtn:hover,
-    #loansMoneyBtn:hover {
-        background-image: none;
-    }
 </style>
 
 <body>
@@ -140,44 +29,44 @@
         <div class="1stRow">
             <div class="btnDiv" id="userDiv">
                 <form onclick="gotoUrl('/customer/profile')">
-                    <input class="servicesBtn" id="userBtn" type="submit" value="User"/>
+                    <input class="servicesBtn" id="userBtn" value="User"/>
                 </form>
             </div>
 
             <div class="btnDiv" id="viewBalanceDiv">
                 <form onclick="gotoUrl('/customer/viewBalance')">
-                    <input class="servicesBtn" id="viewBalanceBtn" type="submit" value="View Balance"/>
+                    <input class="servicesBtn" id="viewBalanceBtn" value="View Balance"/>
                 </form>
             </div>
 
             <div class="btnDiv" id="depoMoneyDiv">
                 <form onclick="gotoUrl('/customer/depositMoney')">
-                    <input class="servicesBtn" id="depoMoneyBtn" type="submit" value="Deposit"/>
+                    <input class="servicesBtn" id="depoMoneyBtn" value="Deposit"/>
                 </form>
             </div>
 
             <div class="btnDiv" id="withMoneyDiv">
                 <form onclick="gotoUrl('/customer/withdrawMoney')">
-                    <input class="servicesBtn" id="withMoneyBtn" type="submit" value="Withdraw"/>
+                    <input class="servicesBtn" id="withMoneyBtn" value="Withdraw"/>
                 </form>
             </div>
         </div>
         <div class="2ndRow">
             <div class="btnDiv" id="transMoneyDiv">
                 <form onclick="gotoUrl('/customer/transferMoney')">
-                    <input class="servicesBtn" id="transMoneyBtn" type="submit" value="Transfer"/>
+                    <input class="servicesBtn" id="transMoneyBtn" value="Transfer"/>
                 </form>
             </div>
 
             <div class="btnDiv" id="saveMoneyDiv">
                 <form onclick="gotoUrl('/customer/moneySaving')">
-                    <input class="servicesBtn" id="saveMoneyBtn" type="submit" value="Saving"/>
+                    <input class="servicesBtn" id="saveMoneyBtn" value="Saving"/>
                 </form>
             </div>
 
             <div class="btnDiv" id="loansMoneyDiv">
                 <form onclick="gotoUrl('/customer/moneyLoans')">
-                    <input class="servicesBtn" id="loansMoneyBtn" type="submit" value="Loans"/>
+                    <input class="servicesBtn" id="loansMoneyBtn" value="Loans"/>
                 </form>
             </div>
         </div>
