@@ -1,33 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #deposit-money-resources},
+                                                ~{:: #deposit-money-nav},
+                                                ~{:: #deposit-money-main-content},
+                                                ~{:: #deposit-money-footer}
+                                               )}">
 <head>
     <meta charset="UTF-8">
     <title>Deposit Money</title>
-    <link rel="stylesheet" type="text/css" href="/css/deposit-money.css" th:href="@{/css/deposit-money.css}"/>
+    <th:block id="withdraw-money-resources">
+        <script type="text/javascript" src="/js/deposit-money.js" th:src="@{/js/deposit-money.js}"></script>
+        <link rel="stylesheet" type="text/css" href="/css/deposit-money.css" th:href="@{/css/deposit-money.css}"/>
+    </th:block>
+
 </head>
 
 <body>
-<div class="container">
+
+<!--them nguoi gui nguoi nhan ko nhin cai trang nhin trong qua =)))-->
+
+<div id="deposit-money-main-content">
     <div class="heading">
         <div class="headingImg">
         </div>
 
-        <h1 class="headingText">Deposit Money</h1>
+        <p class="headingText">Deposit Money</p>
     </div>
 
     <div class="col">
-        <h3 th:text="'Account Number: ' + ${account1.accountNumber}"></h3>
-        <h3 th:text="'Balance: ' + ${account1.currentBalance} + ' vnđ'"></h3>
+        <h3 th:text="'Số tài khoản: ' + ${account1.accountNumber}"></h3>
+        <h3 th:text="'Số dư: ' + ${account1.currentBalance} + ' Đồng'"></h3>
     </div>
 
-    <form class="withdrawMoneyForm" name='withdrawMoney' th:action="@{/customer/doDepositMoney}" method='POST'>
+    <form class="withdrawMoneyForm" onsubmit="submitForm(event)">
         <table>
             <div class="amountInput">
-                <a class="AofM">Amount:</a>
+                <div class="AofM">Amount:</div>
 
                 <div>
                     <input class="form-control" name="amount" type="text">
                 </div>
+
+                <div>VND</div>
             </div>
 
             <div class="btnDiv">
