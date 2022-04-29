@@ -62,7 +62,7 @@ public class UserController {
         Account account = accountRepository.findFirstByUserId(user.getId());
 //        Card card = cardRepository.getById(account.getAccountId());
         model.addAttribute("account", account);
-        return "viewBalanceP age";
+        return "viewBalancePage";
     }
 
     @RequestMapping("/transferMoney")
