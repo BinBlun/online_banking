@@ -42,7 +42,8 @@ public class RegisterService {
                 break;
             }
         } while (true);
-//        // tao account
+
+//      tao account
         Account account = new Account();
         account.setAccountNumber(accNum);
         account.setCurrentBalance(BigDecimal.valueOf(0));
@@ -53,8 +54,8 @@ public class RegisterService {
         Date accountCurrentDate = new Date();
         account.setActiveDate(accountCurrentDate);
         accountRepository.save(account);
-//
-//        //tạo card
+
+//      tạo card
         Card card = new Card();
         card.setCardNumber(randomNumber(11));
         card.setCurrentBalance(BigDecimal.valueOf(0));
@@ -64,14 +65,15 @@ public class RegisterService {
         card.setCartDate(cardCurrentDate);
         cardRepository.save(card);
 
-//        tạo role
+//      tạo role
         UserRole userRole = new UserRole();
         userRole.setRoleName("ROLE_USER");
         userRole.setUserId(customer.getId());
+
         return customer;
     }
 
-
+//  ham random so
     private String randomNumber(int size) {
         StringBuilder a = new StringBuilder();
         for (int i = 0; i < size; i++) {

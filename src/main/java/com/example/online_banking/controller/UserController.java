@@ -22,9 +22,6 @@ public class UserController {
     private CardRepository cardRepository;
 
     @Autowired
-    private LoansRepository loansRepository;
-
-    @Autowired
     private AccountRepository accountRepository;
 
     @Autowired
@@ -85,23 +82,23 @@ public class UserController {
 
     @RequestMapping("/moneyLoans")
     public String moneyLoans(Authentication authentication, Model model) {
-        String userName = authentication.getName();
-        User user = userRepository.findByUsername(userName);
+//        String userName = authentication.getName();
+//        User user = userRepository.findByUsername(userName);
 
 //        Tìm loans mà người dùng đã đăng ký
-        List<Loans> loans = loansRepository.findBySSN(user.getSsn());
-        model.addAttribute("loans", loans);
+//        List<Loans> loans = loansRepository.findBySSN(user.getSsn());
+//        model.addAttribute("loans", loans);
 
 //        Hiện lên LoansPackage
         List<LoansPackage> loansPackages = loansPackageRepository.findAll();
         model.addAttribute("loansPackages", loansPackages);
         return "moneyLoans";
     }
-
-    @RequestMapping("/doLoans")
-    public String doLoans() {
-        return "moneyLoans";
-    }
+//
+//    @RequestMapping("/doLoans")
+//    public String doLoans() {
+//        return "moneyLoans";
+//    }
 
 
     @RequestMapping("/transferSuccess")
