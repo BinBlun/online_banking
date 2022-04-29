@@ -125,27 +125,27 @@ public class UserController {
         Account account1 = accountRepository.findFirstByUserId(user.getId());
         model.addAttribute("account1", account1);
 
-        Transaction transaction = new Transaction();
-        model.addAttribute("transaction", transaction);
+//        Transaction transaction = new Transaction();
+//        model.addAttribute("transaction", transaction);
 //        return "redirect:/transferSuccess";
         return "depositMoney";
     }
 
-    @PostMapping(value = "/doDepositMoney")
-    public String doDepositMoney(TransferTransactionInput input, Model model) {
-        //tìm tài khoản muốn cho tiền vào
-        Account account1 = accountRepository.getById(1L);
-        model.addAttribute("account", account1);
-
-        if (Double.valueOf(input.getAmount()) > account1.getCurrentBalance().doubleValue()) {
-            System.out.println("Cant deposit");
-            return "depositMoney";
-        } else {
-            //cộng tiền vào tài khoản cho tiền vào
-            account1.setCurrentBalance(account1.getCurrentBalance().add(new BigDecimal(input.getAmount())));
-            //lưu vào database
-            accountRepository.save(account1);
-            return "transactionSuccess";
-        }
-    }
+//    @PostMapping(value = "/doDepositMoney")
+//    public String doDepositMoney(TransferTransactionInput input, Model model) {
+//        //tìm tài khoản muốn cho tiền vào
+//        Account account1 = accountRepository.getById(1L);
+//        model.addAttribute("account", account1);
+//
+//        if (Double.valueOf(input.getAmount()) > account1.getCurrentBalance().doubleValue()) {
+//            System.out.println("Cant deposit");
+//            return "depositMoney";
+//        } else {
+//            //cộng tiền vào tài khoản cho tiền vào
+//            account1.setCurrentBalance(account1.getCurrentBalance().add(new BigDecimal(input.getAmount())));
+//            //lưu vào database
+//            accountRepository.save(account1);
+//            return "transactionSuccess";
+//        }
+//    }
 }
