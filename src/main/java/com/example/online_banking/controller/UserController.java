@@ -119,7 +119,7 @@ public class UserController {
         return "withdrawMoney";
     }
 
-    @RequestMapping("/depositMoney/{id}")
+    @RequestMapping("/depositMoney")
     public String depositMoney(Authentication authentication,
                                Model model) {
         //tìm tài khoản mà muốn cho tiền vào

@@ -31,4 +31,11 @@ public class RestUserController {
             Authentication authentication) throws DataInvalidException {
         return ResponseData.ok(transactionService.doWithdrawMoney(authentication, input));
     }
+
+    @PostMapping(value = "/doDepositMoney")
+    public ResponseData<TransferTransactionOutput> doDepositMoney(
+            @RequestBody TransferTransactionInput input,
+            Authentication authentication) throws DataInvalidException {
+        return ResponseData.ok(transactionService.doDepositMoney(authentication, input));
+    }
 }
