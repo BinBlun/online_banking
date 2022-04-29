@@ -1,73 +1,13 @@
-body {
+body{
+    width: 100%;
+}
+.loanParent{
     display: flex;
-    justify-content: center;
-    font-family: open sans, helvetica neue, Helvetica, Arial, sans-serif;
-    background-color: #f9f5fa;
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-size: 20px;
+    float: right;
+    margin-right: 10px;
 }
 
-.container {
-    padding: 30px;
-    margin: 30px 0 0 0;
-}
-
-form {
-    width: 300px;
-}
-
-.headingImg {
-    background-image: url("../images/loansMoney.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 7em 5em 0 5em;
-    margin: 0 auto 0 auto;
-    width: 0;
-    border-radius: 5px;
-}
-
-h1 {
-    text-align: center;
-    font-weight: normal;
-    font-size: 30px;
-    margin: 0 0 30px 0;
-}
-
-.type-name {
-    font-weight: bold;
-}
-
-.type-box {
-    padding: 8px;
-    width: 93.7%;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    margin: 5px 0 5px 0;
-}
-
-
-
-#loginBtn {
-    position: absolute;
-    margin: 30px auto 0 115px;
-    color: #fff;
-    background-color: #198754;
-    display: inline-block;
-    font-weight: 400;
-    line-height: 1.5;
-    text-align: center;
-    text-decoration: none;
-    vertical-align: middle;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-
-#loginBtn:hover {
-    cursor: pointer;
-    background-color: #177a4c;;
-
+.loanElement{
+    padding: 5px;
+    border: 2px solid #08020E;
 }
