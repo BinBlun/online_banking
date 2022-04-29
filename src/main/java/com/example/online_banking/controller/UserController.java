@@ -47,10 +47,13 @@ public class UserController {
         return "customerHome";
     }
 
-    @RequestMapping("/viewBalance/{id}")
-    public String showViewBalance(@PathVariable(value = "id") Long id, Model model) {
-        Card card = cardRepository.getById(id);
-        model.addAttribute("card", card);
+    @RequestMapping("/viewBalance")
+    public String showViewBalance(Authentication authentication, Model model) {
+        String userName = authentication.getName();
+        User user = userRepository.findByUsername(userName);
+        Account account = accountRepository.findFirstByUserId(user.getId());
+//        Card card = cardRepository.getById(account.getAccountId());
+        model.addAttribute("account", account);
         return "viewBalancePage";
     }
 
@@ -67,10 +70,10 @@ public class UserController {
         return "TransferTransaction";
     }
 
-    @RequestMapping("transactionSuccess")
-    public String transactionSuccess(Model model) {
-        return "transactionSuccess";
-    }
+//    @RequestMapping("transactionSuccess")
+//    public String transactionSuccess(Model model) {
+//        return "transactionSuccess";
+//    }
 
     @RequestMapping("/moneyLoans")
     public String moneyLoans(Authentication authentication, Model model) {
@@ -109,10 +112,12 @@ public class UserController {
     }
 
     @RequestMapping("/depositMoney/{id}")
-    public String depositMoney(@PathVariable(value = "id") Long id,
+    public String depositMoney(Authentication authentication,
                                Model model) {
         //tìm tài khoản mà muốn cho tiền vào
-        Account account1 = accountRepository.getById(id);
+        String userName = authentication.getName();
+        User user = userRepository.findByUsername(userName);
+        Account account1 = accountRepository.findFirstByUserId(user.getId());
         model.addAttribute("account1", account1);
 
         Transaction transaction = new Transaction();
