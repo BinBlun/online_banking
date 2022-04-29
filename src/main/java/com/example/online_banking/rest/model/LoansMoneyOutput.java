@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @Builder
-public class TransferTransactionOutput {
-    private Long id;
+public class LoansMoneyOutput {
+    private String status;
 }

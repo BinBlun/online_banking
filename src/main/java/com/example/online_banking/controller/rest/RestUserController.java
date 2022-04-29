@@ -42,11 +42,10 @@ public class RestUserController {
         return ResponseData.ok(transactionService.doDepositMoney(authentication, input));
     }
 
-    @PostMapping(value = "/doLoans")
-    public ResponseData<LoansOutput> doLoans(
-            @RequestBody LoansInput input,
+    @PostMapping(value = "/doMoneyLoans")
+    public ResponseData<LoansMoneyOutput> doMoneyLoans(
+            @RequestBody LoansMoneyInput input,
             Authentication authentication) throws DataInvalidException {
-        return ResponseData.ok(loansService.doLoans(authentication, input));
+        return ResponseData.ok(loansService.doMoneyLoans(authentication, input));
     }
-
 }

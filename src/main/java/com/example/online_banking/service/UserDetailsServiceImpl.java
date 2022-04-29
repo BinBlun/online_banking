@@ -25,11 +25,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        // đầu tiên mình query xuống database xem có user  đó không
+        // đầu tiên mình query xuống database xem có user đó không
         com.example.online_banking.model.User appUser;
         appUser = this.userRepository.findByUsername(userName);
 
-        //Nếu không tìm thấy User thì mình thông báo lỗi
+        // Nếu không tìm thấy User thì mình thông báo lỗi
         if (appUser == null) {
             System.out.println("User not found! " + userName);
             throw new UsernameNotFoundException("User " + userName + " was not found in the database");
@@ -39,7 +39,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         // [ROLE_USER, ROLE_ADMIN,..]
         List<String> roleNames = this.userRoleRepository.findRoleNameByUser(appUser.getId());
 
-        // Dựa vào list quyền trả về mình tạo đối tượng GrantedAuthority  của spring cho quyền đó
+        // Dựa vào list quyền trả về mình tạo đối tượng GrantedAuthority của spring cho quyền đó
         List<GrantedAuthority> grantList = new ArrayList<>();
         if (roleNames != null) {
             for (String role : roleNames) {
@@ -49,7 +49,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             }
         }
 
-        //Cuối cùng mình tạo đối tượng UserDetails của Spring và mình cung cấp cá thông số như tên , password và quyền
+        // Cuối cùng mình tạo đối tượng UserDetails của Spring và mình cung cấp cá thông số như tên, password và quyền
         // Đối tượng userDetails sẽ chứa đựng các thông tin cần thiết về user từ đó giúp Spring Security quản lý được phân quyền như ta đã
         // cấu hình trong bước 4 method configure
         UserDetails userDetails = (UserDetails) new User(appUser.getUsername(),

@@ -1,12 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layouts/main-layout :: main-fragment(
-                                                ~{::title},
-                                                ~{:: #money-loans},
-                                                ~{:: #money-loans-nav},
-                                                ~{:: #transfer-main-content},
-                                                ~{:: #transfer-footer}
-                                               )}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Money Loans</title>
@@ -24,20 +17,16 @@
             <h1>This is Money Loans Page</h1>
         </div>
 
-<!--        Hiện loans đã đăng ký-->
+    <!--        Hiện loans đã đăng ký-->
 
 
-<!--        Hiệu lên các loansPackage của ngân hàng -->
+    <!--        Hiệu lên các loansPackage của ngân hàng -->
 
-        <form onsubmit="submitForm(event)">
-            <table>
-                <tr>
-                    <p><input id="phoneNumBox" type='text' placeholder="SNN" name='SNN' value=''></p>
-                </tr>
-
-                <tr>
-                    <p><input id="passwordBox" type='text' placeholder="Amount" name='amonut' value=''/></p>
-                </tr>
+    <form onsubmit="submitForm(event)">
+        <table>
+            <tr>
+                <p><input id="passwordBox" type='text' placeholder="Amount" name='amount' value=''/></p>
+            </tr>
 
                 <tr class="loanParent" th:each="loanPackage : ${loansPackages}">
                     <div th:onclick="doSomething([[${loanPackage.id}]])" class="loanElement">
@@ -47,27 +36,31 @@
                     </div>
                 </tr>
 
-                <tr>
-                    <p>
-                        <div id="loansPackageId" th:text="'Loans Package ID: '"></div>
-                        <input id="id" type="text" placeholder="ID" name="loansID" value='' readonly>
-                    </p>
-                </tr>
+            <tr>
+                <p>
+                <div id="loansPackageId" th:text="'Loans Package ID: '"></div>
+                <input id="id" type="text" placeholder="ID" name="loansPackageID" value='' readonly>
+                </p>
+            </tr>
 
-                <tr>
-                    <p><input id="loginBtn" type="submit" name='submit' value='OK Ok'/></p>
-                </tr>
-            </table>
-        </form>
-
-
-    </div>
+            <tr>
+                <p><input id="loginBtn" type="submit" name='submit' value='Confirm'/></p>
+            </tr>
+        </table>
+    </form>
 
 
+</div>
 
-    <script>
 
-    </script>
+<script>
+
+    doSomething = (id) => {
+        document.getElementById('loansPackageId').innerText = 'Loans Package ID: ';
+        console.log(document.getElementById('id'))
+        document.getElementById('id').value = id;
+    }
+</script>
 </body>
 
 </html>

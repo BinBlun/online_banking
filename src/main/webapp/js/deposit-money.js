@@ -1,5 +1,5 @@
 function success(res) {
-    gotoUrl('/customer/transferSuccess?type=WITHDRAW&id=' + res.data.id);
+    gotoUrl('/customer/transferSuccess?type=DEPOSIT&id=' + res.data.id);
 }
 function error(e) {
     const error = e.responseJSON ? e.responseJSON.errorDesc : e;
@@ -8,5 +8,5 @@ function error(e) {
 function submitForm(e) {
     e.preventDefault();
     const form = new FormData(e.target);
-    postFormData("POST", "/customer/rest/doWithdrawMoney", form, success, error)
+    postFormData("POST", "/customer/rest/doDepositMoney", form, success, error)
 }

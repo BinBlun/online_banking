@@ -20,7 +20,7 @@ public class User {
     @Column(name = "full_name")
     private String fullName;
 
-    @Column(name = "phoneNumber", unique = true)
+    @Column(name = "phone_number", unique = true)
     private String phoneNumber;
 
     @Email
