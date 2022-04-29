@@ -47,6 +47,14 @@ public class UserController {
         return "customerHome";
     }
 
+    @RequestMapping("/profile")
+    public String viewProfile(Authentication authentication, Model model){
+        String userName = authentication.getName();
+        User user = userRepository.findByUsername(userName);
+        model.addAttribute("user", user);
+        return "customerProfile";
+    }
+
     @RequestMapping("/viewBalance")
     public String showViewBalance(Authentication authentication, Model model) {
         String userName = authentication.getName();
@@ -54,7 +62,7 @@ public class UserController {
         Account account = accountRepository.findFirstByUserId(user.getId());
 //        Card card = cardRepository.getById(account.getAccountId());
         model.addAttribute("account", account);
-        return "viewBalancePage";
+        return "viewBalanceP age";
     }
 
     @RequestMapping("/transferMoney")
