@@ -1,43 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #deposit-money-resources},
+                                                ~{:: #deposit-money-nav},
+                                                ~{:: #deposit-money-main-content},
+                                                ~{:: #deposit-money-footer}
+                                               )}">
 <head>
     <meta charset="UTF-8">
     <title>Deposit Money</title>
-    <link rel="stylesheet" type="text/css" href="/css/deposit-money.css" th:href="@{/css/deposit-money.css}"/>
+    <th:block id="withdraw-money-resources">
+        <script type="text/javascript" src="/js/deposit-money.js" th:src="@{/js/deposit-money.js}"></script>
+        <link rel="stylesheet" type="text/css" href="/css/deposit-money.css" th:href="@{/css/deposit-money.css}"/>
+    </th:block>
+
 </head>
 
 <body>
 
 <!--them nguoi gui nguoi nhan ko nhin cai trang nhin trong qua =)))-->
 
-<div class="heading">
-    <div class="headingImg">
+<div id="deposit-money-main-content">
+    <div class="heading">
+        <div class="headingImg">
+        </div>
+
+        <p class="headingText">Deposit Money</p>
     </div>
 
-    <p class="headingText">Deposit Money</p>
-</div>
+    <div class="col">
+        <h3 th:text="'Số tài khoản: ' + ${account1.accountNumber}"></h3>
+        <h3 th:text="'Số dư: ' + ${account1.currentBalance} + ' Đồng'"></h3>
+    </div>
 
-<div class="col">
-    <h3 th:text="'Số tài khoản: ' + ${account1.accountNumber}"></h3>
-    <h3 th:text="'Số dư: ' + ${account1.currentBalance} + ' Đồng'"></h3>
-</div>
+    <form class="withdrawMoneyForm" onsubmit="submitForm(event)">
+        <table>
+            <div class="amountInput">
+                <div class="AofM">Amount:</div>
 
-<form class="withdrawMoneyForm" name='withdrawMoney' th:action="@{/customer/doDepositMoney}" method='POST'>
-    <table>
-        <div class="amountInput">
-            <div class="AofM">Amount:</div>
+                <div>
+                    <input class="form-control" name="amount" type="text">
+                </div>
 
-            <div>
-                <input class="form-control" name="amount" type="text">
+                <div>VND</div>
             </div>
 
-            <div>vnđ</div>
-        </div>
-
-        <div class="btnDiv">
-            <button class="depositBtn" type="submit">Deposit</button>
-        </div>
-    </table>
-</form>
+            <div class="btnDiv">
+                <button class="depositBtn" type="submit">Deposit</button>
+            </div>
+        </table>
+    </form>
+</div>
 </body>
 </html>
