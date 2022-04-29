@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Loans {
     @Id
     @Column(name = "LoanId")
-    private Long id;
+    private Long loansid;
 
     @Column(name = "SSN")
     private String SSN;
