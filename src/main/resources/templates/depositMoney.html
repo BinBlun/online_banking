@@ -18,20 +18,15 @@
 </head>
 
 <body>
-
-<!--them nguoi gui nguoi nhan ko nhin cai trang nhin trong qua =)))-->
-
 <div id="deposit-money-main-content">
-    <div class="heading">
-        <div class="headingImg">
-        </div>
-
-        <p class="headingText">Deposit Money</p>
+    <div class="headingImg">
     </div>
 
+    <h1 class="headingText">Deposit Money</h1>
+
     <div class="col">
-        <h3 th:text="'Số tài khoản: ' + ${account1.accountNumber}"></h3>
-        <h3 th:text="'Số dư: ' + ${account1.currentBalance} + ' Đồng'"></h3>
+        <h3 th:text="'Account Number: ' + ${account1.accountNumber}"></h3>
+        <h3 th:text="'Balance: ' + ${account1.currentBalance} + ' vnđ'"></h3>
     </div>
 
     <form class="withdrawMoneyForm" onsubmit="submitForm(event)">
@@ -42,8 +37,6 @@
                 <div>
                     <input class="form-control" name="amount" type="text">
                 </div>
-
-                <div>VND</div>
             </div>
 
             <div class="btnDiv">
