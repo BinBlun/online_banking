@@ -8,7 +8,7 @@
                                                 ~{:: #deposit-money-footer}
                                                )}">
 <head>
-    <meta charset="UTF-8">
+<!--    <meta charset="UTF-8">-->
     <title>Deposit Money</title>
     <th:block id="withdraw-money-resources">
         <script type="text/javascript" src="/js/deposit-money.js" th:src="@{/js/deposit-money.js}"></script>
@@ -18,30 +18,30 @@
 </head>
 
 <body>
-<div id="deposit-money-main-content">
+<div class="container text-center" id="deposit-money-main-content">
     <div class="headingImg">
     </div>
 
-    <h1 class="headingText">Deposit Money</h1>
+    <h1 class="headingText">Deposit</h1>
 
     <div class="col">
         <h3 th:text="'Account Number: ' + ${account1.accountNumber}"></h3>
         <h3 th:text="'Balance: ' + ${account1.currentBalance} + ' vnđ'"></h3>
     </div>
 
-    <form class="withdrawMoneyForm" onsubmit="submitForm(event)">
+    <form onsubmit="submitForm(event)">
         <table>
-            <div class="amountInput">
-                <div class="AofM">Amount:</div>
+            <tr>
+                <td class="type-name">Amount</td>
+                <td>:</td>
+                <td><input class="form-control" id="amount" name="amount" type="text"></td>
+            </tr>
 
-                <div>
-                    <input class="form-control" name="amount" type="text">
-                </div>
-            </div>
-
-            <div class="btnDiv">
-                <button class="depositBtn" type="submit">Deposit</button>
-            </div>
+            <tr>
+                <td>
+                    <button type="submit" class="btn btn-success">Deposit</button>
+                </td>
+            </tr>
         </table>
     </form>
 </div>
