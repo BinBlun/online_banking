@@ -9,7 +9,7 @@
     <div th:switch="${type}">
         <h3 th:case="'TRANSFER'" th:utext="'Quí khách đã chuyển thành công số tiền ' + ${transaction.transactionAmount} + ' VND' + ' đến số tài khoản ' + ${account.accountNumber} + '/' + ${user.fullName} + ' vào lúc ' + ${transaction.transactionDate} + '<br>Nội dung: ' + ${transaction.description} "/>
         <h3 th:case="'DEPOSIT'" th:utext="'Quí khách đã cho thành công số tiền ' + ${transaction.transactionAmount} + ' VND' + ' đến số tài khoản ' + ${transaction.userId} + ' vào lúc ' + ${transaction.transactionDate} "/>
-
+        <h3 th:case="'WITHDRAW'" th:utext="'Quí khách đã rút thành công số tiền ' + ${transaction.transactionAmount} + ' VND' + ' đến số tài khoản ' + ${transaction.userId} + ' vào lúc ' + ${transaction.transactionDate} "/>
         <p th:case="*">Not support</p>
     </div>
 <div>

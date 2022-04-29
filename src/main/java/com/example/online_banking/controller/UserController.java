@@ -111,28 +111,31 @@ public class UserController {
 
     @RequestMapping("/withdrawMoney")
     public String withdrawMoney(Authentication authentication,
-                                @RequestParam("id") Long id,
-                                @RequestParam("type") String type,
+//                                @RequestParam("id") Long id,
+//                                @RequestParam("type") String type,
                                 Model model) {
         String userName = authentication.getName();
         User user = userRepository.findByUsername(userName);
         Account account = accountRepository.findFirstByUserId(user.getId());
+//        Transaction transaction = transactionRepository.getById(id);
         model.addAttribute("account", account);
-        model.addAttribute("type", type);
+//        model.addAttribute("type", type);
+//        model.addAttribute("transaction", transaction);
+
         return "withdrawMoney";
     }
 
     @RequestMapping("/depositMoney")
     public String depositMoney(Authentication authentication,
-                               @RequestParam("id") Long id,
-                               @RequestParam("type") String type,
+//                               @RequestParam("id") Long id,
+//                               @RequestParam("type") String type,
                                Model model) {
         //tìm tài khoản mà muốn cho tiền vào
         String userName = authentication.getName();
         User user = userRepository.findByUsername(userName);
         Account account1 = accountRepository.findFirstByUserId(user.getId());
         model.addAttribute("account1", account1);
-        model.addAttribute("type", type);
+//        model.addAttribute("type", type);
 //        Transaction transaction = new Transaction();
 //        model.addAttribute("transaction", transaction);
 //        return "redirect:/transferSuccess";
