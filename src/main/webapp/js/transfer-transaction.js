@@ -1,5 +1,5 @@
 function success(res) {
-    gotoUrl('/customer/transferSuccess');
+    gotoUrl('/customer/transferSuccess?type=TRANSFER&id=' + res.data.id);
 }
 function error(e) {
     const error = e.responseJSON ? e.responseJSON.errorDesc : e;

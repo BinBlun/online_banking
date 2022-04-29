@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @Builder
 public class TransferTransactionOutput {
-    private String status;
+    private Long id;
 }
