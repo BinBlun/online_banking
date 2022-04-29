@@ -11,11 +11,15 @@
 <body>
 
     <div class="container text-center">
-        <h1>This is View Balance</h1>
+        <div class="headingImg">
+        </div>
+
+        <h1>View Balance</h1>
+
         <div class="col">
-            <h3 th:text="'Account Number: ' + ${account.accountNumber}"/>
-            <h3 th:text="'Valid Date: ' + ${account.activeDate}"/>
-            <h3 th:text="'Balance: ' + ${account.currentBalance}"/>
+            <p th:text="'Account Number: ' + ${account.accountNumber}"/>
+            <p th:text="'Valid Date: ' + ${account.activeDate}"/>
+            <p th:text="'Current balance: ' + ${account.currentBalance} + ' VNĐ'"/>
         </div>
     </div>
 

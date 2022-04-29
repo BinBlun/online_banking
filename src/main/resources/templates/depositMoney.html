@@ -7,37 +7,34 @@
 </head>
 
 <body>
+<div class="container">
+    <div class="heading">
+        <div class="headingImg">
+        </div>
 
-<!--them nguoi gui nguoi nhan ko nhin cai trang nhin trong qua =)))-->
-
-<div class="heading">
-    <div class="headingImg">
+        <h1 class="headingText">Deposit Money</h1>
     </div>
 
-    <p class="headingText">Deposit Money</p>
-</div>
+    <div class="col">
+        <h3 th:text="'Account Number: ' + ${account1.accountNumber}"></h3>
+        <h3 th:text="'Balance: ' + ${account1.currentBalance} + ' vnđ'"></h3>
+    </div>
 
-<div class="col">
-    <h3 th:text="'Số tài khoản: ' + ${account1.accountNumber}"></h3>
-    <h3 th:text="'Số dư: ' + ${account1.currentBalance} + ' Đồng'"></h3>
-</div>
+    <form class="withdrawMoneyForm" name='withdrawMoney' th:action="@{/customer/doDepositMoney}" method='POST'>
+        <table>
+            <div class="amountInput">
+                <a class="AofM">Amount:</a>
 
-<form class="withdrawMoneyForm" name='withdrawMoney' th:action="@{/customer/doDepositMoney}" method='POST'>
-    <table>
-        <div class="amountInput">
-            <div class="AofM">Amount:</div>
-
-            <div>
-                <input class="form-control" name="amount" type="text">
+                <div>
+                    <input class="form-control" name="amount" type="text">
+                </div>
             </div>
 
-            <div>vnđ</div>
-        </div>
-
-        <div class="btnDiv">
-            <button class="depositBtn" type="submit">Deposit</button>
-        </div>
-    </table>
-</form>
+            <div class="btnDiv">
+                <button class="depositBtn" type="submit">Deposit</button>
+            </div>
+        </table>
+    </form>
+</div>
 </body>
 </html>
