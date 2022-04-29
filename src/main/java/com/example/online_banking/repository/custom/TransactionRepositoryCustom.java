@@ -20,4 +20,12 @@ public class TransactionRepositoryCustom {
             e.printStackTrace();
         }
     }
+
+    public void updateLog(Transaction transaction) {
+        try {
+            entityManager.merge(transaction);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -9,9 +9,8 @@
 <body>
 <div class="main-container container text-center">
     <!--        Header-->
-    <div class="headingImg"></div>
     <div>
-        <h1>Loans</h1>
+        <h1>This is Money Loans Page</h1>
     </div>
 
     <!--        Hiện loans đã đăng ký-->
@@ -19,38 +18,30 @@
 
     <!--        Hiệu lên các loansPackage của ngân hàng -->
 
-    <form th:action="@{/doLoans}">
+    <form onsubmit="submitForm(event)">
         <table>
-            <div class="form-control">
-                <tr>
-                    <div class="type-name">Social Security Number</div>
-                    <input class="type-box" id="phoneNumBox" type='text' name='SNN' value=''>
-                </tr>
-                <br>
-                <tr>
-                    <div class="type-name"> Amount</div>
-                    <input class="type-box" id="passwordBox" type='text' name='amonut' value=''/>
-                </tr>
-                <br>
-                <tr class="loanParent" th:each="loanPackage : ${loansPackages}">
-                    <div th:onclick="doSomething([[${loanPackage.id}]])" class="loanElement">
-                        <div th:text="'Loams Package ID: ' + ${loanPackage.id}"></div>
-                        <div th:text="'Interest Rate: ' + ${loanPackage.interestRate} + '%'"></div>
-                        <div th:text="'Duration: ' + ${loanPackage.duration} + ' months'"></div>
-                    </div>
-                </tr>
+            <tr>
+                <p><input id="passwordBox" type='text' placeholder="Amount" name='amount' value=''/></p>
+            </tr>
 
-                <tr>
-                    <div class="type-name" id="loansPackageId" th:text="'Loans Package ID: '"></div>
-                    <input class="type-box" id="id" type="text" name="loansID" value='' readonly>
-                </tr>
-                <br>
-                <div class="btnDiv">
-                    <tr>
-                        <input id="loginBtn" type="submit" name='submit' value='Confirm'/>
-                    </tr>
+            <tr class="loanParent" th:each="loanPackage : ${loansPackages}">
+                <div th:onclick="doSomething([[${loanPackage.id}]])" class="loanElement">
+                    <div th:text="'Loams Package ID: ' + ${loanPackage.id}"></div>
+                    <div th:text="'Interest Rate: ' + ${loanPackage.interestRate} + '%'"></div>
+                    <div th:text="'Duration: ' + ${loanPackage.duration} + ' months'"></div>
                 </div>
-            </div>
+            </tr>
+
+            <tr>
+                <p>
+                <div id="loansPackageId" th:text="'Loans Package ID: '"></div>
+                <input id="id" type="text" placeholder="ID" name="loansPackageID" value='' readonly>
+                </p>
+            </tr>
+
+            <tr>
+                <p><input id="loginBtn" type="submit" name='submit' value='OK Ok'/></p>
+            </tr>
         </table>
     </form>
 

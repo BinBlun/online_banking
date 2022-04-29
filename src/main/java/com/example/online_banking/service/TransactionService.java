@@ -32,8 +32,8 @@ public class TransactionService {
     private TransactionRepositoryCustom transactionRepositoryCustom;
 
     public TransferTransactionOutput doTransferMoney(Authentication authentication, TransferTransactionInput input) throws DataInvalidException {
-        String userName = authentication.getName();
-        User user = userRepository.findByUsername(userName);
+            String userName = authentication.getName();
+            User user = userRepository.findByUsername(userName);
         //tìm tài khoản mà muốn rút tiền
         Account debitAccount = accountRepository.findFirstByUserId(user.getId());
         //tìm tài khoản muốn chuyển tiền cho
@@ -50,13 +50,15 @@ public class TransactionService {
         transaction.setTransactionAmount(amount);
         transaction.setUserId(user);
 
-        if(input.getBankReceiveId() == null){
-            // neu ngan hang khong co
+        if (input.getBankReceiveId() == null) {
+            // nếu người dùng không chọn ngân hàng
             transaction.setStatus(Constants.STATUS_FAIL);
             transaction.setDescription(ErrorCode.getErrorMessage(ErrorCode.NO_BANK));
             transactionRepositoryCustom.insertLog(transaction);
             throw new DataInvalidException(ErrorCode.NO_BANK);
-        }else if (creditAccount == null) {
+        }
+
+        else if (creditAccount == null) {
             // neu tai khoan nhan tien khong ton tai
             transaction.setStatus(Constants.STATUS_FAIL);
             transaction.setDescription(ErrorCode.getErrorMessage(ErrorCode.ACCOUNT_NOT_EXIST));
