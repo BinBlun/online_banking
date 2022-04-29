@@ -25,8 +25,8 @@
     <h1>Transfer</h1>
 
     <div class="col">
-        <h3 th:text="'Số tài khoản: ' + ${account.accountNumber}"/>
-        <h3 th:text="'Số dư: ' + ${account.currentBalance} + ' Đồng'"/>
+        <h3 th:text="'Account Number: ' + ${account.accountNumber}"/>
+        <h3 th:text="'Balance: ' + ${account.currentBalance} + ' VNĐ'"/>
     </div>
 
     <form onsubmit="submitForm(event)">
