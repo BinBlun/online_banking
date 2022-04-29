@@ -1,9 +1,8 @@
 package com.example.online_banking.controller.rest;
 
 import com.example.online_banking.exception.DataInvalidException;
-import com.example.online_banking.rest.model.ResponseData;
-import com.example.online_banking.rest.model.TransferTransactionInput;
-import com.example.online_banking.rest.model.TransferTransactionOutput;
+import com.example.online_banking.rest.model.*;
+import com.example.online_banking.service.LoansService;
 import com.example.online_banking.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestUserController {
     @Autowired
     private TransactionService transactionService;
+
+    @Autowired
+    private LoansService loansService;
 
     @PostMapping(value = "/doTransferMoney")
     public ResponseData<TransferTransactionOutput> doTransferMoney(
@@ -37,5 +39,12 @@ public class RestUserController {
             @RequestBody TransferTransactionInput input,
             Authentication authentication) throws DataInvalidException {
         return ResponseData.ok(transactionService.doDepositMoney(authentication, input));
+    }
+
+    @PostMapping(value = "/doMoneyLoans")
+    public ResponseData<LoansMoneyOutput> doMoneyLoans(
+            @RequestBody LoansMoneyInput input,
+            Authentication authentication) throws DataInvalidException {
+        return ResponseData.ok(loansService.doMoneyLoans(authentication, input));
     }
 }

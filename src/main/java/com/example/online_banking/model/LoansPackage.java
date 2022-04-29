@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 public class LoansPackage {
     @Id
-    @Column(name = "LoansId")
+    @Column(name = "loan_package_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -18,6 +18,6 @@ public class LoansPackage {
     private double interestRate;
 
     @Column(name = "duration")
-    private String duration;
+    private Integer duration;
 
 }

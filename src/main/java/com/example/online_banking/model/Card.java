@@ -1,6 +1,6 @@
 package com.example.online_banking.model;
 
-import lombok.Data;
+import  lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
