@@ -48,6 +48,7 @@ public class TransactionService {
         transaction.setTransactionDate(transactionDate);
         transaction.setTransactionType("TRANSFER");
         transaction.setTransactionAmount(amount);
+        transaction.setUserId(user);
 
         if(input.getBankReceiveId() == null){
             // neu ngan hang khong co
@@ -78,8 +79,8 @@ public class TransactionService {
             //Lưu log giao dịch lên database
             transaction.setRecipientAccountID(creditAccount.getAccountId());
             transaction.setStatus(Constants.STATUS_SUCCESS);
-            transactionRepository.save(transaction);
-            return TransferTransactionOutput.builder().status(Constants.STATUS_SUCCESS).build();
+            Transaction trans = transactionRepository.save(transaction);
+            return TransferTransactionOutput.builder().id(trans.getTransactionID()).build();
         }
     }
 
@@ -98,6 +99,7 @@ public class TransactionService {
         transaction.setTransactionDate(transactionDate);
         transaction.setTransactionType("WITHDRAW");
         transaction.setTransactionAmount(amount);
+        transaction.setUserId(user);
 
         if (Double.valueOf(input.getAmount()) > debitAccount.getCurrentBalance().doubleValue()) {
             transaction.setStatus(Constants.STATUS_FAIL);
@@ -108,8 +110,8 @@ public class TransactionService {
             //lưu vào database
             transaction.setStatus(Constants.STATUS_WAITING);
             debitAccount.setCurrentBalance(debitAccount.getCurrentBalance().subtract(new BigDecimal(input.getAmount())));
-            transactionRepository.save(transaction);
-            return TransferTransactionOutput.builder().status(Constants.STATUS_SUCCESS).build();
+            Transaction trans = transactionRepository.save(transaction);
+            return TransferTransactionOutput.builder().id(trans.getTransactionID()).build();
         }
     }
 
@@ -128,6 +130,7 @@ public class TransactionService {
         transaction.setTransactionDate(transactionDate);
         transaction.setTransactionType("DEPOSIT");
         transaction.setTransactionAmount(amount);
+        transaction.setUserId(user);
 
         if (Double.valueOf(input.getAmount()) > debitAccount.getCurrentBalance().doubleValue()) {
             transaction.setStatus(Constants.STATUS_FAIL);
@@ -138,8 +141,8 @@ public class TransactionService {
             //lưu vào database
             transaction.setStatus(Constants.STATUS_WAITING);
             debitAccount.setCurrentBalance(debitAccount.getCurrentBalance().add(new BigDecimal(input.getAmount())));
-            transactionRepository.save(transaction);
-            return TransferTransactionOutput.builder().status(Constants.STATUS_SUCCESS).build();
+            Transaction trans = transactionRepository.save(transaction);
+            return TransferTransactionOutput.builder().id(trans.getTransactionID()).build();
         }
     }
 }

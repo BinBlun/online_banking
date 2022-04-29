@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Transfer Success</title>
 </head>
 <body>
     <h1>Transaction Success</h1>
-    <h2>Số tiền chuyển khoản</h2>
+    <div th:switch="${type}">
+        <h3 th:case="'TRANSFER'" th:utext="'Quí khách đã chuyển thành công số tiền ' + ${transaction.transactionAmount} + ' VND' + ' đến số tài khoản ' + ${account.accountNumber} + '/' + ${user.fullName} + ' vào lúc ' + ${transaction.transactionDate} + '<br>Nội dung: ' + ${transaction.description} "/>
+        <h3 th:case="'DEPOSIT'" th:utext="'Quí khách đã cho thành công số tiền ' + ${transaction.transactionAmount} + ' VND' + ' đến số tài khoản ' + ${transaction.userId} + ' vào lúc ' + ${transaction.transactionDate} "/>
 
-
+        <p th:case="*">Not support</p>
+    </div>
 <div>
 
 </div>

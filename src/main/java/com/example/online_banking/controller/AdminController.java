@@ -22,4 +22,9 @@ public class AdminController {
         model.addAttribute("currentUser", user);
         return "adminHome";
     }
+
+    @RequestMapping("/manage-customer")
+    public String manageCustomer() {
+        return "admin/manage-customer";
+    }
 }
