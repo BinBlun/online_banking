@@ -47,6 +47,14 @@ public class UserController {
         return "customerHome";
     }
 
+    @RequestMapping("/profile")
+    public String viewProfile(Authentication authentication, Model model){
+        String userName = authentication.getName();
+        User user = userRepository.findByUsername(userName);
+        model.addAttribute("user", user);
+        return "customerProfile";
+    }
+
     @RequestMapping("/viewBalance")
     public String showViewBalance(Authentication authentication, Model model) {
         String userName = authentication.getName();
@@ -111,7 +119,7 @@ public class UserController {
         return "withdrawMoney";
     }
 
-    @RequestMapping("/depositMoney/{id}")
+    @RequestMapping("/depositMoney")
     public String depositMoney(Authentication authentication,
                                Model model) {
         //tìm tài khoản mà muốn cho tiền vào

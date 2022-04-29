@@ -96,7 +96,7 @@ public class TransactionService {
         transaction.setDescription(input.getDescription());
         Date transactionDate = new Date();
         transaction.setTransactionDate(transactionDate);
-        transaction.setTransactionType("TRANSFER");
+        transaction.setTransactionType("WITHDRAW");
         transaction.setTransactionAmount(amount);
 
         if (Double.valueOf(input.getAmount()) > debitAccount.getCurrentBalance().doubleValue()) {
@@ -107,6 +107,37 @@ public class TransactionService {
         } else {
             //lưu vào database
             transaction.setStatus(Constants.STATUS_WAITING);
+            debitAccount.setCurrentBalance(debitAccount.getCurrentBalance().subtract(new BigDecimal(input.getAmount())));
+            transactionRepository.save(transaction);
+            return TransferTransactionOutput.builder().status(Constants.STATUS_SUCCESS).build();
+        }
+    }
+
+    public TransferTransactionOutput doDepositMoney(Authentication authentication, TransferTransactionInput input) throws DataInvalidException {
+        String userName = authentication.getName();
+        User user = userRepository.findByUsername(userName);
+        //tìm tài khoản mà muốn cho tiền vào
+        Account debitAccount = accountRepository.findFirstByUserId(user.getId());
+        BigDecimal amount = new BigDecimal(input.getAmount());
+        //Tạo transaction mới
+        Transaction transaction = new Transaction();
+        transaction.setTransactionAmount(amount);
+        transaction.setAccountId(debitAccount.getAccountId());
+        transaction.setDescription(input.getDescription());
+        Date transactionDate = new Date();
+        transaction.setTransactionDate(transactionDate);
+        transaction.setTransactionType("DEPOSIT");
+        transaction.setTransactionAmount(amount);
+
+        if (Double.valueOf(input.getAmount()) > debitAccount.getCurrentBalance().doubleValue()) {
+            transaction.setStatus(Constants.STATUS_FAIL);
+            transaction.setDescription(ErrorCode.getErrorMessage(ErrorCode.ACCOUNT_BALANCE_INVALID));
+            transactionRepositoryCustom.insertLog(transaction);
+            throw new DataInvalidException(ErrorCode.ACCOUNT_BALANCE_INVALID);
+        } else {
+            //lưu vào database
+            transaction.setStatus(Constants.STATUS_WAITING);
+            debitAccount.setCurrentBalance(debitAccount.getCurrentBalance().add(new BigDecimal(input.getAmount())));
             transactionRepository.save(transaction);
             return TransferTransactionOutput.builder().status(Constants.STATUS_SUCCESS).build();
         }

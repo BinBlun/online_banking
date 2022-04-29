@@ -16,23 +16,26 @@
 </head>
 <body>
 <div id="withdraw-money-main-content" class="container text-center">
-    <h1>Đây là người chuyển tiền</h1>
-    <div class="col">
-        <h3 th:text="'Số tài khoản: ' + ${account.accountNumber}"/>
-        <h3 th:text="'Số dư: ' + ${account.currentBalance} + ' Đồng'"/>
+    <div class="headingImg">
     </div>
 
-    <form onsubmit="submitForm(event)">
+    <h1>WithDraw</h1>
+    <div class="col">
+        <h3 th:text="'Account Number: ' + ${account.accountNumber}"/>
+        <h3 th:text="'Balance: ' + ${account.currentBalance} + ' VNĐ'"/>
+    </div>
+
+    <form class="submit-form" onsubmit="submitForm(event)">
         <table>
             <tr>
-                <td>Số tiền muốn rút</td>
+                <td class="type-name">Amount</td>
                 <td>:</td>
                 <td><input class="form-control" name="amount" type="text"></td>
             </tr>
 
             <tr>
                 <td>
-                    <button type="submit" class="btn btn-success">Rút tiền</button>
+                    <button type="submit" class="btn btn-success">Withdraw</button>
                 </td>
             </tr>
         </table>
