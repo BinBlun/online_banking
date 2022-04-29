@@ -48,7 +48,14 @@ public class TransactionService {
         transaction.setTransactionDate(transactionDate);
         transaction.setTransactionType("TRANSFER");
         transaction.setTransactionAmount(amount);
-        if (creditAccount == null) {
+
+        if(input.getBankReceiveId() == null){
+            // neu ngan hang khong co
+            transaction.setStatus(Constants.STATUS_FAIL);
+            transaction.setDescription(ErrorCode.getErrorMessage(ErrorCode.NO_BANK));
+            transactionRepositoryCustom.insertLog(transaction);
+            throw new DataInvalidException(ErrorCode.NO_BANK);
+        }else if (creditAccount == null) {
             // neu tai khoan nhan tien khong ton tai
             transaction.setStatus(Constants.STATUS_FAIL);
             transaction.setDescription(ErrorCode.getErrorMessage(ErrorCode.ACCOUNT_NOT_EXIST));

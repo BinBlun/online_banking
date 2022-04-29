@@ -13,9 +13,9 @@
     <div class="container text-center">
         <h1>This is View Balance</h1>
         <div class="col">
-            <h3 th:text="'Số tài khoản: ' + ${card.cardNumber}"/>
-            <h3 th:text="'Ngày cấp: ' + ${card.cartDate}"/>
-            <h3 th:text="'Số dư: ' + ${card.currentBalance}"/>
+            <h3 th:text="'Số tài khoản: ' + ${account.accountNumber}"/>
+            <h3 th:text="'Ngày cấp: ' + ${account.activeDate}"/>
+            <h3 th:text="'Số dư: ' + ${account.currentBalance} + ' Đồng'"/>
         </div>
     </div>
 
