@@ -5,7 +5,6 @@ doSomething = (id) => {
 }
 
 function success(res) {
-    // gotoUrl('/customer/transferSuccess');
     alert("Thành Công")
 }
 function error(e) {
@@ -17,5 +16,3 @@ function submitForm(e) {
     const form = new FormData(e.target);
     postFormData("POST", "/customer/rest/doMoneyLoans", form, success, error)
 }
-
-
