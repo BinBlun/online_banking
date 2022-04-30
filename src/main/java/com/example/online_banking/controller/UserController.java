@@ -84,7 +84,8 @@ public class UserController {
     public String moneyLoans(Authentication authentication, Model model) {
         String userName = authentication.getName();
         User user = userRepository.findByUsername(userName);
-
+        List<Loans> loansList = loansRepository.findUserByUserId(user.getId());
+        model.addAttribute("loansList", loansList);
 
 //        Hiện lên LoansPackage
         List<LoansPackage> loansPackages = loansPackageRepository.findAll();
@@ -99,7 +100,7 @@ public class UserController {
             Model model) {
         Transaction transaction = transactionRepository.getById(id);
 
-        Account account = accountRepository.getById(transaction.getRecipientAccountID());
+        Account account = accountRepository.getById(transaction.getAccountId());
         User user = userRepository.getById(account.getUserId());
 
         model.addAttribute("transaction", transaction);

@@ -4,6 +4,7 @@ import com.example.online_banking.exception.DataInvalidException;
 import com.example.online_banking.model.Loans;
 import com.example.online_banking.model.LoansPackage;
 import com.example.online_banking.model.User;
+import com.example.online_banking.repository.AccountRepository;
 import com.example.online_banking.repository.LoansPackageRepository;
 import com.example.online_banking.repository.LoansRepository;
 import com.example.online_banking.repository.UserRepository;
@@ -23,6 +24,9 @@ import java.util.Date;
 public class LoansService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AccountRepository accountRepository;
 
     @Autowired
     private LoansRepository loansRepository;
