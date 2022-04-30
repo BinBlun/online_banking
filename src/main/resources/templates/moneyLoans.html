@@ -34,7 +34,7 @@
     <div class="loanScrollbar">
         <div class="loanParent" th:each="loanList : ${loansList}">
             <div class="loanElement">
-                <div th:text="'Loams Package ID: ' + ${loanList.id}"></div>
+                <div th:text="'Loams Package ID: ' + ${loanList.loansPackId}"></div>
                 <div th:text="'Loans Amount Taken: ' + ${loanList.loansAmountTaken} + '$'"></div>
                 <div th:text="'Loans Amount Repaid: ' + ${loanList.loansAmountRepaid} + '$'"></div>
                 <div th:text="'Date of payment: ' + ${loanList.dateOfPayment}"></div>

@@ -2,6 +2,7 @@ body {
     font-family: open sans, helvetica neue, Helvetica, Arial, sans-serif;
     width: 100%;
     background-color: #f9f5fa;
+    cursor: default;
 }
 
 .container {
@@ -28,6 +29,7 @@ body {
 h1 {
     font-weight: bold;
     font-size: 30px;
+    margin-top: 10px;
     margin-bottom: 30px;
 }
 
@@ -97,5 +99,5 @@ form {
 }
 
 .form-control {
-
+    margin-bottom: 20px;
 }
