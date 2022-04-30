@@ -54,6 +54,14 @@ public class UserController {
         return "customerHome";
     }
 
+
+//    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+//    public String logoutSuccessfulPage(Model model) {
+//        model.addAttribute("title", "Logout");
+//        return "redirect:/login";
+//    }
+
+
     @RequestMapping("/profile")
     public String viewProfile(Authentication authentication, Model model) {
         String userName = authentication.getName();
