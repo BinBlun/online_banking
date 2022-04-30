@@ -1,13 +1,103 @@
-body{
+body {
+    font-family: open sans, helvetica neue, Helvetica, Arial, sans-serif;
     width: 100%;
+    background-color: #f9f5fa;
+    cursor: default;
 }
-.loanParent{
+
+.container {
+    background-color: white;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 700px;
+    border-radius: 10px;
+    border: solid 1px lightgray;
+}
+
+.headingImg {
+    /*position: absolute;*/
+    background-image: url("../images/loansMoney.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 5em 5em 5em 5em;
+    margin: 0 auto 0 auto;
+    width: 5em;
+    border-radius: 50%;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+#loansHistoryText {
+    text-align: left;
+}
+
+.loanParent {
     display: flex;
-    float: right;
     margin-right: 10px;
 }
 
-.loanElement{
+.loanElement {
     padding: 5px;
-    border: 2px solid #08020E;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    margin-bottom: 2px;
+}
+
+.loanScrollbar {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: 479px;
+    width: 290px;
+    margin-top: 10px;
+}
+
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#suffer {
+
+}
+
+#transactionElement {
+    margin: 2px auto 2px auto;
+    width: 250px;
+}
+
+#transactionElement:hover {
+    cursor: pointer;
+    border: 2px solid green;
+    transition: 0.3s;
+}
+
+form {
+    float: right;
+    margin: -470px 0 0 0;
+
+}
+
+.form-control {
+    margin-bottom: 20px;
 }

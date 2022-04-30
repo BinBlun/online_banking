@@ -3,7 +3,7 @@ function doRequest(method, url, data, successFunc, errorFunc) {
         type: method,
         contentType: "application/json",
         url: url,
-        data: JSON.stringify(data),
+        data: data ? JSON.stringify(data) : null,
         dataType: 'json',
         success: successFunc,
         error: errorFunc
@@ -20,18 +20,18 @@ function gotoUrl(url) {
 }
 
 function displayMessageSuccess(message) {
-    $('#alert').css('background-color', '#28a745');
+    $('#alert-box').css('background-color', '#28a745');
     displayMessage(message);
 }
 function displayMessageError(message) {
-    $('#alert').css('background-color', '#f44336');
+    $('#alert-box').css('background-color', '#f44336');
     displayMessage(message);
 }
 function displayMessage(message) {
-    $('#alert').show();
+    $('#alert-box').show();
     $('#text-alert').text(message);
     setTimeout(function () {
-        $('#alert').hide();
+        $('#alert-box').hide();
         $('#text-alert').text('');
     }, 5000);
 }
