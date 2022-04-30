@@ -29,10 +29,10 @@ public class RegisterService {
     @Autowired
     BankRepository bankRepository;
 
-    public User save(User model) {
-        model.setRole("CUSTOMER");
-        model.setEncryptedPassword(new BCryptPasswordEncoder().encode(model.getPassword()));
-        User customer = registerRepository.save(model);
+    public User save(User user) {
+        user.setRole("CUSTOMER");
+        user.setEncryptedPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        User customer = registerRepository.save(user);
 
         String accNum = randomNumber(9);
         do {
@@ -58,7 +58,7 @@ public class RegisterService {
 //      tạo card
         Card card = new Card();
         card.setCardNumber(randomNumber(11));
-        card.setCurrentBalance(BigDecimal.valueOf(0));
+         card.setCurrentBalance(BigDecimal.valueOf(0));
         card.setUserId(customer.getId());
 
         Date cardCurrentDate = new Date();

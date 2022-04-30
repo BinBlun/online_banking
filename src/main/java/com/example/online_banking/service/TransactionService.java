@@ -134,11 +134,11 @@ public class TransactionService {
         transaction.setTransactionAmount(amount);
         transaction.setUserId(user);
 
-        if (Double.valueOf(input.getAmount()) > debitAccount.getCurrentBalance().doubleValue()) {
+        if (Double.valueOf(input.getAmount()) > 1000000) {
             transaction.setStatus(Constants.STATUS_FAIL);
-            transaction.setDescription(ErrorCode.getErrorMessage(ErrorCode.ACCOUNT_BALANCE_INVALID));
+            transaction.setDescription(ErrorCode.getErrorMessage(ErrorCode.TOO_MUCH_MONEY));
             transactionRepositoryCustom.insertLog(transaction);
-            throw new DataInvalidException(ErrorCode.ACCOUNT_BALANCE_INVALID);
+            throw new DataInvalidException(ErrorCode.TOO_MUCH_MONEY);
         } else {
             //lưu vào database
             transaction.setStatus(Constants.STATUS_WAITING);
