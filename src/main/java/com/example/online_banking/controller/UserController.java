@@ -100,7 +100,7 @@ public class UserController {
             Model model) {
         Transaction transaction = transactionRepository.getById(id);
 
-        Account account = accountRepository.getById(transaction.getRecipientAccountID());
+        Account account = accountRepository.getById(transaction.getAccountId());
         User user = userRepository.getById(account.getUserId());
 
         model.addAttribute("transaction", transaction);
