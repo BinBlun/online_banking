@@ -31,7 +31,7 @@
         <h3 id="loansHistoryText">Transaction history</h3>
     </div>
 
-    <div class="loanScrollbar">
+    <div class="loanHistory">
         <div class="loanParent" th:each="loanList : ${loansList}">
             <div class="loanElement">
                 <div th:text="'Loams Package ID: ' + ${loanList.loansPackId}"></div>
@@ -50,9 +50,9 @@
                 <input class="form-control" id="passwordBox" type='text' placeholder="Amount" name='amount' value=''/>
             </tr>
 
-            <div class="loanTransaction">
+            <div class="loanPackages">
                 <tr class="loanParent" th:each="loanPackage : ${loansPackages}">
-                    <div class="loanElement" id="transactionElement" th:onclick="doSomething([[${loanPackage.id}]])" >
+                    <div class="loanElement" id="transactionElement" th:onclick="doSomething([[${loanPackage.id}]])">
                         <div th:text="'Loams Package ID: ' + ${loanPackage.id}"></div>
                         <div th:text="'Interest Rate: ' + ${loanPackage.interestRate} + '%'"></div>
                         <div th:text="'Duration: ' + ${loanPackage.duration} + ' months'"></div>
@@ -61,7 +61,8 @@
             </div>
             <tr>
                 <div id="loansPackageId" th:text="'Loans Package ID: '"></div>
-                <input class="form-control" id="id" type="text" placeholder="ID" name="loansPackageID" value='' readonly>
+                <input class="form-control" id="id" type="text" placeholder="ID" name="loansPackageID" value=''
+                       readonly>
             </tr>
         </table>
 

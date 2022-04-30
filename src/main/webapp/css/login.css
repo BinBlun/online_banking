@@ -81,6 +81,7 @@ button:hover {
 
 #loginBtn {
     background-color: darkturquoise;
+    margin-left: 40px;
 }
 
 #registerBtn {

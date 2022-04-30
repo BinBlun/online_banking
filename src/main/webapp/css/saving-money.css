@@ -11,12 +11,13 @@ body {
     margin-top: 30px;
     margin-bottom: 30px;
     width: 700px;
+    min-height: 860px;
     border-radius: 10px;
     border: solid 1px lightgray;
 }
 
 .headingImg {
-    background-image: url("../images/loansMoney.png");
+    background-image: url("../images/saveMoney.png");
     background-repeat: no-repeat;
     background-size: cover;
     padding: 5em 5em 5em 5em;
@@ -32,11 +33,17 @@ h1 {
     margin-bottom: 30px;
 }
 
+#savingHistoryText {
+    text-align: left;
+    margin: 0 0 0 35px;
+}
+
 .form-control {
     margin: 20px auto;
 }
 
 .savingHistory {
+    float: left;
     display: inline-block;
     overflow-y: scroll;
     scroll-behavior: smooth;
@@ -93,4 +100,11 @@ form .loanParent {
 form .loanElement {
     margin-left: auto;
     margin-right: auto;
+    width: 250px;
+}
+
+form .loanElement:hover {
+    background-color: lightgreen;
+    border: 2px solid green;
+    transition: 0.3s;
 }
