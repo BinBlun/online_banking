@@ -23,8 +23,38 @@ public class AdminController {
         return "adminHome";
     }
 
+    // TODO: manage admin
+//    @RequestMapping("/manage-admin")
+//    public String manageAdmin() {
+//        return "admin/manage-admin";
+//    }
+
     @RequestMapping("/manage-customer")
     public String manageCustomer() {
         return "admin/manage-customer";
     }
+
+    // TODO: manage loans package
+//    @RequestMapping("/manage-loans-package")
+//    public String manageLoansPackage() {
+//        return "admin/manage-loans-package";
+//    }
+
+    // TODO: manage loans
+//    @RequestMapping("/manage-loans")
+//    public String manageLoans() {
+//        return "admin/manage-loans";
+//    }
+
+    // TODO: manage savings package
+//    @RequestMapping("/manage-savingsPackage")
+//    public String manageSavingsPackage() {
+//        return "admin/manage-savingsPackage";
+//    }
+
+    // TODO: manage savings
+//    @RequestMapping("/manage-savings")
+//    public String manageSavings() {
+//        return "admin/manage-savings";
+//    }
 }
