@@ -47,7 +47,7 @@ public class RestAdminController {
         return userService.getAdminList(pagingRequest);
     }
 
-    // TODO:
+//    // TODO: manage loans package
 //    @PostMapping("/get-loans-package-list")
 //    public Page<LoansPackage> getLoansPackageList(@RequestBody PagingRequest pagingRequest) {
 //        return userService.getLoansPackageList(pagingRequest);

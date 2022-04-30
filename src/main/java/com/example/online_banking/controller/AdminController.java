@@ -35,7 +35,7 @@ public class AdminController {
         return "admin/manage-admin";
     }
 
-    // TODO: manage loans package
+//    // TODO: manage loans package
 //    @RequestMapping("/manage-loans-package")
 //    public String manageLoansPackage() {
 //        return "admin/manage-loans-package";

@@ -38,7 +38,7 @@ public class UserService {
         return page;
     }
 
-    // TODO:
+//    // TODO: manage loans package
 //    public Page<LoansPackage> getLoansPackageList(PagingRequest pagingRequest) {
 //        Integer total = userRepositoryCustom.getTotalLoansPackage(pagingRequest);
 //        List<LoansPackage> loansPackageList = userRepositoryCustom.getLoansPackageList(pagingRequest);

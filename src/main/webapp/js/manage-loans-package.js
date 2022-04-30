@@ -3,21 +3,42 @@
 //         "processing": true,
 //         "serverSide": true,
 //         "ajax": {
-//             "url": "/admin/rest/get-loans-package-list",
+//             "url": "/admin/rest/get-loan-package-list",
 //             "type": "POST",
 //             "dataType": "json",
 //             "contentType": "application/json",
 //             "data": function (d) {
-//                 console.log(d)
 //                 return JSON.stringify(d);
 //             },
 //         },
 //         "columns": [
-//             {"data": "loan_package_id", "width": "20%"},
+//             {"data": "id", "width": "20%"},
 //             {"data": "duration","width": "20%"},
 //             {"data": "interestRate", "width": "20%"},
+//             {"mRender": function ( data, type, row ) {
+//                     return '<div>' +
+//                         '<a onclick="edit(' + row.id + ')"> Edit | </a>' +
+//                         '<a onclick="deleteLoansPackage(' + row.id + ')"> Delete </a>' +
+//                         '</div>';}
+//             }
 //         ]
 //     });
+// }
+//
+// function success(res) {
+//     $('#manage-loans-package-table').DataTable().ajax.reload();
+// }
+// function error(e) {
+//     const error = e.responseJSON ? e.responseJSON.errorDesc : e;
+//     displayMessageError(error);
+// }
+// function edit(id) {
+//     gotoUrl('/admin/edit-loans-package?id=' + id);
+// }
+// function deleteLoansPackage(id) {
+//     if (confirm('Are you sure?')) {
+//         doRequest('POST', '/admin/rest/delete-loans-package?id=' + id, null, success, error);
+//     }
 // }
 //
 // loadTable();

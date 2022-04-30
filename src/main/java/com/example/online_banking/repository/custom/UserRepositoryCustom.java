@@ -109,10 +109,10 @@ public class UserRepositoryCustom {
         return Integer.valueOf(query.getSingleResult().toString());
     }
 
-    // TODO:
+//    //TODO: manage loans package
 //    public List<LoansPackage> getLoansPackageList(PagingRequest paging) {
 //        Map<String, Object> parameter = new HashMap<>();
-//        StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM LOANS_PACKAGE WHERE 1 = 1");
+//        StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM LOANS_PACKAGE ");
 //        if (!CommonUtils.isNull(paging.getSearch().getValue())) {
 //            sqlBuilder.append(" AND DURATION like :key");
 //            parameter.put("key", "%" + paging.getSearch().getValue() + "%");
@@ -150,4 +150,5 @@ public class UserRepositoryCustom {
 //        }
 //        return Integer.valueOf(query.getSingleResult().toString());
 //    }
+
 }
