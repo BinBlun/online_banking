@@ -26,7 +26,7 @@ public class ErrorCode {
         errorCodeMap.put(NO_LOANS_PACKAGE, "Please choose loans package, please");
         errorCodeMap.put(NO_SAVING_PACKAGE, "Please choose saving package, please");
         errorCodeMap.put(CAN_NOT_DELETE_USER, "Cannot delete user");
-        errorCodeMap.put(TOO_MUCH_MONEY, "You must deposit less than 1.000.000$");
+        errorCodeMap.put(TOO_MUCH_MONEY, "You must deposit less than 1.000.000VND");
 
 
     }
