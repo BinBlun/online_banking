@@ -18,7 +18,7 @@ function loadTable() {
             {"data": "ssn", "width": "20%"},
             {"mRender": function ( data, type, row ) {
                     return '<div>' +
-                        '<a onclick="edit(' + row.id + ')"> Edit </a>' +
+                        '<a onclick="edit(' + row.id + ')"> Edit | </a>' +
                         '<a onclick="deleteUser(' + row.id + ')"> Delete </a>' +
                         '</div>';}
             }
