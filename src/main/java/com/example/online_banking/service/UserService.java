@@ -16,11 +16,23 @@ public class UserService {
     @Autowired
     private UserRepositoryCustom userRepositoryCustom;
 
+    // manage customer
     public Page<User> getCustomerList(PagingRequest pagingRequest) {
         Integer total = userRepositoryCustom.getTotalUser(pagingRequest);
         List<User> userList = userRepositoryCustom.getUserList(pagingRequest);
         Page<User> page = new Page<>(userList);
         page.setRecordsFiltered(userList.size());
+        page.setRecordsTotal(total);
+        page.setDraw(pagingRequest.getDraw());
+        return page;
+    }
+
+    //TODO: manage admin
+    public Page<User> getAdminList(PagingRequest pagingRequest) {
+        Integer total = userRepositoryCustom.getTotalAdmin(pagingRequest);
+        List<User> adminList = userRepositoryCustom.getAdminList(pagingRequest);
+        Page<User> page = new Page<>(adminList);
+        page.setRecordsFiltered(adminList.size());
         page.setRecordsTotal(total);
         page.setDraw(pagingRequest.getDraw());
         return page;

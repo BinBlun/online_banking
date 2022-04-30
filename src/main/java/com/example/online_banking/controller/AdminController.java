@@ -23,15 +23,16 @@ public class AdminController {
         return "adminHome";
     }
 
-    // TODO: manage admin
-//    @RequestMapping("/manage-admin")
-//    public String manageAdmin() {
-//        return "admin/manage-admin";
-//    }
-
+    // manage customer
     @RequestMapping("/manage-customer")
     public String manageCustomer() {
         return "admin/manage-customer";
+    }
+
+    //TODO: manage admin
+    @RequestMapping("/manage-admin")
+    public String manageAdmin() {
+        return "admin/manage-admin";
     }
 
     // TODO: manage loans package

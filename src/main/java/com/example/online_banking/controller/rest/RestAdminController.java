@@ -27,6 +27,7 @@ public class RestAdminController {
     @Autowired
     private UserRoleRepository roleRepository;
 
+    // manage customer
     @PostMapping("/get-customer-list")
     public Page<User> getCustomerList(@RequestBody PagingRequest pagingRequest) {
         return userService.getCustomerList(pagingRequest);
@@ -38,6 +39,12 @@ public class RestAdminController {
         userRepository.delete(userRepository.getById(id));
         return ResponseData.ok();
 //        throw new DataInvalidException(ErrorCode.CAN_NOT_DELETE_USER);
+    }
+
+    //TODO: manage admin
+    @PostMapping("/get-admin-list")
+    public Page<User> getAdminList(@RequestBody PagingRequest pagingRequest) {
+        return userService.getAdminList(pagingRequest);
     }
 
     // TODO:

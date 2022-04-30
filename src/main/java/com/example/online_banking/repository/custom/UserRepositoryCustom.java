@@ -21,6 +21,7 @@ public class UserRepositoryCustom {
     @Autowired
     private EntityManager entityManager;
 
+    // manage customer
     public List<User> getUserList(PagingRequest paging) {
         Map<String, Object> parameter = new HashMap<>();
         StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM USER u JOIN USER_ROLE ur ");
@@ -64,6 +65,49 @@ public class UserRepositoryCustom {
         return Integer.valueOf(query.getSingleResult().toString());
     }
 
+    //TODO: manage admin
+    public List<User> getAdminList(PagingRequest paging) {
+        Map<String, Object> parameter = new HashMap<>();
+        StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM USER u JOIN USER_ROLE ur ");
+        sqlBuilder.append(" ON u.id = ur.user_id ");
+        sqlBuilder.append(" WHERE ur.ROLE_NAME = 'ROLE_ADMIN' ");
+        if (!CommonUtils.isNull(paging.getSearch().getValue())) {
+            sqlBuilder.append(" AND LOWER(FULL_NAME) like :key");
+            parameter.put("key", "%" + paging.getSearch().getValue().toLowerCase() + "%");
+        }
+        Order order = paging.getOrder()
+                .get(0);
+
+        int columnIndex = order.getColumn();
+        Column column = paging.getColumns()
+                .get(columnIndex);
+        if (column != null) {
+            sqlBuilder.append(" ORDER BY ").append(CommonUtils.camelToSnake(column.getData())).append(" ").append(order.getDir());
+        }
+
+        Query query = entityManager.createNativeQuery(sqlBuilder.toString(), User.class);
+        for (Map.Entry<String, Object> entry : parameter.entrySet()) {
+            query.setParameter(entry.getKey(), entry.getValue());
+        }
+        query.setFirstResult(paging.getStart())
+                .setMaxResults(paging.getLength());
+        return query.getResultList();
+    }
+
+    public Integer getTotalAdmin(PagingRequest paging) {
+        Map<String, Object> parameter = new HashMap<>();
+        StringBuilder sqlBuilder = new StringBuilder("SELECT COUNT(*) FROM online_banking.USER WHERE 1 = 1");
+        if (!CommonUtils.isNull(paging.getSearch().getValue())) {
+            sqlBuilder.append(" AND LOWER(FULL_NAME) like :key");
+            parameter.put("key", "%" + paging.getSearch().getValue().toLowerCase() + "%");
+        }
+
+        Query query = entityManager.createNativeQuery(sqlBuilder.toString());
+        for (Map.Entry<String, Object> entry : parameter.entrySet()) {
+            query.setParameter(entry.getKey(), entry.getValue());
+        }
+        return Integer.valueOf(query.getSingleResult().toString());
+    }
 
     // TODO:
 //    public List<LoansPackage> getLoansPackageList(PagingRequest paging) {
