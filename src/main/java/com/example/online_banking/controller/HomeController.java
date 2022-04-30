@@ -49,11 +49,11 @@ public class HomeController {
         return "login";
     }
 
-    // logout
+    //logout
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logoutSuccessfulPage(Model model) {
-        model.addAttribute("title", "Logout");
-        return "login";
+//        model.addAttribute("title", "Logout");
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/register")
@@ -66,9 +66,7 @@ public class HomeController {
 
     @RequestMapping(value = "register/save")
     public String saveUpdate(@RequestParam(value = "id", required = false) Long id, @Valid User register, BindingResult result) {
-
         if (result.hasErrors()) {
-            System.out.println(result.getAllErrors());
             if (id == null) {
                 return "register";
             } else {

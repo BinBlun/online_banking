@@ -32,30 +32,18 @@ h1 {
     margin-bottom: 30px;
 }
 
-#loansHistoryText {
-    text-align: left;
+.form-control {
+    margin: 20px auto;
 }
 
-.loanParent {
-    display: flex;
-    margin-right: 10px;
-}
-
-.loanElement {
-    padding: 5px;
-    border: 2px solid lightgray;
-    border-radius: 5px;
-    margin-bottom: 2px;
-}
-
-.loanScrollbar {
+.savingHistory {
+    display: inline-block;
     overflow-y: scroll;
     scroll-behavior: smooth;
-    height: 479px;
-    width: 290px;
-    margin-top: 10px;
+    height: 543px;
+    width: 305px;
+    margin: 20px auto;
 }
-
 
 ::-webkit-scrollbar {
     width: 5px;
@@ -76,27 +64,33 @@ h1 {
     background: #555;
 }
 
-#suffer {
+.loanParent {
+    width: 300px;
+    margin-bottom: 2px;
+}
+
+.savingPackages {
 
 }
 
-#transactionElement {
-    margin: 2px auto 2px auto;
-    width: 250px;
-}
-
-#transactionElement:hover {
-    cursor: pointer;
-    border: 2px solid green;
-    transition: 0.3s;
+.loanElement {
+    padding: 5px;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    margin-bottom: 2px;
 }
 
 form {
-    float: right;
-    margin: -470px 0 0 0;
-
+    display: inline-block;
+    width: 300px;
+    margin: 0 0 0 20px;
 }
 
-.form-control {
-    margin-bottom: 20px;
+form .loanParent {
+    overflow-y: scroll;
+}
+
+form .loanElement {
+    margin-left: auto;
+    margin-right: auto;
 }

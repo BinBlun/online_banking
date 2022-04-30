@@ -1,4 +1,4 @@
-insert into bank(id, bank_code, bank_name) values (1, 'MYBANK', 'My Bank');
+insert into bank(id, bank_code, bank_money, bank_name) values (1, 'MYBANK', 1000000000, 'My Bank');
 
 -- insert admin
 insert into user(id, email, username, password, encrypted_password, full_name, phone_number, ssn)
