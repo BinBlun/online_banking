@@ -16,7 +16,6 @@ body {
 }
 
 .headingImg {
-    /*position: absolute;*/
     background-image: url("../images/loansMoney.png");
     background-repeat: no-repeat;
     background-size: cover;
