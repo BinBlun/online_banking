@@ -38,14 +38,18 @@ public class UserService {
         return page;
     }
 
-//    // TODO: manage loans package
-//    public Page<LoansPackage> getLoansPackageList(PagingRequest pagingRequest) {
-//        Integer total = userRepositoryCustom.getTotalLoansPackage(pagingRequest);
-//        List<LoansPackage> loansPackageList = userRepositoryCustom.getLoansPackageList(pagingRequest);
-//        Page<LoansPackage> page = new Page<>(loansPackageList);
-//        page.setRecordsFiltered(loansPackageList.size());
-//        page.setRecordsTotal(total);
-//        page.setDraw(pagingRequest.getDraw());
-//        return page;
+//    public Page<User> getAdminById(PagingRequest pagingRequest) {
+//        return userRepositoryCustom.
 //    }
+
+    // TODO: manage loans package
+    public Page<LoansPackage> getLoansPackageList(PagingRequest pagingRequest) {
+        Integer total = userRepositoryCustom.getTotalLoansPackage(pagingRequest);
+        List<LoansPackage> loansPackageList = userRepositoryCustom.getLoansPackageList(pagingRequest);
+        Page<LoansPackage> page = new Page<>(loansPackageList);
+        page.setRecordsFiltered(loansPackageList.size());
+        page.setRecordsTotal(total);
+        page.setDraw(pagingRequest.getDraw());
+        return page;
+    }
 }
