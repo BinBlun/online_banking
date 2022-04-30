@@ -1,5 +1,6 @@
 package com.example.online_banking.service;
 
+import com.example.online_banking.model.LoansPackage;
 import com.example.online_banking.model.User;
 import com.example.online_banking.repository.custom.UserRepositoryCustom;
 import com.example.online_banking.rest.model.Page;
@@ -24,4 +25,15 @@ public class UserService {
         page.setDraw(pagingRequest.getDraw());
         return page;
     }
+
+    // TODO:
+//    public Page<LoansPackage> getLoansPackageList(PagingRequest pagingRequest) {
+//        Integer total = userRepositoryCustom.getTotalLoansPackage(pagingRequest);
+//        List<LoansPackage> loansPackageList = userRepositoryCustom.getLoansPackageList(pagingRequest);
+//        Page<LoansPackage> page = new Page<>(loansPackageList);
+//        page.setRecordsFiltered(loansPackageList.size());
+//        page.setRecordsTotal(total);
+//        page.setDraw(pagingRequest.getDraw());
+//        return page;
+//    }
 }

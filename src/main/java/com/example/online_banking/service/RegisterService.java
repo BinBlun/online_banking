@@ -1,10 +1,7 @@
 package com.example.online_banking.service;
 
 import com.example.online_banking.model.*;
-import com.example.online_banking.repository.AccountRepository;
-import com.example.online_banking.repository.BankRepository;
-import com.example.online_banking.repository.CardRepository;
-import com.example.online_banking.repository.UserRepository;
+import com.example.online_banking.repository.*;
 import com.example.online_banking.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,6 +22,9 @@ public class RegisterService {
 
     @Autowired
     CardRepository cardRepository;
+
+    @Autowired
+    UserRoleRepository roleRepository;
 
     @Autowired
     BankRepository bankRepository;
@@ -69,6 +69,7 @@ public class RegisterService {
         UserRole userRole = new UserRole();
         userRole.setRoleName("ROLE_USER");
         userRole.setUserId(customer.getId());
+        roleRepository.save(userRole);
 
         return customer;
     }
