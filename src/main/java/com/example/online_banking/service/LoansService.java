@@ -4,6 +4,7 @@ import com.example.online_banking.exception.DataInvalidException;
 import com.example.online_banking.model.Loans;
 import com.example.online_banking.model.LoansPackage;
 import com.example.online_banking.model.User;
+import com.example.online_banking.repository.AccountRepository;
 import com.example.online_banking.repository.LoansPackageRepository;
 import com.example.online_banking.repository.LoansRepository;
 import com.example.online_banking.repository.UserRepository;
@@ -25,12 +26,9 @@ public class LoansService {
     private UserRepository userRepository;
 
     @Autowired
-<<<<<<< HEAD
     private AccountRepository accountRepository;
 
     @Autowired
-=======
->>>>>>> origin/master
     private LoansRepository loansRepository;
 
     @Autowired

@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #transfer-static-resources},
+                                                ~{:: #transfer-nav},
+                                                ~{:: #money-loans},
+                                                ~{:: #transfer-footer}
+                                               )}">
     <meta charset="UTF-8">
     <title>Money Loans</title>
     <th:block id="transfer-static-resources">
-        <script type="text/javascript" src="/js/money-loans.js"
-                th:src="@{/js/money-loans.js}"></script>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/money-loans.css}"
-              href="/css/money-loans.css"/>
+        <script type="text/javascript" src="/js/loans-money.js"
+                th:src="@{/js/loans-money.js}"></script>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/loans-money.css}"
+              href="/css/loans-money.css"/>
     </th:block>
 </head>
 <body>
@@ -19,7 +25,18 @@
 
     <!--        Hiện loans đã đăng ký-->
 
-    <!--        Hiệu lên các loansPackage của ngân hàng -->
+        <div class="loanParent" th:each="loanList : ${loansList}">
+            <div class="loanElement">
+                <div th:text="'Loams Package ID: ' + ${loanList.id}"></div>
+                <div th:text="'Loans Amount Taken: ' + ${loanList.loansAmountTaken} + '$'"></div>
+                <div th:text="'Loans Amount Repaid: ' + ${loanList.loansAmountRepaid} + '$'"></div>
+                <div th:text="'Date of payment: ' + ${loanList.dateOfPayment}"></div>
+                <div th:text="'Status: ' + ${loanList.status}"></div>
+            </div>
+        </div>
+
+
+        <!--        Hiệu lên các loansPackage của ngân hàng -->
 
     <form onsubmit="submitForm(event)">
         <table>
@@ -50,6 +67,8 @@
 
 
 </div>
+
+
 <script>
 
     doSomething = (id) => {
