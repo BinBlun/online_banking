@@ -33,11 +33,18 @@ public class UserController {
 
     @Autowired
     private BankRepository bankRepository;
+
     @Autowired
     private TransactionRepository transactionRepository;
 
     @Autowired
     private LoansRepository loansRepository;
+
+    @Autowired
+    private SavingRepositoy savingRepositoy;
+
+    @Autowired
+    private SavingPackageRepository savingPackageRepository;
 
     @RequestMapping("")
     public String viewCustomerHome(Authentication authentication, Model model) {
@@ -48,7 +55,7 @@ public class UserController {
     }
 
     @RequestMapping("/profile")
-    public String viewProfile(Authentication authentication, Model model){
+    public String viewProfile(Authentication authentication, Model model) {
         String userName = authentication.getName();
         User user = userRepository.findByUsername(userName);
         model.addAttribute("user", user);
@@ -79,7 +86,6 @@ public class UserController {
     }
 
 
-
     @RequestMapping("/moneyLoans")
     public String moneyLoans(Authentication authentication, Model model) {
         String userName = authentication.getName();
@@ -92,6 +98,20 @@ public class UserController {
         model.addAttribute("loansPackages", loansPackages);
         return "moneyLoans";
     }
+
+    @RequestMapping("/moneySaving")
+    public String savingMoney(Authentication authentication, Model model) {
+        String userName = authentication.getName();
+        User user = userRepository.findByUsername(userName);
+        List<Saving> savingsList = savingRepositoy.findUserByUserId(user.getId());
+        model.addAttribute("savingsList", savingsList);
+
+//        Hiển thị lên saving package
+        List<SavingPackage> savingsPackage = savingPackageRepository.findAll();
+        model.addAttribute("savingsPackage",savingsPackage);
+        return "savingMoney";
+    }
+
 
     @RequestMapping("/transferSuccess")
     public String transferSuccess(
@@ -143,21 +163,4 @@ public class UserController {
         return "depositMoney";
     }
 
-//    @PostMapping(value = "/doDepositMoney")
-//    public String doDepositMoney(TransferTransactionInput input, Model model) {
-//        //tìm tài khoản muốn cho tiền vào
-//        Account account1 = accountRepository.getById(1L);
-//        model.addAttribute("account", account1);
-//
-//        if (Double.valueOf(input.getAmount()) > account1.getCurrentBalance().doubleValue()) {
-//            System.out.println("Cant deposit");
-//            return "depositMoney";
-//        } else {
-//            //cộng tiền vào tài khoản cho tiền vào
-//            account1.setCurrentBalance(account1.getCurrentBalance().add(new BigDecimal(input.getAmount())));
-//            //lưu vào database
-//            accountRepository.save(account1);
-//            return "transactionSuccess";
-//        }
-//    }
 }
