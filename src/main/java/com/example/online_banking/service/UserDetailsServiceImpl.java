@@ -2,6 +2,7 @@ package com.example.online_banking.service;
 
 import com.example.online_banking.repository.UserRepository;
 import com.example.online_banking.repository.UserRoleRepository;
+import com.example.online_banking.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,9 +31,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         appUser = this.userRepository.findByUsername(userName);
 
         // Nếu không tìm thấy User thì mình thông báo lỗi
-        if (appUser == null) {
-            System.out.println("User not found! " + userName);
+        if (appUser == null || Constants.STATUS_INACTIVE.equals(appUser.getStatus())) {
             throw new UsernameNotFoundException("User " + userName + " was not found in the database");
+        }
+        if (Constants.STATUS_LOCKED.equals(appUser.getStatus())) {
+            throw new UsernameNotFoundException("User " + userName + " is locked");
         }
 
         // Khi đã có user rồi thì mình query xem user đó có những quyền gì (Admin hay User)
