@@ -66,13 +66,9 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/register/save")
-    public String saveUpdate(@RequestParam(value = "id", required = false) Long id, @Valid User register, BindingResult result) {
+    public String saveUpdate(@Valid User register, BindingResult result) {
         if (result.hasErrors()) {
-            if (id == null) {
-                return "register";
-            } else {
-                return "errorPage";
-            }
+            return "errorPage";
         }
         service.save(register);
         return "redirect:/login";
