@@ -1,6 +1,5 @@
 package com.example.online_banking.repository.custom;
 
-import com.example.online_banking.model.LoansPackage;
 import com.example.online_banking.model.User;
 import com.example.online_banking.rest.model.Column;
 import com.example.online_banking.rest.model.Order;
@@ -189,46 +188,4 @@ public class UserRepositoryCustom {
 //                .setMaxResults(paging.getLength());
 //        return query.getResultList();
 //    }
-
-    //TODO: manage loans package
-    public List<LoansPackage> getLoansPackageList(PagingRequest paging) {
-        Map<String, Object> parameter = new HashMap<>();
-        StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM LOANS_PACKAGE ");
-        if (!CommonUtils.isNull(paging.getSearch().getValue())) {
-            sqlBuilder.append(" AND DURATION like :key");
-            parameter.put("key", "%" + paging.getSearch().getValue() + "%");
-        }
-        Order order = paging.getOrder()
-                .get(0);
-
-        int columnIndex = order.getColumn();
-        Column column = paging.getColumns()
-                .get(columnIndex);
-        if (column != null) {
-            sqlBuilder.append(" ORDER BY ").append(CommonUtils.camelToSnake(column.getData())).append(" ").append(order.getDir());
-        }
-
-        Query query = entityManager.createNativeQuery(sqlBuilder.toString(), LoansPackage.class);
-        for (Map.Entry<String, Object> entry : parameter.entrySet()) {
-            query.setParameter(entry.getKey(), entry.getValue());
-        }
-        query.setFirstResult(paging.getStart())
-                .setMaxResults(paging.getLength());
-        return query.getResultList();
-    }
-
-    public Integer getTotalLoansPackage(PagingRequest paging) {
-        Map<String, Object> parameter = new HashMap<>();
-        StringBuilder sqlBuilder = new StringBuilder("SELECT COUNT(*) FROM online_banking.LOANS_PACKAGE WHERE 1 = 1");
-        if (!CommonUtils.isNull(paging.getSearch().getValue())) {
-            sqlBuilder.append(" AND DURATION like :key");
-            parameter.put("key", "%" + paging.getSearch().getValue() + "%");
-        }
-
-        Query query = entityManager.createNativeQuery(sqlBuilder.toString());
-        for (Map.Entry<String, Object> entry : parameter.entrySet()) {
-            query.setParameter(entry.getKey(), entry.getValue());
-        }
-        return Integer.valueOf(query.getSingleResult().toString());
-    }
 }

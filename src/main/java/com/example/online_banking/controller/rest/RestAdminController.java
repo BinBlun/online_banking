@@ -3,9 +3,11 @@ package com.example.online_banking.controller.rest;
 import com.example.online_banking.exception.DataInvalidException;
 import com.example.online_banking.model.LoansPackage;
 import com.example.online_banking.model.User;
-import com.example.online_banking.repository.UserRepository;
-import com.example.online_banking.repository.UserRoleRepository;
-import com.example.online_banking.rest.model.*;
+import com.example.online_banking.rest.model.ChangeUserStatusInput;
+import com.example.online_banking.rest.model.Page;
+import com.example.online_banking.rest.model.PagingRequest;
+import com.example.online_banking.rest.model.ResponseData;
+import com.example.online_banking.service.LoansService;
 import com.example.online_banking.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +20,7 @@ public class RestAdminController {
     private UserService userService;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private UserRoleRepository roleRepository;
+    private LoansService loansService;
 
     // list customer
     @PostMapping("/get-customer-list")
@@ -56,6 +55,6 @@ public class RestAdminController {
     // TODO: manage loans package
     @PostMapping("/get-loans-package-list")
     public Page<LoansPackage> getLoansPackageList(@RequestBody PagingRequest pagingRequest) {
-        return userService.getLoansPackageList(pagingRequest);
+        return loansService.getLoansPackageList(pagingRequest);
     }
 }

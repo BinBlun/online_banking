@@ -1,7 +1,6 @@
 package com.example.online_banking.service;
 
 import com.example.online_banking.exception.DataInvalidException;
-import com.example.online_banking.model.LoansPackage;
 import com.example.online_banking.model.User;
 import com.example.online_banking.repository.UserRepository;
 import com.example.online_banking.repository.custom.UserRepositoryCustom;
@@ -48,17 +47,6 @@ public class UserService {
 //    public Page<User> getAdminById(PagingRequest pagingRequest) {
 //        return userRepositoryCustom.
 //    }
-
-    // TODO: manage loans package
-    public Page<LoansPackage> getLoansPackageList(PagingRequest pagingRequest) {
-        Integer total = userRepositoryCustom.getTotalLoansPackage(pagingRequest);
-        List<LoansPackage> loansPackageList = userRepositoryCustom.getLoansPackageList(pagingRequest);
-        Page<LoansPackage> page = new Page<>(loansPackageList);
-        page.setRecordsFiltered(loansPackageList.size());
-        page.setRecordsTotal(total);
-        page.setDraw(pagingRequest.getDraw());
-        return page;
-    }
 
     public Long deleteUser(Long id) throws DataInvalidException {
         User user = userRepository.getById(id);

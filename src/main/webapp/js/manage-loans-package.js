@@ -13,14 +13,15 @@ function loadTable() {
         },
         "columns": [
             {"data": "id", "width": "20%"},
-            {"data": "duration","width": "20%"},
+            {"data": "duration", "width": "20%"},
             {"data": "interestRate", "width": "20%"},
-            {"mRender": function ( data, type, row ) {
+            {
+                "mRender": function (data, type, row) {
                     return '<div>' +
-                        '<a onclick="add(' + row.id + ')"> Add | </a>' +
                         '<a onclick="edit(' + row.id + ')"> Edit | </a>' +
                         '<a onclick="deleteLoansPackage(' + row.id + ')"> Delete </a>' +
-                        '</div>';}
+                        '</div>';
+                }
             }
         ]
     });
@@ -29,16 +30,20 @@ function loadTable() {
 function success(res) {
     $('#manage-loans-package-table').DataTable().ajax.reload();
 }
+
 function error(e) {
     const error = e.responseJSON ? e.responseJSON.errorDesc : e;
     displayMessageError(error);
 }
+
 function add(id) {
     gotoUrl('/admin/add-loans-package');
 }
+
 function edit(id) {
     gotoUrl('/admin/edit-loans-package?id=' + id);
 }
+
 function deleteLoansPackage(id) {
     if (confirm('Are you sure?')) {
         doRequest('POST', '/admin/rest/delete-loans-package?id=' + id, null, success, error);
