@@ -79,24 +79,12 @@ public class UserRepositoryCustom {
     //TODO: manage admin
     public List<User> getAdminList(PagingRequest paging) {
         Map<String, Object> parameter = new HashMap<>();
-        StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM USER u JOIN USER_ROLE ur ");
-        sqlBuilder.append(" ON u.id = ur.user_id ");
-        sqlBuilder.append(" WHERE ur.ROLE_NAME = 'ROLE_ADMIN' ");
+        String sql = buildSqlGetAdminList(paging, false);
         if (!CommonUtils.isNull(paging.getSearch().getValue())) {
-            sqlBuilder.append(" AND LOWER(FULL_NAME) like :key");
             parameter.put("key", "%" + paging.getSearch().getValue().toLowerCase() + "%");
         }
-        Order order = paging.getOrder()
-                .get(0);
 
-        int columnIndex = order.getColumn();
-        Column column = paging.getColumns()
-                .get(columnIndex);
-        if (column != null) {
-            sqlBuilder.append(" ORDER BY ").append(CommonUtils.camelToSnake(column.getData())).append(" ").append(order.getDir());
-        }
-
-        Query query = entityManager.createNativeQuery(sqlBuilder.toString(), User.class);
+        Query query = entityManager.createNativeQuery(sql, User.class);
         for (Map.Entry<String, Object> entry : parameter.entrySet()) {
             query.setParameter(entry.getKey(), entry.getValue());
         }
@@ -107,17 +95,40 @@ public class UserRepositoryCustom {
 
     public Integer getTotalAdmin(PagingRequest paging) {
         Map<String, Object> parameter = new HashMap<>();
-        StringBuilder sqlBuilder = new StringBuilder("SELECT COUNT(*) FROM online_banking.USER WHERE 1 = 1");
+        String sql = buildSqlGetAdminList(paging, true);
         if (!CommonUtils.isNull(paging.getSearch().getValue())) {
-            sqlBuilder.append(" AND LOWER(FULL_NAME) like :key");
             parameter.put("key", "%" + paging.getSearch().getValue().toLowerCase() + "%");
         }
 
-        Query query = entityManager.createNativeQuery(sqlBuilder.toString());
+        Query query = entityManager.createNativeQuery(sql);
         for (Map.Entry<String, Object> entry : parameter.entrySet()) {
             query.setParameter(entry.getKey(), entry.getValue());
         }
         return Integer.valueOf(query.getSingleResult().toString());
+    }
+
+    private String buildSqlGetAdminList(PagingRequest paging, boolean isCount) {
+        StringBuilder sqlBuilder = new StringBuilder(" FROM USER u JOIN USER_ROLE ur");
+        sqlBuilder.append(" ON u.id = ur.user_id ");
+        sqlBuilder.append(" WHERE u.status in (1,2) and ur.ROLE_NAME = 'ROLE_ADMIN' ");
+        if (!CommonUtils.isNull(paging.getSearch().getValue())) {
+            sqlBuilder.append(" AND LOWER(FULL_NAME) like :key");
+        }
+        if (!isCount) {
+            Order order = paging.getOrder()
+                    .get(0);
+            int columnIndex = order.getColumn();
+            Column column = paging.getColumns()
+                    .get(columnIndex);
+            if (column != null) {
+                sqlBuilder.append(" ORDER BY ").append(CommonUtils.camelToSnake(column.getData())).append(" ").append(order.getDir());
+            }
+        }
+        if (isCount) {
+            return "SELECT COUNT(*) " + sqlBuilder.toString();
+        } else {
+            return "SELECT u.* " + sqlBuilder.toString();
+        }
     }
 
 //    // get admin by id

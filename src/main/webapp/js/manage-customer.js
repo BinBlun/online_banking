@@ -18,10 +18,16 @@ function loadTable() {
             {"data": "ssn", "width": "20%"},
             {
                 "mRender": function (data, type, row) {
-                    if (row.status == 2) {
-                        return '<span>Active</span>';
+                    if (row.status == 1) {
+                        return '<label class="switch">\n' +
+                            '  <input type="checkbox" title="Locked" onclick="changeStatus(' + row.id + ', 2)">\n' +
+                            '  <span class="slider round"></span>\n' +
+                            '</label>';
                     } else {
-                        return '<span>Locked</span>';
+                        return '<label class="switch">\n' +
+                            '  <input type="checkbox" checked title="Active" onclick="changeStatus(' + row.id + ', 1)">\n' +
+                            '  <span class="slider round"></span>\n' +
+                            '</label>';
                     }
                 }
             },
@@ -35,6 +41,14 @@ function loadTable() {
             }
         ]
     });
+}
+
+function changeStatus(id, status) {
+    const data = {
+        id,
+        status
+    }
+    doRequest('POST', '/admin/rest/change-status', data, success, error);
 }
 
 function success(res) {
