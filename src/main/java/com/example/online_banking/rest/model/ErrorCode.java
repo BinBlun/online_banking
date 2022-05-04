@@ -11,7 +11,7 @@ public class ErrorCode {
     public static final String NO_AMOUNT = "004";
     public static final String NO_LOANS_PACKAGE = "005";
     public static final String NO_SAVING_PACKAGE = "006";
-    public static final String CAN_NOT_DELETE_USER = "007";
+    public static final String USER_NOT_EXIST = "007";
     public static final String TOO_MUCH_MONEY = "008";
 
 
@@ -25,7 +25,7 @@ public class ErrorCode {
         errorCodeMap.put(NO_AMOUNT, "Please insert amount money");
         errorCodeMap.put(NO_LOANS_PACKAGE, "Please choose loans package, please");
         errorCodeMap.put(NO_SAVING_PACKAGE, "Please choose saving package, please");
-        errorCodeMap.put(CAN_NOT_DELETE_USER, "Cannot delete user");
+        errorCodeMap.put(USER_NOT_EXIST, "User not exist");
         errorCodeMap.put(TOO_MUCH_MONEY, "You must deposit less than 1.000.000VND");
 
 

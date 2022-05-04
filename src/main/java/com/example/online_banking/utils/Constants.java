@@ -8,4 +8,8 @@ public class Constants {
     public static final String STATUS_SUCCESS = "SUCCESS";
     public static final String STATUS_FAIL = "FAIL";
     public static final String STATUS_WAITING = "WAITING";
+
+    public static final Integer STATUS_INACTIVE = 0;
+    public static final Integer STATUS_LOCKED = 1;
+    public static final Integer STATUS_ACTIVE = 2;
 }

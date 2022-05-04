@@ -32,6 +32,7 @@ public class RegisterService {
     public User save(User user) {
         user.setRole("CUSTOMER");
         user.setEncryptedPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        user.setStatus(Constants.STATUS_LOCKED);
         User customer = registerRepository.save(user);
 
         String accNum = randomNumber(9);
