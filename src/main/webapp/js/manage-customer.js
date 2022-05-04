@@ -12,15 +12,26 @@ function loadTable() {
             },
         },
         "columns": [
-            {"data": "fullName", "width": "20%"},
-            {"data": "email","width": "20%"},
+            {"data": "fullName", "width": "15%"},
+            {"data": "email", "width": "15%"},
             {"data": "phoneNumber", "width": "20%"},
             {"data": "ssn", "width": "20%"},
-            {"mRender": function ( data, type, row ) {
+            {
+                "mRender": function (data, type, row) {
+                    if (row.status == 2) {
+                        return '<span>Active</span>';
+                    } else {
+                        return '<span>Locked</span>';
+                    }
+                }
+            },
+            {
+                "mRender": function (data, type, row) {
                     return '<div>' +
                         '<a onclick="edit(' + row.id + ')"> Edit | </a>' +
                         '<a onclick="deleteUser(' + row.id + ')"> Delete </a>' +
-                        '</div>';}
+                        '</div>';
+                }
             }
         ]
     });
@@ -29,13 +40,16 @@ function loadTable() {
 function success(res) {
     $('#manage-customer-table').DataTable().ajax.reload();
 }
+
 function error(e) {
     const error = e.responseJSON ? e.responseJSON.errorDesc : e;
     displayMessageError(error);
 }
+
 function edit(id) {
     gotoUrl('/admin/edit-user?id=' + id);
 }
+
 function deleteUser(id) {
     if (confirm('Are you sure?')) {
         doRequest('POST', '/admin/rest/delete-user?id=' + id, null, success, error);

@@ -47,4 +47,7 @@ public class User {
 
     @Column(name = "district")
     private String district;
+
+    @Column(name = "status")
+    private Integer status;
 }

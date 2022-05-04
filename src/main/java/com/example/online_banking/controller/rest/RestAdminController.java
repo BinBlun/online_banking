@@ -36,9 +36,7 @@ public class RestAdminController {
     @PostMapping("/delete-user")
     public ResponseData deleteUser(@RequestParam("id") Long id)
             throws DataInvalidException {
-        userRepository.delete(userRepository.getById(id));
-        return ResponseData.ok();
-//        throw new DataInvalidException(ErrorCode.CAN_NOT_DELETE_USER);
+        return ResponseData.ok(userService.deleteUser(id));
     }
 
     //TODO: list admin
