@@ -1,13 +1,11 @@
 package com.example.online_banking.service;
 
 import com.example.online_banking.exception.DataInvalidException;
+import com.example.online_banking.model.Bank;
 import com.example.online_banking.model.Loans;
 import com.example.online_banking.model.LoansPackage;
 import com.example.online_banking.model.User;
-import com.example.online_banking.repository.AccountRepository;
-import com.example.online_banking.repository.LoansPackageRepository;
-import com.example.online_banking.repository.LoansRepository;
-import com.example.online_banking.repository.UserRepository;
+import com.example.online_banking.repository.*;
 import com.example.online_banking.repository.custom.LoansPackageRepositoryCustom;
 import com.example.online_banking.rest.model.*;
 import com.example.online_banking.utils.Constants;
@@ -34,7 +32,11 @@ public class LoansService {
     private LoansPackageRepository loansPackageRepository;
 
     @Autowired
+    private BankRepository bankRepository;
+
+    @Autowired
     private LoansPackageRepositoryCustom loansPackageRepositoryCustom;
+
 
     public LoansMoneyOutput doMoneyLoans(Authentication authentication, LoansMoneyInput input) throws DataInvalidException {
         String userName = authentication.getName();
@@ -55,6 +57,8 @@ public class LoansService {
             BigDecimal interestAmount = BigDecimal.valueOf(Double.valueOf(input.getAmount().toString()) * loansPackage.getInterestRate() * loansPackage.getDuration());
             loans.setLoansAmountRepaid(input.getAmount().add(interestAmount));
             loans.setDateOfPayment(new Date());
+
+
             //case success
             loansRepository.save(loans);
             return LoansMoneyOutput.builder().status(Constants.STATUS_SUCCESS).build();

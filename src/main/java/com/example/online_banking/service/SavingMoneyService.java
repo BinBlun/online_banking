@@ -2,9 +2,7 @@ package com.example.online_banking.service;
 
 import com.example.online_banking.exception.DataInvalidException;
 import com.example.online_banking.model.*;
-import com.example.online_banking.repository.SavingPackageRepository;
-import com.example.online_banking.repository.SavingRepositoy;
-import com.example.online_banking.repository.UserRepository;
+import com.example.online_banking.repository.*;
 import com.example.online_banking.rest.model.ErrorCode;
 import com.example.online_banking.rest.model.LoansMoneyOutput;
 import com.example.online_banking.rest.model.SavingMoneyInput;
@@ -28,6 +26,15 @@ public class SavingMoneyService {
     @Autowired
     private SavingRepositoy savingRepositoy;
 
+    @Autowired
+    private BankRepository bankRepository;
+
+    @Autowired
+    private AccountRepository accountRepository;
+
+    @Autowired
+    private CardRepository cardRepository;
+
     public SavingMoneyOutput doSavingMoney(Authentication authentication, SavingMoneyInput input) throws DataInvalidException {
         String userName = authentication.getName();
         User user = userRepository.findByUsername(userName);
@@ -47,6 +54,14 @@ public class SavingMoneyService {
             BigDecimal amountProfit = BigDecimal.valueOf(Double.valueOf(input.getAmount().toString()) * savingPackage.getInterestRate() * savingPackage.getDuration());
             saving.setSavingAmounProfit(input.getAmount().add(amountProfit));
             saving.setRegistrationDate(new Date());
+
+            Account account = accountRepository.findFirstByUserId(user.getId());
+            account.setCurrentBalance(account.getCurrentBalance().subtract(input.getAmount()));
+            accountRepository.save(account);
+
+            Card card = cardRepository.findByUserId(user.getId());
+            card.setCurrentBalance(account.getCurrentBalance().subtract(input.getAmount()));
+            cardRepository.save(card);
 
             savingRepositoy.save(saving);
             return SavingMoneyOutput.builder().status(Constants.STATUS_SUCCESS).build();

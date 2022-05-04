@@ -102,8 +102,12 @@ public class TransactionService {
         transaction.setTransactionType("WITHDRAW");
         transaction.setTransactionAmount(amount);
         transaction.setUserId(user);
-
-        if (Double.valueOf(input.getAmount()) > debitAccount.getCurrentBalance().doubleValue()) {
+        if(input.getAmount() == null){
+            transaction.setStatus(Constants.STATUS_FAIL);
+            transaction.setDescription(ErrorCode.getErrorMessage(ErrorCode.NO_AMOUNT));
+            transactionRepositoryCustom.insertLog(transaction);
+            throw new DataInvalidException(ErrorCode.NO_AMOUNT);
+        }else if (Double.valueOf(input.getAmount()) > debitAccount.getCurrentBalance().doubleValue()) {
             transaction.setStatus(Constants.STATUS_FAIL);
             transaction.setDescription(ErrorCode.getErrorMessage(ErrorCode.ACCOUNT_BALANCE_INVALID));
             transactionRepositoryCustom.insertLog(transaction);
@@ -133,8 +137,12 @@ public class TransactionService {
         transaction.setTransactionType("DEPOSIT");
         transaction.setTransactionAmount(amount);
         transaction.setUserId(user);
-
-        if (Double.valueOf(input.getAmount()) > 1000000) {
+        if(input.getAmount() == null){
+            transaction.setStatus(Constants.STATUS_FAIL);
+            transaction.setDescription(ErrorCode.getErrorMessage(ErrorCode.NO_AMOUNT));
+            transactionRepositoryCustom.insertLog(transaction);
+            throw new DataInvalidException(ErrorCode.NO_AMOUNT);
+        }else if (Double.valueOf(input.getAmount()) > 1000000) {
             transaction.setStatus(Constants.STATUS_FAIL);
             transaction.setDescription(ErrorCode.getErrorMessage(ErrorCode.TOO_MUCH_MONEY));
             transactionRepositoryCustom.insertLog(transaction);

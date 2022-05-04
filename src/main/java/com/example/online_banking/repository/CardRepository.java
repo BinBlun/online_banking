@@ -6,6 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CardRepository extends JpaRepository<Card, Long> {
     Card findByCardNumber(String accNum);
-
-    Card getById(Account account);
+    Card findByUserId(Long userId);
 }
